@@ -21,7 +21,11 @@ void yyerror(float *return_value, std::string s);
 
 %parse-param  { float *return_value}
 
-%right SINUS
+%left '+' '-'
+%left '*' '/' '%'
+%left SIN COS TG CTG
+%left UMINUS
+
 
 %type <value> E
 %token <value> NUMBER
@@ -34,15 +38,52 @@ pocetak
         
     };
 
-E
-    : SINUS'('E')' {
-    
+E   
+    : E '+' E {
+        $$ = $1 + $3;
+    } 
+    | E '*' E {
+        $$ = $1 * $3;
+    }
+    | E '-' E {
+        $$ = $1 - $3;
+    }
+    | E '/' E {
+        if ($3 == 0) {
+            yyerror(0, "divide by zero");
+        }
+        $$ = $1 / $3;
+    }
+    | E '%' E {
+        if ($3 == 0) {
+            yyerror(0, "divide by zero");
+        }
+        $$ = static_cast<int>($1) % static_cast<int>($3);
+    }
+    | SIN '(' E ')' {
         $$ = sin($3);
-        
-    } | NUMBER {
-        $$  = $1;
-        
-    };
+    }
+    | COS '(' E ')' {
+        $$ = cos($3);
+    }
+    | TG '(' E ')' {
+        $$ = tan($3);
+    }
+    | CTG '(' E ')' {
+        $$ = 1 / tan($3);
+    }
+    | E '^' E {
+        $$ = pow($1, $3);
+    }
+    | '-' E %prec UMINUS {
+        $$ = -$2;
+    } 
+    | '(' E ')' {
+        $$ = $2;
+    }
+    | NUMBER {
+        $$ = $1;
+    }
 %%
 
 

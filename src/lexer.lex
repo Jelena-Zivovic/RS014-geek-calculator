@@ -20,10 +20,24 @@
 }
 
 sin {
-    return SINUS;
+    return SIN;
 }
 
-[()] {
+cos {
+    return COS;
+}
+
+tg {
+    return TG;
+}
+
+ctg {
+    return CTG;
+}
+
+
+
+[-+*/^()%] {
     return *yytext;
 }
 

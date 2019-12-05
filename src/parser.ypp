@@ -1,0 +1,55 @@
+%{
+
+#include <iostream>
+#include <cstdlib>
+#include <string>
+#include <cmath>
+
+
+
+extern int yylex();
+
+void yyerror(float *return_value, std::string s);
+
+%}
+
+
+
+%union {
+    float value;
+}
+
+%parse-param  { float *return_value}
+
+%right SINUS
+
+%type <value> E
+%token <value> NUMBER
+%start pocetak
+
+%%
+pocetak
+    : E {
+        *return_value = $1;
+        
+    };
+
+E
+    : SINUS'('E')' {
+    
+        $$ = sin($3);
+        
+    } | NUMBER {
+        $$  = $1;
+        
+    };
+%%
+
+
+
+
+void yyerror(float *return_value, std::string s)
+{
+   
+   
+}

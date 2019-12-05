@@ -35,16 +35,49 @@ ctg {
     return CTG;
 }
 
+arcsin {
+    return ASIN;
+}
 
+arccos {
+    return ACOS;
+}
 
-[-+*/^()%] {
+arctg {
+    return ATG;
+}
+
+arcctg {
+    return ACTG;
+}
+
+ln {
+    return LN;
+}
+
+log {
+    return LOG;
+}
+
+exp {
+    return EXP;
+}
+
+sqrt {
+    return SQRT;
+}
+
+abs {
+    return ABS;
+}
+
+[-+*/^()%!] {
     return *yytext;
 }
 
-[\n \t] {
 
-}
+[ \t\n] ;
 
 . {
-   
+    
 }

@@ -5,10 +5,10 @@
 #include <fstream>
 #include "parser.tab.hpp"
 
+//TODO lexer should read from string
+bool indicator_calculating_value;
 extern FILE *yyin;
 extern int yyparse(float *return_value);
-
-
 
 Function::Function(const std::string& str_func)
     : m_function(str_func) {
@@ -23,19 +23,31 @@ Function::~Function() {
     
 
 bool Function::check_function()  {
-    Help_File fajl;
+    indicator_calculating_value = false;
+    Help_File file;
 
-    fajl.write(m_function);
+    file.write(m_function);
 
-    yyin = fajl.get_FILE();
-
-    int return_value = yyparse(&function_value);
+    yyin = file.get_FILE();
+    float ignore_value;
+    int return_value = yyparse(&ignore_value);
 
     return return_value == 0 ? true : false;
     
 }
 
-float Function::get_function_value() const {
+float Function::get_value()  {
+
+    indicator_calculating_value = true;
+
+    Help_File file;
+
+    file.write(m_function);
+
+    yyin = file.get_FILE();
+
+    yyparse(&function_value);
+
     return function_value;
 
 }

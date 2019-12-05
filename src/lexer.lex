@@ -19,6 +19,8 @@
         return NUMBER;
 }
 
+
+
 sin {
     return SIN;
 }
@@ -69,6 +71,10 @@ sqrt {
 
 abs {
     return ABS;
+}
+
+[a-z] {
+    return VARIABLE;
 }
 
 [-+*/^()%!] {

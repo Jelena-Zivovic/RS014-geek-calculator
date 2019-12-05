@@ -5,7 +5,7 @@
 #include <string>
 #include <cmath>
 
-
+extern bool indicator_calculating_value;
 
 extern int yylex();
 
@@ -13,10 +13,9 @@ void yyerror(float *return_value, std::string s);
 
 %}
 
-
-
 %union {
     float value;
+    char variable;
 }
 
 %parse-param  { float *return_value}
@@ -32,99 +31,149 @@ void yyerror(float *return_value, std::string s);
 
 %type <value> E
 %token <value> NUMBER
+%token <variable> VARIABLE;
 %start pocetak
 
 %%
 pocetak
     : E {
-        *return_value = $1;
+       *return_value = $1;
+      //*return_value = 0;
         
     };
 
 E   
     : E '+' E {
-        $$ = $1 + $3;
+        if (indicator_calculating_value) {
+            $$ = $1 + $3;
+        }
     } 
     | E '*' E {
-        $$ = $1 * $3;
+        
+        if (indicator_calculating_value) {
+            $$ = $1 * $3;
+        }
     }
     | E '-' E {
-        $$ = $1 - $3;
+        if (indicator_calculating_value) {
+            $$ = $1 - $3;
+        }
     }
     | E '/' E {
-        if ($3 == 0) {
-            yyerror(0, "divide by zero");
+
+        if(indicator_calculating_value) {
+            if ($3 == 0) {
+                yyerror(0, "divide by zero");
+            }
+            $$ = $1 / $3;
         }
-        $$ = $1 / $3;
     }
     | E '%' E {
-        if ($3 == 0) {
-            yyerror(0, "divide by zero");
+        if(indicator_calculating_value) {
+            if ($3 == 0) {
+                yyerror(0, "divide by zero");
+            }
+            $$ = static_cast<int>($1) % static_cast<int>($3);
         }
-        $$ = static_cast<int>($1) % static_cast<int>($3);
     }
     | SIN '(' E ')' {
-        $$ = sin($3);
+        if(indicator_calculating_value) {
+            $$ = sin($3);
+        }
     }
     | COS '(' E ')' {
-        $$ = cos($3);
+        if(indicator_calculating_value) {
+            $$ = cos($3);
+        }
     }
     | TG '(' E ')' {
-        $$ = tan($3);
+        if(indicator_calculating_value) {
+            $$ = tan($3);
+        }
     }
     | CTG '(' E ')' {
-        $$ = 1 / tan($3);
+        if(indicator_calculating_value) {
+            $$ = 1 / tan($3);
+        }
     }
     | ASIN '(' E ')' {
-        $$ = asin($3);
+        if(indicator_calculating_value) {
+            $$ = asin($3);
+        }
     }
     | ACOS '(' E ')' {
-        $$ = acos($3);
+        if(indicator_calculating_value) {
+            $$ = acos($3);
+        }
     }       
     | ATG '(' E ')' {
-        $$ = atan($3);
+        if(indicator_calculating_value) {
+            $$ = atan($3);
+        }
     }
     | ACTG '(' E ')' {
-        $$ = 1 / atan($3);
+        if(indicator_calculating_value) {
+            $$ = 1 / atan($3);
+        }
     }
     | LN '(' E ')' {
-        $$ = log($3);
+        if(indicator_calculating_value) {
+            $$ = log($3);
+        }
     }
     | LOG E '(' E ')' {
-        $$ = log($4) / log($2);
+        if(indicator_calculating_value) {
+            $$ = log($4) / log($2);
+        }
     }
     | EXP '(' E ')' {
-        $$ = exp($3);
+        if(indicator_calculating_value) {
+            $$ = exp($3);
+        }
     }
     | SQRT '(' E ')' {
-        $$ = sqrt($3);
+        if(indicator_calculating_value) {
+            $$ = sqrt($3);
+        }
     }
     | E '^' E {
-        $$ = pow($1, $3);
+        if(indicator_calculating_value) {
+            $$ = pow($1, $3);
+        }
     }
     | '-' E %prec UMINUS {
-        $$ = -$2;
+        if(indicator_calculating_value) {
+            $$ = -$2;
+        }
     } 
     | ABS '(' E ')' {
-        $$ = fabs($3);
+        if(indicator_calculating_value) {
+            $$ = fabs($3);
+        }
     }
     | E '!' {
-        $$ = 1;
-        for (int i = 1; i <= static_cast<int>($1); i++) {
-            $$ = $$ * i;
+        if(indicator_calculating_value) {
+            $$ = 1;
+            for (int i = 1; i <= static_cast<int>($1); i++) {
+                $$ = $$ * i;
+            }
         }
     }
     | '(' E ')' {
-        $$ = $2;
+        if(indicator_calculating_value) {
+            $$ = $2;
+        }
     }
     | NUMBER {
-        $$ = $1;
+        if(indicator_calculating_value) {
+            $$ = $1;
+        }
+    }
+    | VARIABLE {
+
     }
     ;
 %%
-
-
-
 
 void yyerror(float *return_value, std::string s)
 {

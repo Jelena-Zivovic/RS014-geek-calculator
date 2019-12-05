@@ -9,7 +9,8 @@ public:
 
     Function(const std::string& str_func);
     ~Function();
-    float get_function_value() const;
+    float get_value();
+    
 
 
 private:

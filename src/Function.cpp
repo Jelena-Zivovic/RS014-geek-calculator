@@ -3,6 +3,7 @@
 #include <string>
 #include <iostream>
 #include <fstream>
+#include <mgl2/qt.h>
 #include "parser.tab.hpp"
 
 //TODO lexer should read from string
@@ -53,7 +54,16 @@ float Function::get_value()  {
 }
 
 
+std::string Function::get_function_string() const {
+    return m_function;
+}
 
+
+
+void Function::draw_function(mglGraph *gr) const {
+   
+
+}
 
 
 

@@ -7,11 +7,11 @@
 #include "parser.tab.hpp"
 
 //TODO lexer should read from string
-bool indicator_calculating_value;
+ bool indicator_calculating_value;
 extern FILE *yyin;
 extern int yyparse(float *return_value);
 
-Function::Function(const std::string& str_func)
+Function::Function(const QString& str_func)
     : m_function(str_func) {
         if (!check_function()) {
             throw "Function is not valid";
@@ -54,16 +54,7 @@ float Function::get_value()  {
 }
 
 
-std::string Function::get_function_string() const {
-    return m_function;
-}
 
-
-
-void Function::draw_function(mglGraph *gr) const {
-   
-
-}
 
 
 

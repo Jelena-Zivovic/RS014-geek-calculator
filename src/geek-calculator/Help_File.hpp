@@ -4,6 +4,7 @@
 #include <iostream>
 #include <fstream>
 #include <cstdio>
+#include <QString>
 
 class Help_File {
 public:
@@ -11,7 +12,7 @@ public:
 
     ~Help_File();
 
-    void write(const std::string& text);
+    void write(const QString& text);
 
     FILE *get_FILE() const;
 

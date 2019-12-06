@@ -11,8 +11,8 @@ Help_File::~Help_File() {
     fclose(m_file_star);
 }
 
-void Help_File::write(const std::string& text) {
-    m_file << text << std::endl;
+void Help_File::write(const QString& text) {
+    m_file << text.toStdString() << std::endl;
 }
 
 FILE* Help_File::get_FILE() const {

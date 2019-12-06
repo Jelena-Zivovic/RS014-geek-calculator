@@ -2,6 +2,7 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
+#include <string>
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -25,6 +26,10 @@ private slots:
     void on_goBackToMainPageButton_clicked();
 
     void on_goBackToMainPage2_clicked();
+
+
+
+    void on_calculateValueButton_clicked();
 
 private:
     Ui::MainWindow *ui;

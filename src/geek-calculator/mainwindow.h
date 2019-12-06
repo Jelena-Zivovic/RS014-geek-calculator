@@ -16,13 +16,15 @@ public:
     ~MainWindow();
 
 private slots:
-    void on_commonCalculatorButton_clicked();
 
-    void on_functionsButton_clicked();
 
-    void on_backButtonCommonCalculator_clicked();
+    void on_goToBasicCalculatorButton_clicked();
 
-    void on_backButtonFunctions_clicked();
+    void on_goToFunctionsButton_clicked();
+
+    void on_goBackToMainPageButton_clicked();
+
+    void on_goBackToMainPage2_clicked();
 
 private:
     Ui::MainWindow *ui;

@@ -17,14 +17,14 @@
    <widget class="QStackedWidget" name="stackedWidgets">
     <property name="geometry">
      <rect>
-      <x>80</x>
-      <y>60</y>
-      <width>481</width>
-      <height>301</height>
+      <x>100</x>
+      <y>30</y>
+      <width>521</width>
+      <height>421</height>
      </rect>
     </property>
     <property name="currentIndex">
-     <number>1</number>
+     <number>2</number>
     </property>
     <widget class="QWidget" name="mainPage">
      <widget class="QWidget" name="horizontalLayoutWidget">
@@ -68,13 +68,13 @@
        <string>back</string>
       </property>
      </widget>
-     <widget class="QWidget" name="">
+     <widget class="QWidget" name="layoutWidget">
       <property name="geometry">
        <rect>
         <x>20</x>
         <y>0</y>
         <width>441</width>
-        <height>121</height>
+        <height>179</height>
        </rect>
       </property>
       <layout class="QVBoxLayout" name="verticalLayout">
@@ -95,17 +95,137 @@
      </widget>
     </widget>
     <widget class="QWidget" name="functionsPage">
-     <widget class="QPushButton" name="goBackToMainPage2">
+     <widget class="QWidget" name="verticalLayoutWidget">
       <property name="geometry">
        <rect>
-        <x>200</x>
-        <y>250</y>
+        <x>220</x>
+        <y>360</y>
+        <width>82</width>
+        <height>27</height>
+       </rect>
+      </property>
+      <layout class="QVBoxLayout" name="verticalLayout_2">
+       <item>
+        <widget class="QPushButton" name="goBackToMainPage2">
+         <property name="text">
+          <string>back</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QLabel" name="enterFunctionLabel">
+      <property name="geometry">
+       <rect>
+        <x>180</x>
+        <y>0</y>
+        <width>201</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="minimumSize">
+       <size>
+        <width>201</width>
+        <height>0</height>
+       </size>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">text-align: right;</string>
+      </property>
+      <property name="text">
+       <string>Enter function below:</string>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="enteredFunctionLineEdit">
+      <property name="geometry">
+       <rect>
+        <x>142</x>
+        <y>20</y>
+        <width>211</width>
+        <height>25</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="integralValueFunction">
+      <property name="geometry">
+       <rect>
+        <x>220</x>
+        <y>100</y>
         <width>89</width>
         <height>25</height>
        </rect>
       </property>
       <property name="text">
-       <string>back</string>
+       <string>integral</string>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="resultLineEdit">
+      <property name="geometry">
+       <rect>
+        <x>230</x>
+        <y>190</y>
+        <width>171</width>
+        <height>25</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QLabel" name="resultLabel">
+      <property name="geometry">
+       <rect>
+        <x>130</x>
+        <y>190</y>
+        <width>67</width>
+        <height>17</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>result:</string>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="lowerBoundLineEdit">
+      <property name="geometry">
+       <rect>
+        <x>150</x>
+        <y>60</y>
+        <width>113</width>
+        <height>25</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="upperBoundLineEdit">
+      <property name="geometry">
+       <rect>
+        <x>390</x>
+        <y>60</y>
+        <width>113</width>
+        <height>25</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label">
+      <property name="geometry">
+       <rect>
+        <x>20</x>
+        <y>60</y>
+        <width>111</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>lower bound:</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_2">
+      <property name="geometry">
+       <rect>
+        <x>290</x>
+        <y>60</y>
+        <width>91</width>
+        <height>17</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>upper bound:</string>
       </property>
      </widget>
     </widget>

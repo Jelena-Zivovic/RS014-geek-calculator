@@ -32,6 +32,8 @@ HEADERS += \
 FORMS += \
     mainwindow.ui
 
+LIBS += -L/usr/local/lib -lmgl-qt5 -lmgl
+
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
 else: unix:!android: target.path = /opt/$${TARGET}/bin

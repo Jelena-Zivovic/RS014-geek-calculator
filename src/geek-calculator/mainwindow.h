@@ -31,6 +31,8 @@ private slots:
 
     void on_calculateValueButton_clicked();
 
+    void on_integralValueFunction_clicked();
+
 private:
     Ui::MainWindow *ui;
 };

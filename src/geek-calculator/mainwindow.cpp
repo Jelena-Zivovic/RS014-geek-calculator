@@ -10,18 +10,18 @@ MainWindow::MainWindow(QWidget *parent)
     ui->stackedWidgets->setCurrentIndex(0);
     ui->outputTextEdit->setReadOnly(true);
     ui->resultLineEdit->setReadOnly(true);
+
 }
 
 MainWindow::~MainWindow()
 {
     delete ui;
 }
-
 void MainWindow::on_goToBasicCalculatorButton_clicked()
 {
     ui->enterFunctionToCalculateValueTextEdit->clear();
     ui->outputTextEdit->clear();
-    ui->stackedWidgets->setCurrentIndex(1);
+    ui->stackedWidgets->setCurrentWidget(ui->commonCalculatorPage);
 }
 
 void MainWindow::on_goToFunctionsButton_clicked()
@@ -30,19 +30,25 @@ void MainWindow::on_goToFunctionsButton_clicked()
     ui->lowerBoundLineEdit->clear();
     ui->upperBoundLineEdit->clear();
     ui->resultLineEdit->clear();
-    ui->stackedWidgets->setCurrentIndex(2);
+    ui->stackedWidgets->setCurrentWidget(ui->functionsPage);
 }
+void MainWindow::on_goToMatrixButton_clicked()
+{
+    ui->stackedWidgets->setCurrentWidget(ui->matrixPage);
+}
+
+
 
 void MainWindow::on_goBackToMainPageButton_clicked()
 {
 
-    ui->stackedWidgets->setCurrentIndex(0);
+    ui->stackedWidgets->setCurrentWidget(ui->mainPage);
 
 }
 
 void MainWindow::on_goBackToMainPage2_clicked()
 {
-    ui->stackedWidgets->setCurrentIndex(0);
+    ui->stackedWidgets->setCurrentWidget(ui->mainPage);
 }
 
 
@@ -76,3 +82,11 @@ void MainWindow::on_integralValueFunction_clicked()
         std::cout << "bla" << std::endl;
     }
 }
+
+
+
+
+
+
+
+

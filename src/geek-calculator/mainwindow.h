@@ -33,6 +33,9 @@ private slots:
 
     void on_integralValueFunction_clicked();
 
+
+    void on_goToMatrixButton_clicked();
+
 private:
     Ui::MainWindow *ui;
 };

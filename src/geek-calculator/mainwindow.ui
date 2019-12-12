@@ -17,14 +17,14 @@
    <widget class="QStackedWidget" name="stackedWidgets">
     <property name="geometry">
      <rect>
-      <x>100</x>
-      <y>30</y>
+      <x>130</x>
+      <y>10</y>
       <width>521</width>
       <height>421</height>
      </rect>
     </property>
     <property name="currentIndex">
-     <number>2</number>
+     <number>1</number>
     </property>
     <widget class="QWidget" name="mainPage">
      <widget class="QWidget" name="horizontalLayoutWidget">
@@ -51,7 +51,75 @@
          </property>
         </widget>
        </item>
+       <item>
+        <widget class="QPushButton" name="goToMatrixButton">
+         <property name="text">
+          <string>matrix</string>
+         </property>
+        </widget>
+       </item>
       </layout>
+     </widget>
+    </widget>
+    <widget class="QWidget" name="matrixPage">
+     <widget class="QLineEdit" name="dimNLineEdit">
+      <property name="geometry">
+       <rect>
+        <x>80</x>
+        <y>20</y>
+        <width>113</width>
+        <height>25</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="dimMLineEdit">
+      <property name="geometry">
+       <rect>
+        <x>80</x>
+        <y>60</y>
+        <width>113</width>
+        <height>25</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QLabel" name="dimNLabel">
+      <property name="geometry">
+       <rect>
+        <x>20</x>
+        <y>20</y>
+        <width>67</width>
+        <height>17</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>dim n</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="dimMLabel">
+      <property name="geometry">
+       <rect>
+        <x>20</x>
+        <y>60</y>
+        <width>67</width>
+        <height>17</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>dim m</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="pushButton">
+      <property name="geometry">
+       <rect>
+        <x>260</x>
+        <y>40</y>
+        <width>191</width>
+        <height>25</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Enter dimension</string>
+      </property>
      </widget>
     </widget>
     <widget class="QWidget" name="commonCalculatorPage">

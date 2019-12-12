@@ -11,3 +11,7 @@ O projektu:
 Biblioteke:
     Qt5
     MathGL
+    Flex
+    YACC
+    
+

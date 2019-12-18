@@ -1,6 +1,8 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 #include "Function.hpp"
+#include "Matrix.hpp"
+#include <QMessageBox>
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -82,11 +84,35 @@ void MainWindow::on_integralValueFunction_clicked()
         std::cout << "bla" << std::endl;
     }
 }
-
-
-
-
-
-
-
+void MainWindow::on_enterDimensionButton_clicked()
+{
+    QString n_txt = ui->dimNLineEditA->text();
+    QString m_txt = ui->dimMLineEditA->text();
+    bool ok;
+    int n = n_txt.toInt(&ok, 10);
+    if(ok == false){
+        QMessageBox msgBox;
+        msgBox.setText("Morate uneti ispravan pozitivan broj");
+        msgBox.exec();
+        return;
+    }
+    int m = m_txt.toInt(&ok);
+    if(ok == false){
+        QMessageBox msgBox;
+        msgBox.setText("Morate uneti ispravan pozitivan broj");
+        msgBox.exec();
+        return;
+    }
+    QString text = ui->matrixInputPlainTextEditA->toPlainText();
+    ok = Matrix::check_matrix(text,static_cast<unsigned>(n),static_cast<unsigned>(m));
+    if(ok == false){
+        QMessageBox msgBox;
+        msgBox.setText("Matrica nije dobro uneta");
+        msgBox.exec();
+        return;
+    }
+    Eigen::MatrixXd matrix = Matrix::parseText(text, static_cast<unsigned>(n),static_cast<unsigned>(m));
+    std::cout << matrix << std::endl;
+    std::cout << matrix.pow(2) << std::endl;
+}
 

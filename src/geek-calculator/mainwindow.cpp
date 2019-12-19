@@ -84,6 +84,7 @@ void MainWindow::on_integralValueFunction_clicked()
         std::cout << "bla" << std::endl;
     }
 }
+/*
 void MainWindow::on_enterDimensionButton_clicked()
 {
     QString n_txt = ui->dimNLineEditA->text();
@@ -114,5 +115,5 @@ void MainWindow::on_enterDimensionButton_clicked()
     Eigen::MatrixXd matrix = Matrix::parseText(text, static_cast<unsigned>(n),static_cast<unsigned>(m));
     std::cout << matrix << std::endl;
     std::cout << matrix.pow(2) << std::endl;
-}
+}*/
 

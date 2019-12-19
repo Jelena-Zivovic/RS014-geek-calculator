@@ -36,7 +36,6 @@ private slots:
 
     void on_goToMatrixButton_clicked();
 
-    void on_enterDimensionButton_clicked();
 
 
 private:

@@ -120,3 +120,7 @@ Eigen::MatrixXd Matrix::parseText(QString text, unsigned n, unsigned m){
 
     return matrix;
 }
+QString Matrix::matrix_format() const{
+    QString text = "";
+    return text;
+}

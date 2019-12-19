@@ -47,6 +47,8 @@ public:
     double det() const;
     double norm() const;
 
+    QString matrix_format() const;
+
 };
 
 std::ostream& operator<<(std::ostream& out, const Matrix& m);

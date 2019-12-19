@@ -17,10 +17,10 @@
    <widget class="QStackedWidget" name="stackedWidgets">
     <property name="geometry">
      <rect>
-      <x>130</x>
+      <x>20</x>
       <y>10</y>
-      <width>521</width>
-      <height>421</height>
+      <width>731</width>
+      <height>541</height>
      </rect>
     </property>
     <property name="currentIndex">
@@ -62,30 +62,79 @@
      </widget>
     </widget>
     <widget class="QWidget" name="matrixPage">
-     <widget class="QLineEdit" name="dimNLineEdit">
+     <widget class="QLineEdit" name="dimNLineEditA">
       <property name="geometry">
        <rect>
-        <x>80</x>
-        <y>20</y>
-        <width>113</width>
+        <x>60</x>
+        <y>10</y>
+        <width>41</width>
         <height>25</height>
        </rect>
       </property>
      </widget>
-     <widget class="QLineEdit" name="dimMLineEdit">
+     <widget class="QLineEdit" name="dimMLineEditA">
       <property name="geometry">
        <rect>
-        <x>80</x>
-        <y>60</y>
-        <width>113</width>
+        <x>60</x>
+        <y>40</y>
+        <width>41</width>
         <height>25</height>
        </rect>
       </property>
      </widget>
-     <widget class="QLabel" name="dimNLabel">
+     <widget class="QLabel" name="dimNLabelA">
       <property name="geometry">
        <rect>
-        <x>20</x>
+        <x>10</x>
+        <y>10</y>
+        <width>67</width>
+        <height>17</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>dim n</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="dimMLabelA">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>40</y>
+        <width>67</width>
+        <height>17</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>dim m</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="enterDimensionButtonA">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>90</y>
+        <width>91</width>
+        <height>25</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Enter Dim</string>
+      </property>
+     </widget>
+     <widget class="QPlainTextEdit" name="matrixInputPlainTextEditB">
+      <property name="geometry">
+       <rect>
+        <x>540</x>
+        <y>10</y>
+        <width>181</width>
+        <height>141</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QLabel" name="dimNLabelB">
+      <property name="geometry">
+       <rect>
+        <x>410</x>
         <y>20</y>
         <width>67</width>
         <height>17</height>
@@ -95,11 +144,11 @@
        <string>dim n</string>
       </property>
      </widget>
-     <widget class="QLabel" name="dimMLabel">
+     <widget class="QLabel" name="dimMLabelB">
       <property name="geometry">
        <rect>
-        <x>20</x>
-        <y>60</y>
+        <x>410</x>
+        <y>50</y>
         <width>67</width>
         <height>17</height>
        </rect>
@@ -108,17 +157,279 @@
        <string>dim m</string>
       </property>
      </widget>
-     <widget class="QPushButton" name="pushButton">
+     <widget class="QLineEdit" name="dimNLineEdidB">
       <property name="geometry">
        <rect>
-        <x>260</x>
+        <x>482</x>
+        <y>10</y>
+        <width>51</width>
+        <height>25</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="dimMLineEdit_2">
+      <property name="geometry">
+       <rect>
+        <x>482</x>
         <y>40</y>
-        <width>191</width>
+        <width>51</width>
+        <height>25</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QPlainTextEdit" name="matrixOutputPlainTextEdit">
+      <property name="geometry">
+       <rect>
+        <x>50</x>
+        <y>370</y>
+        <width>691</width>
+        <height>141</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="plusButton">
+      <property name="geometry">
+       <rect>
+        <x>300</x>
+        <y>10</y>
+        <width>89</width>
         <height>25</height>
        </rect>
       </property>
       <property name="text">
-       <string>Enter dimension</string>
+       <string>A + B</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="minusButton">
+      <property name="geometry">
+       <rect>
+        <x>300</x>
+        <y>40</y>
+        <width>89</width>
+        <height>25</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>A - B</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="multiplyButton">
+      <property name="geometry">
+       <rect>
+        <x>300</x>
+        <y>80</y>
+        <width>89</width>
+        <height>25</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>A * B</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="divideButton">
+      <property name="geometry">
+       <rect>
+        <x>300</x>
+        <y>120</y>
+        <width>89</width>
+        <height>25</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>A / B</string>
+      </property>
+     </widget>
+     <widget class="QPlainTextEdit" name="matrixInputPlainTextEditA">
+      <property name="geometry">
+       <rect>
+        <x>120</x>
+        <y>10</y>
+        <width>171</width>
+        <height>141</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="enterDimensionButtonB">
+      <property name="geometry">
+       <rect>
+        <x>420</x>
+        <y>90</y>
+        <width>91</width>
+        <height>25</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Enter Dim</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="determinantButtonA">
+      <property name="geometry">
+       <rect>
+        <x>100</x>
+        <y>180</y>
+        <width>101</width>
+        <height>25</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Determinant</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="inverseButtonA">
+      <property name="geometry">
+       <rect>
+        <x>210</x>
+        <y>180</y>
+        <width>101</width>
+        <height>25</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Inverse</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="transposeButtonA">
+      <property name="geometry">
+       <rect>
+        <x>100</x>
+        <y>210</y>
+        <width>101</width>
+        <height>25</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Transpose</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="multiplyByButtonA">
+      <property name="geometry">
+       <rect>
+        <x>210</x>
+        <y>210</y>
+        <width>101</width>
+        <height>25</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Multiply by</string>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="multiplyBylineEditA">
+      <property name="geometry">
+       <rect>
+        <x>330</x>
+        <y>210</y>
+        <width>41</width>
+        <height>25</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="raisePowerButtonA">
+      <property name="geometry">
+       <rect>
+        <x>140</x>
+        <y>250</y>
+        <width>131</width>
+        <height>25</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Raise to power of</string>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="raisePowerlineEditA">
+      <property name="geometry">
+       <rect>
+        <x>330</x>
+        <y>250</y>
+        <width>41</width>
+        <height>25</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="determinantButtonB">
+      <property name="geometry">
+       <rect>
+        <x>450</x>
+        <y>180</y>
+        <width>101</width>
+        <height>25</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Determinant</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="inverseButtonB">
+      <property name="geometry">
+       <rect>
+        <x>560</x>
+        <y>180</y>
+        <width>101</width>
+        <height>25</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Inverse</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="transposeButtonB">
+      <property name="geometry">
+       <rect>
+        <x>450</x>
+        <y>210</y>
+        <width>101</width>
+        <height>25</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Transpose</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="multiplyByButtonB">
+      <property name="geometry">
+       <rect>
+        <x>560</x>
+        <y>210</y>
+        <width>101</width>
+        <height>25</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Multiply by</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="raisePowerButtonB">
+      <property name="geometry">
+       <rect>
+        <x>480</x>
+        <y>250</y>
+        <width>131</width>
+        <height>25</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Raise to power of</string>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="raisePowerlineEditB">
+      <property name="geometry">
+       <rect>
+        <x>670</x>
+        <y>250</y>
+        <width>41</width>
+        <height>25</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="multiplByrlineEditB">
+      <property name="geometry">
+       <rect>
+        <x>670</x>
+        <y>210</y>
+        <width>41</width>
+        <height>25</height>
+       </rect>
       </property>
      </widget>
     </widget>

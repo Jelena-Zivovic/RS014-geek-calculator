@@ -11,7 +11,7 @@ MainWindow::MainWindow(QWidget *parent)
     ui->setupUi(this);
     ui->stackedWidgets->setCurrentWidget(ui->mainPage);
     ui->outputTextEdit->setReadOnly(true);
-    ui->resultLineEdit->setReadOnly(true);
+    configureFunctionPage();
 
 
 }
@@ -20,6 +20,15 @@ MainWindow::~MainWindow()
 {
     delete ui;
 }
+
+void MainWindow::configureFunctionPage() {
+    ui->secondLowerBoundLabel->hide();
+    ui->secondLowerBoundLineEdit->hide();
+    ui->secondUpperBoundLabel->hide();
+    ui->secondUpperBoundLineEdit->hide();
+    ui->resultIntegralLineEdit->setReadOnly(true);
+}
+
 void MainWindow::on_goToBasicCalculatorButton_clicked()
 {
     ui->enterFunctionToCalculateValueTextEdit->clear();
@@ -30,9 +39,9 @@ void MainWindow::on_goToBasicCalculatorButton_clicked()
 void MainWindow::on_goToFunctionsButton_clicked()
 {
     ui->enteredFunctionLineEdit->clear();
-    ui->lowerBoundLineEdit->clear();
-    ui->upperBoundLineEdit->clear();
-    ui->resultLineEdit->clear();
+    ui->firstLowerBoundLineEdit->clear();
+    ui->firstUpperBoundLineEdit->clear();
+    ui->resultIntegralLineEdit->clear();
     ui->oneVariableRadioButton->setChecked(true);
     ui->stackedWidgets->setCurrentWidget(ui->functionsPage);
 
@@ -72,8 +81,8 @@ void MainWindow::on_calculateValueButton_clicked()
 
 }
 
-void MainWindow::on_integralValueFunction_clicked()
-{
+void MainWindow::on_integralValueFunction_clicked() {
+
     QString enteredText = ui->enteredFunctionLineEdit->text();
     int number_of_variables=1;
     if (ui->oneVariableRadioButton->isChecked()) {
@@ -85,10 +94,18 @@ void MainWindow::on_integralValueFunction_clicked()
 
     try {
         Function function(enteredText, number_of_variables);
-        float lower_bound = ui->lowerBoundLineEdit->text().toFloat();
-        float upper_bound = ui->upperBoundLineEdit->text().toFloat();
-        float calculatedValue = function.integral(lower_bound, upper_bound);
-        ui->resultLineEdit->setText(QString::number(calculatedValue));
+
+        if (number_of_variables == 1) {
+            float lower_bound = ui->firstLowerBoundLineEdit->text().toFloat();
+            float upper_bound = ui->firstUpperBoundLineEdit->text().toFloat();
+            float calculatedValue = function.oneVariableIntegral(lower_bound, upper_bound);
+            ui->resultIntegralLineEdit->setText(QString::number(calculatedValue));
+        }
+        else {
+
+        }
+
+
     } catch(const char *message) {
         std::cout << "bla" << std::endl;
     }
@@ -126,3 +143,19 @@ void MainWindow::on_enterDimensionButton_clicked()
     std::cout << matrix.pow(2) << std::endl;
 }*/
 
+
+void MainWindow::on_twoVariablesRadioButton_clicked()
+{
+    ui->secondLowerBoundLabel->show();
+    ui->secondLowerBoundLineEdit->show();
+    ui->secondUpperBoundLabel->show();
+    ui->secondUpperBoundLineEdit->show();
+}
+
+void MainWindow::on_oneVariableRadioButton_clicked()
+{
+    ui->secondLowerBoundLabel->hide();
+    ui->secondLowerBoundLineEdit->hide();
+    ui->secondUpperBoundLabel->hide();
+    ui->secondUpperBoundLineEdit->hide();
+}

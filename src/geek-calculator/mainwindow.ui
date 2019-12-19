@@ -548,7 +548,7 @@
          <string>2 variables</string>
         </property>
        </widget>
-       <widget class="QLabel" name="loweBoundLabel">
+       <widget class="QLabel" name="firstLoweBoundLabel">
         <property name="geometry">
          <rect>
           <x>0</x>
@@ -561,7 +561,7 @@
          <string>lower bound:</string>
         </property>
        </widget>
-       <widget class="QLineEdit" name="lowerBoundLineEdit">
+       <widget class="QLineEdit" name="firstLowerBoundLineEdit">
         <property name="geometry">
          <rect>
           <x>150</x>
@@ -570,12 +570,15 @@
           <height>25</height>
          </rect>
         </property>
+        <property name="styleSheet">
+         <string notr="true"/>
+        </property>
        </widget>
-       <widget class="QLabel" name="upperBoundLabel">
+       <widget class="QLabel" name="firstUpperBoundLabel">
         <property name="geometry">
          <rect>
           <x>0</x>
-          <y>230</y>
+          <y>220</y>
           <width>91</width>
           <height>17</height>
          </rect>
@@ -584,11 +587,11 @@
          <string>upper bound:</string>
         </property>
        </widget>
-       <widget class="QLineEdit" name="upperBoundLineEdit">
+       <widget class="QLineEdit" name="firstUpperBoundLineEdit">
         <property name="geometry">
          <rect>
           <x>150</x>
-          <y>230</y>
+          <y>220</y>
           <width>113</width>
           <height>25</height>
          </rect>
@@ -620,7 +623,7 @@
          <string>result:</string>
         </property>
        </widget>
-       <widget class="QLineEdit" name="resultLineEdit">
+       <widget class="QLineEdit" name="resultIntegralLineEdit">
         <property name="geometry">
          <rect>
           <x>80</x>
@@ -641,6 +644,52 @@
         </property>
         <property name="text">
          <string>back</string>
+        </property>
+       </widget>
+       <widget class="QLabel" name="secondLowerBoundLabel">
+        <property name="geometry">
+         <rect>
+          <x>290</x>
+          <y>160</y>
+          <width>91</width>
+          <height>20</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>lower bound:</string>
+        </property>
+       </widget>
+       <widget class="QLabel" name="secondUpperBoundLabel">
+        <property name="geometry">
+         <rect>
+          <x>290</x>
+          <y>220</y>
+          <width>91</width>
+          <height>20</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>upper bound:</string>
+        </property>
+       </widget>
+       <widget class="QLineEdit" name="secondLowerBoundLineEdit">
+        <property name="geometry">
+         <rect>
+          <x>420</x>
+          <y>160</y>
+          <width>113</width>
+          <height>25</height>
+         </rect>
+        </property>
+       </widget>
+       <widget class="QLineEdit" name="secondUpperBoundLineEdit">
+        <property name="geometry">
+         <rect>
+          <x>420</x>
+          <y>220</y>
+          <width>113</width>
+          <height>25</height>
+         </rect>
         </property>
        </widget>
       </widget>

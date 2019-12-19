@@ -13,7 +13,7 @@ public:
     Function(const QString& str_func, const int number_of_variables=1);
     ~Function();
     float get_value();
-    float integral(const float a, const float b);
+    float oneVariableIntegral(const float a, const float b);
     QString get_string_function() const;
 
     

@@ -83,7 +83,7 @@ std::vector<float> Function::linspace(const float a, const float b, const size_t
 
 
 
-float Function::integral(const float a, const float b) {
+float Function::oneVariableIntegral(const float a, const float b) {
 
    size_t n = 1001;
 

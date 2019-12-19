@@ -29,27 +29,35 @@ cos {
     return COS;
 }
 
+tan {
+    return TG;
+}
+
 tg {
     return TG;
+}
+
+ctan {
+    return CTG;
 }
 
 ctg {
     return CTG;
 }
 
-arcsin {
+asin {
     return ASIN;
 }
 
-arccos {
+acos {
     return ACOS;
 }
 
-arctg {
+atan {
     return ATG;
 }
 
-arcctg {
+actan {
     return ACTG;
 }
 
@@ -73,11 +81,15 @@ abs {
     return ABS;
 }
 
+mod {
+    return MOD;
+}
+
 [a-z] {
     return VARIABLE;
 }
 
-[-+*/^()%!] {
+[-+*/^()%!,] {
     return *yytext;
 }
 

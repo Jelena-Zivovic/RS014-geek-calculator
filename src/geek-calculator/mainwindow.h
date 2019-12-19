@@ -38,7 +38,12 @@ private slots:
 
 
 
+    void on_twoVariablesRadioButton_clicked();
+
+    void on_oneVariableRadioButton_clicked();
+
 private:
     Ui::MainWindow *ui;
+    void configureFunctionPage();
 };
 #endif // MAINWINDOW_H

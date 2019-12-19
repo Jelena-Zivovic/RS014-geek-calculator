@@ -1,13 +1,18 @@
 #include "Matrix.hpp"
 
 Matrix::Matrix(){
-    _n = 2;
-    _m = 2;
-    _matrix.resize(2,2);
+    _n = 0;
+    _m = 0;
+    _matrix.resize(0,0);
 }
 
 Matrix::Matrix(unsigned n, unsigned m) : _n(n), _m(m){
     _matrix.resize(n,m);
+}
+Matrix::Matrix(Eigen::MatrixXd matrix) : _matrix(matrix){
+    _n = static_cast<unsigned>(matrix.rows());
+    _m = static_cast<unsigned>(matrix.cols());
+    std::cout << _n  << " " << _m;
 }
 
 Matrix::Matrix(const Matrix& m) : _n(m._n), _m(m._m){
@@ -27,26 +32,33 @@ Matrix::Matrix(std::vector<std::vector<double>>& vec){
             _matrix(i,j) = vec[i][j];
     }
 }
+unsigned Matrix::rows() const{
+    return _n;
+}
+unsigned Matrix::cols() const{
+    return _m;
+}
 
-Matrix Matrix::operator+(Matrix& m) const{
+Matrix Matrix::operator+(const Matrix& m) const{
     Matrix newMatrix(_n,_m);
     newMatrix._matrix = _matrix+m._matrix;
     return newMatrix;
 }
-Matrix Matrix::operator-(Matrix& m) const{
+Matrix Matrix::operator-(const Matrix& m) const{
     Matrix newMatrix(_n,_m);
     newMatrix._matrix = _matrix-m._matrix;
     return newMatrix;
 }
-Matrix Matrix::operator*(Matrix& m) const{
-    Matrix newMatrix(_n,_m);
+Matrix Matrix::operator*(const Matrix& m) const{
+    Matrix newMatrix(_n, m._m);
     newMatrix._matrix = _matrix*m._matrix;
     return newMatrix;
 }
-Matrix Matrix::operator/(Matrix& m) const{
-    Matrix newMatrix(m._m, _m);
-    newMatrix._matrix = m._matrix.inverse()*_matrix;
-    return newMatrix;
+Matrix& Matrix::operator=(const Matrix& m){
+    _matrix = m._matrix;
+    _n = m._n;
+    _m = m._m;
+    return *this;
 }
 Matrix Matrix::inv() const{
     Matrix newMatrix(_n,_m);
@@ -70,7 +82,7 @@ Matrix Matrix::operator/(double scalar) const{
     newMatrix._matrix = _matrix/scalar;
     return  newMatrix;
 }
-Matrix Matrix::pow(int power) const{
+Matrix Matrix::pow(double power) const{
     Matrix newMatrix(_n,_m);
     _matrix.MatrixBase::pow(power);
     return newMatrix;
@@ -122,5 +134,20 @@ Eigen::MatrixXd Matrix::parseText(QString text, unsigned n, unsigned m){
 }
 QString Matrix::matrix_format() const{
     QString text = "";
+    for(unsigned i=0; i<_n; i++){
+        text.append("|");
+        for(unsigned j=0; j<_m; j++){
+            double num = _matrix(i,j);
+            QString num_text = QString::number(num);
+            text.append(num_text);
+            if(j < _m-1){
+                text.append(", ");
+            }
+        }
+        text.append("|");
+        text.append("\n");
+
+    }
+
     return text;
 }

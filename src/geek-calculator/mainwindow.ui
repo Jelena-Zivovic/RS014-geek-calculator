@@ -24,7 +24,7 @@
      </rect>
     </property>
     <property name="currentIndex">
-     <number>1</number>
+     <number>3</number>
     </property>
     <widget class="QWidget" name="mainPage">
      <widget class="QWidget" name="horizontalLayoutWidget">
@@ -474,138 +474,181 @@
      </widget>
     </widget>
     <widget class="QWidget" name="functionsPage">
-     <widget class="QWidget" name="verticalLayoutWidget">
+     <widget class="QTabWidget" name="functionsTab">
       <property name="geometry">
        <rect>
-        <x>220</x>
-        <y>360</y>
-        <width>82</width>
-        <height>27</height>
-       </rect>
-      </property>
-      <layout class="QVBoxLayout" name="verticalLayout_2">
-       <item>
-        <widget class="QPushButton" name="goBackToMainPage2">
-         <property name="text">
-          <string>back</string>
-         </property>
-        </widget>
-       </item>
-      </layout>
-     </widget>
-     <widget class="QLabel" name="enterFunctionLabel">
-      <property name="geometry">
-       <rect>
-        <x>180</x>
+        <x>0</x>
         <y>0</y>
-        <width>201</width>
-        <height>20</height>
+        <width>731</width>
+        <height>521</height>
        </rect>
       </property>
-      <property name="minimumSize">
-       <size>
-        <width>201</width>
-        <height>0</height>
-       </size>
-      </property>
-      <property name="styleSheet">
-       <string notr="true">text-align: right;</string>
-      </property>
-      <property name="text">
-       <string>Enter function below:</string>
-      </property>
-     </widget>
-     <widget class="QLineEdit" name="enteredFunctionLineEdit">
-      <property name="geometry">
-       <rect>
-        <x>142</x>
-        <y>20</y>
-        <width>211</width>
-        <height>25</height>
-       </rect>
-      </property>
-     </widget>
-     <widget class="QPushButton" name="integralValueFunction">
-      <property name="geometry">
-       <rect>
-        <x>220</x>
-        <y>100</y>
-        <width>89</width>
-        <height>25</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>integral</string>
-      </property>
-     </widget>
-     <widget class="QLineEdit" name="resultLineEdit">
-      <property name="geometry">
-       <rect>
-        <x>230</x>
-        <y>190</y>
-        <width>171</width>
-        <height>25</height>
-       </rect>
-      </property>
-     </widget>
-     <widget class="QLabel" name="resultLabel">
-      <property name="geometry">
-       <rect>
-        <x>130</x>
-        <y>190</y>
-        <width>67</width>
-        <height>17</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>result:</string>
-      </property>
-     </widget>
-     <widget class="QLineEdit" name="lowerBoundLineEdit">
-      <property name="geometry">
-       <rect>
-        <x>150</x>
-        <y>60</y>
-        <width>113</width>
-        <height>25</height>
-       </rect>
-      </property>
-     </widget>
-     <widget class="QLineEdit" name="upperBoundLineEdit">
-      <property name="geometry">
-       <rect>
-        <x>390</x>
-        <y>60</y>
-        <width>113</width>
-        <height>25</height>
-       </rect>
-      </property>
-     </widget>
-     <widget class="QLabel" name="label">
-      <property name="geometry">
-       <rect>
-        <x>20</x>
-        <y>60</y>
-        <width>111</width>
-        <height>20</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>lower bound:</string>
-      </property>
-     </widget>
-     <widget class="QLabel" name="label_2">
-      <property name="geometry">
-       <rect>
-        <x>290</x>
-        <y>60</y>
-        <width>91</width>
-        <height>17</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>upper bound:</string>
-      </property>
+      <widget class="QWidget" name="tab">
+       <property name="layoutDirection">
+        <enum>Qt::LeftToRight</enum>
+       </property>
+       <attribute name="title">
+        <string>integral</string>
+       </attribute>
+       <widget class="QLabel" name="enterFunctionLabel">
+        <property name="geometry">
+         <rect>
+          <x>0</x>
+          <y>30</y>
+          <width>201</width>
+          <height>20</height>
+         </rect>
+        </property>
+        <property name="minimumSize">
+         <size>
+          <width>201</width>
+          <height>0</height>
+         </size>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">text-align: right;</string>
+        </property>
+        <property name="text">
+         <string>Enter function below:</string>
+        </property>
+       </widget>
+       <widget class="QLineEdit" name="enteredFunctionLineEdit">
+        <property name="geometry">
+         <rect>
+          <x>0</x>
+          <y>80</y>
+          <width>211</width>
+          <height>25</height>
+         </rect>
+        </property>
+       </widget>
+       <widget class="QRadioButton" name="oneVariableRadioButton">
+        <property name="geometry">
+         <rect>
+          <x>260</x>
+          <y>80</y>
+          <width>112</width>
+          <height>23</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>1 variable</string>
+        </property>
+       </widget>
+       <widget class="QRadioButton" name="twoVariablesRadioButton">
+        <property name="geometry">
+         <rect>
+          <x>400</x>
+          <y>80</y>
+          <width>112</width>
+          <height>23</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>2 variables</string>
+        </property>
+       </widget>
+       <widget class="QLabel" name="loweBoundLabel">
+        <property name="geometry">
+         <rect>
+          <x>0</x>
+          <y>160</y>
+          <width>111</width>
+          <height>20</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>lower bound:</string>
+        </property>
+       </widget>
+       <widget class="QLineEdit" name="lowerBoundLineEdit">
+        <property name="geometry">
+         <rect>
+          <x>150</x>
+          <y>160</y>
+          <width>113</width>
+          <height>25</height>
+         </rect>
+        </property>
+       </widget>
+       <widget class="QLabel" name="upperBoundLabel">
+        <property name="geometry">
+         <rect>
+          <x>0</x>
+          <y>230</y>
+          <width>91</width>
+          <height>17</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>upper bound:</string>
+        </property>
+       </widget>
+       <widget class="QLineEdit" name="upperBoundLineEdit">
+        <property name="geometry">
+         <rect>
+          <x>150</x>
+          <y>230</y>
+          <width>113</width>
+          <height>25</height>
+         </rect>
+        </property>
+       </widget>
+       <widget class="QPushButton" name="integralValueFunction">
+        <property name="geometry">
+         <rect>
+          <x>310</x>
+          <y>280</y>
+          <width>89</width>
+          <height>25</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>calculate</string>
+        </property>
+       </widget>
+       <widget class="QLabel" name="resultLabel">
+        <property name="geometry">
+         <rect>
+          <x>10</x>
+          <y>340</y>
+          <width>67</width>
+          <height>17</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>result:</string>
+        </property>
+       </widget>
+       <widget class="QLineEdit" name="resultLineEdit">
+        <property name="geometry">
+         <rect>
+          <x>80</x>
+          <y>340</y>
+          <width>221</width>
+          <height>25</height>
+         </rect>
+        </property>
+       </widget>
+       <widget class="QPushButton" name="goBackToMainPage2">
+        <property name="geometry">
+         <rect>
+          <x>330</x>
+          <y>450</y>
+          <width>80</width>
+          <height>25</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>back</string>
+        </property>
+       </widget>
+      </widget>
+      <widget class="QWidget" name="tab_2">
+       <attribute name="title">
+        <string>Tab 2</string>
+       </attribute>
+      </widget>
      </widget>
     </widget>
    </widget>

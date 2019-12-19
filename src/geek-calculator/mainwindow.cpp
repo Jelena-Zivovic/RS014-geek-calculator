@@ -9,9 +9,10 @@ MainWindow::MainWindow(QWidget *parent)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
-    ui->stackedWidgets->setCurrentIndex(0);
+    ui->stackedWidgets->setCurrentWidget(ui->mainPage);
     ui->outputTextEdit->setReadOnly(true);
     ui->resultLineEdit->setReadOnly(true);
+
 
 }
 
@@ -32,7 +33,9 @@ void MainWindow::on_goToFunctionsButton_clicked()
     ui->lowerBoundLineEdit->clear();
     ui->upperBoundLineEdit->clear();
     ui->resultLineEdit->clear();
+    ui->oneVariableRadioButton->setChecked(true);
     ui->stackedWidgets->setCurrentWidget(ui->functionsPage);
+
 }
 void MainWindow::on_goToMatrixButton_clicked()
 {
@@ -72,14 +75,20 @@ void MainWindow::on_calculateValueButton_clicked()
 void MainWindow::on_integralValueFunction_clicked()
 {
     QString enteredText = ui->enteredFunctionLineEdit->text();
-
+    int number_of_variables=1;
+    if (ui->oneVariableRadioButton->isChecked()) {
+        number_of_variables = 1;
+    }
+    else {
+        number_of_variables = 2;
+    }
 
     try {
-        Function function(enteredText);
+        Function function(enteredText, number_of_variables);
         float lower_bound = ui->lowerBoundLineEdit->text().toFloat();
         float upper_bound = ui->upperBoundLineEdit->text().toFloat();
-        float bla = function.integral(lower_bound, upper_bound);
-        ui->resultLineEdit->setText(QString::number(bla));
+        float calculatedValue = function.integral(lower_bound, upper_bound);
+        ui->resultLineEdit->setText(QString::number(calculatedValue));
     } catch(const char *message) {
         std::cout << "bla" << std::endl;
     }

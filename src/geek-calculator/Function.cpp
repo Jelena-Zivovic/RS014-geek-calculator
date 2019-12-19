@@ -13,8 +13,8 @@
 extern FILE *yyin;
 extern int yyparse(float *return_value);
 
-Function::Function(const QString& str_func)
-    : m_function(str_func) {
+Function::Function(const QString& str_func, const int number_of_variables)
+    : m_function(str_func), m_number_of_variables(number_of_variables) {
         if (!check_function()) {
             throw "Function is not valid";
         }

@@ -24,25 +24,28 @@ public:
     Matrix();
     //Matrix(const QString text);
     Matrix(unsigned n, unsigned m);
+    Matrix(Eigen::MatrixXd matrix);
     Matrix(std::vector<std::vector<double>>& vec);
     Matrix(const Matrix& m);
     ~Matrix() = default;
 
+    unsigned rows() const;
+    unsigned cols() const;
 
-    Matrix operator+(Matrix& m) const;
-    Matrix operator-(Matrix& m) const;
-    Matrix operator*(Matrix& m) const;
-    Matrix operator/(Matrix& m) const;
+    Matrix operator+(const Matrix& m) const;
+    Matrix operator-(const Matrix& m) const;
+    Matrix operator*(const Matrix& m) const;
+    Matrix& operator=(const Matrix& m);
     Matrix inv() const;
     Matrix transpose() const;
 
     Matrix operator*(double scalar) const;
     Matrix operator/(double scalar) const;
 
-    Matrix pow(int power) const;
+    Matrix pow(double power) const;
     Matrix normalized() const;
 
-    static Eigen::MatrixXd parseText(QString, unsigned n, unsigned m);
+    static Eigen::MatrixXd parseText(QString text, unsigned n, unsigned m);
     static bool check_matrix(QString text, unsigned n, unsigned m);
     double det() const;
     double norm() const;

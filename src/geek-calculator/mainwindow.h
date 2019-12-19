@@ -3,6 +3,7 @@
 
 #include <QMainWindow>
 #include <string>
+#include <Matrix.hpp>
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -15,6 +16,11 @@ class MainWindow : public QMainWindow
 public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
+    void error_boxMsg(QString error_msg);
+    void read_matrix(int indicator);
+    Matrix A;
+    Matrix B;
+
 
 private slots:
 
@@ -37,14 +43,46 @@ private slots:
     void on_goToMatrixButton_clicked();
 
 
+    void on_enterDimensionButtonA_clicked();
+
+
+
+    void on_enterDimensionButtonB_clicked();
+
+    void on_plusButton_clicked();
+
+    void on_minusButton_clicked();
+
+    void on_multiplyButton_clicked();
+
+
+    void on_determinantButtonA_clicked();
+
+    void on_determinantButtonB_clicked();
+
+    void on_inverseButtonA_clicked();
+
+    void on_inverseButtonB_clicked();
+
+    void on_transposeButtonA_clicked();
+
+    void on_transposeButtonB_clicked();
+
+    void on_multiplyByButtonA_clicked();
+
+    void on_multiplyByButtonB_clicked();
+
+    void on_raisePowerButtonA_clicked();
+
+    void on_raisePowerButtonB_clicked();
+
+    void on_goFromMatrixToMainPageButton_clicked();
 
     void on_twoVariablesRadioButton_clicked();
 
     void on_oneVariableRadioButton_clicked();
 
     void on_clearIntegralTabButton_clicked();
-
-    void on_calculateDerivativeButton_clicked();
 
 private:
     Ui::MainWindow *ui;

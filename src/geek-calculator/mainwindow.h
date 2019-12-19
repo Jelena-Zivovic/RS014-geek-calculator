@@ -44,6 +44,8 @@ private slots:
 
     void on_clearIntegralTabButton_clicked();
 
+    void on_calculateDerivativeButton_clicked();
+
 private:
     Ui::MainWindow *ui;
     void configureFunctionPage();

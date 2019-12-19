@@ -483,7 +483,10 @@
         <height>521</height>
        </rect>
       </property>
-      <widget class="QWidget" name="tab">
+      <property name="currentIndex">
+       <number>1</number>
+      </property>
+      <widget class="QWidget" name="integralTab">
        <property name="layoutDirection">
         <enum>Qt::LeftToRight</enum>
        </property>
@@ -706,9 +709,99 @@
         </property>
        </widget>
       </widget>
-      <widget class="QWidget" name="tab_2">
+      <widget class="QWidget" name="derivativeTab">
+       <property name="cursor">
+        <cursorShape>PointingHandCursor</cursorShape>
+       </property>
        <attribute name="title">
-        <string>Tab 2</string>
+        <string>derivative</string>
+       </attribute>
+       <widget class="QLabel" name="enterFunctionDerivativeLabel">
+        <property name="geometry">
+         <rect>
+          <x>10</x>
+          <y>20</y>
+          <width>161</width>
+          <height>17</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Enter function below:</string>
+        </property>
+       </widget>
+       <widget class="QLineEdit" name="enterFunctionDerivativeLineEdit">
+        <property name="geometry">
+         <rect>
+          <x>10</x>
+          <y>60</y>
+          <width>221</width>
+          <height>25</height>
+         </rect>
+        </property>
+       </widget>
+       <widget class="QLabel" name="enterPointDerivativeLabel">
+        <property name="geometry">
+         <rect>
+          <x>10</x>
+          <y>110</y>
+          <width>151</width>
+          <height>17</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Enter point below:</string>
+        </property>
+       </widget>
+       <widget class="QLineEdit" name="enterPointDerivativeLineEdit">
+        <property name="geometry">
+         <rect>
+          <x>10</x>
+          <y>150</y>
+          <width>151</width>
+          <height>25</height>
+         </rect>
+        </property>
+       </widget>
+       <widget class="QPushButton" name="calculateDerivativeButton">
+        <property name="geometry">
+         <rect>
+          <x>290</x>
+          <y>210</y>
+          <width>89</width>
+          <height>25</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>calculate</string>
+        </property>
+       </widget>
+       <widget class="QLineEdit" name="resultDerivativeLineEdit">
+        <property name="geometry">
+         <rect>
+          <x>350</x>
+          <y>270</y>
+          <width>181</width>
+          <height>25</height>
+         </rect>
+        </property>
+       </widget>
+       <widget class="QLabel" name="resultDerivativeLabel">
+        <property name="geometry">
+         <rect>
+          <x>210</x>
+          <y>270</y>
+          <width>67</width>
+          <height>17</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>result:</string>
+        </property>
+       </widget>
+      </widget>
+      <widget class="QWidget" name="tab">
+       <attribute name="title">
+        <string>Page</string>
        </attribute>
       </widget>
      </widget>

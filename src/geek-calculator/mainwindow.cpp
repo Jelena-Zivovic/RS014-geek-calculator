@@ -3,6 +3,7 @@
 #include "Function.hpp"
 #include "Matrix.hpp"
 #include <QMessageBox>
+#include <mgl2/eval.h>
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -43,6 +44,7 @@ void MainWindow::on_goToFunctionsButton_clicked()
     ui->firstUpperBoundLineEdit->clear();
     ui->resultIntegralLineEdit->clear();
     ui->oneVariableRadioButton->setChecked(true);
+    ui->functionsTab->setCurrentIndex(0);
     ui->stackedWidgets->setCurrentWidget(ui->functionsPage);
 
 }
@@ -112,7 +114,7 @@ void MainWindow::on_integralValueFunction_clicked() {
 
 
     } catch(const char *message) {
-        std::cout << "bla" << std::endl;
+        std::cout << message << std::endl;
     }
 }
 /*
@@ -173,4 +175,26 @@ void MainWindow::on_clearIntegralTabButton_clicked()
     ui->secondLowerBoundLineEdit->clear();
     ui->secondUpperBoundLineEdit->clear();
     ui->resultIntegralLineEdit->clear();
+}
+
+void MainWindow::on_calculateDerivativeButton_clicked()
+{
+    QString enteredText = ui->enterFunctionDerivativeLineEdit->text();
+
+    try {
+        Function function(enteredText);
+
+        mglFormula formula(function.get_string_function().toUtf8().constData());
+
+        float point = ui->enterPointDerivativeLineEdit->text().toFloat();
+
+        float h = 0.001;
+
+        float result = (formula.Calc(point+h) - formula.Calc(point-h))/(2*h);
+
+        ui->resultDerivativeLineEdit->setText(QString::number(result));
+
+    } catch (const char *message) {
+        std::cout << message << std::endl;
+    }
 }

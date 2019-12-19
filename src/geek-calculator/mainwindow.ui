@@ -636,7 +636,7 @@
        <widget class="QPushButton" name="goBackToMainPage2">
         <property name="geometry">
          <rect>
-          <x>330</x>
+          <x>230</x>
           <y>450</y>
           <width>80</width>
           <height>25</height>
@@ -690,6 +690,19 @@
           <width>113</width>
           <height>25</height>
          </rect>
+        </property>
+       </widget>
+       <widget class="QPushButton" name="clearIntegralTabButton">
+        <property name="geometry">
+         <rect>
+          <x>330</x>
+          <y>450</y>
+          <width>81</width>
+          <height>25</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>clear</string>
         </property>
        </widget>
       </widget>

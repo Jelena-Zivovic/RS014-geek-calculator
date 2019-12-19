@@ -42,6 +42,8 @@ private slots:
 
     void on_oneVariableRadioButton_clicked();
 
+    void on_clearIntegralTabButton_clicked();
+
 private:
     Ui::MainWindow *ui;
     void configureFunctionPage();

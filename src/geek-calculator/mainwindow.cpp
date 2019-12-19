@@ -164,3 +164,13 @@ void MainWindow::on_oneVariableRadioButton_clicked()
     ui->secondUpperBoundLabel->hide();
     ui->secondUpperBoundLineEdit->hide();
 }
+
+void MainWindow::on_clearIntegralTabButton_clicked()
+{
+    ui->enteredFunctionLineEdit->clear();
+    ui->firstLowerBoundLineEdit->clear();
+    ui->firstUpperBoundLineEdit->clear();
+    ui->secondLowerBoundLineEdit->clear();
+    ui->secondUpperBoundLineEdit->clear();
+    ui->resultIntegralLineEdit->clear();
+}

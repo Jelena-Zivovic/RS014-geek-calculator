@@ -3,6 +3,7 @@
 #include "Function.hpp"
 #include "Matrix.hpp"
 #include <QMessageBox>
+#include <mgl2/eval.h>
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent), ui(new Ui::MainWindow)
@@ -28,6 +29,7 @@ void MainWindow::configureFunctionPage()
     ui->secondUpperBoundLabel->hide();
     ui->secondUpperBoundLineEdit->hide();
     ui->resultIntegralLineEdit->setReadOnly(true);
+    ui->resultDerivativeLineEdit->setReadOnly(true);
 }
 
 void MainWindow::on_goToBasicCalculatorButton_clicked()
@@ -44,6 +46,7 @@ void MainWindow::on_goToFunctionsButton_clicked()
     ui->firstUpperBoundLineEdit->clear();
     ui->resultIntegralLineEdit->clear();
     ui->oneVariableRadioButton->setChecked(true);
+    ui->functionsTab->setCurrentIndex(0);
     ui->stackedWidgets->setCurrentWidget(ui->functionsPage);
 }
 void MainWindow::on_goToMatrixButton_clicked()
@@ -461,3 +464,36 @@ void MainWindow::on_clearIntegralTabButton_clicked()
     ui->resultIntegralLineEdit->clear();
 }
 
+
+void MainWindow::on_goBackToMainPageButton_3_clicked()
+{
+    ui->stackedWidgets->setCurrentWidget(ui->mainPage);
+}
+
+void MainWindow::on_clearDerivativeButton_clicked()
+{
+    ui->enterFunctionDerivativeLineEdit->clear();
+    ui->enterPointLineEdit->clear();
+    ui->resultDerivativeLineEdit->clear();
+}
+
+void MainWindow::on_calculateDerivativeButton_clicked()
+{
+    QString enteredText = ui->enterFunctionDerivativeLineEdit->text();
+
+    try {
+       Function function(enteredText);
+
+       mglFormula formula(function.get_string_function().toUtf8().constData());
+
+       float point = ui->enterPointLineEdit->text().toFloat();
+       float h = 0.01;
+
+       float result = (formula.Calc(point+h) - formula.Calc(point-h))/(2*h);
+
+       ui->resultDerivativeLineEdit->setText(QString::number(result));
+
+    } catch (const char *message) {
+        std::cout << message << std::endl;
+    }
+}

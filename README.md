@@ -13,5 +13,6 @@ Biblioteke:
     MathGL
     Flex
     YACC
+    Eigen
     
 

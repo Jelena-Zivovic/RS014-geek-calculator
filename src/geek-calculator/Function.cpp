@@ -114,6 +114,69 @@ float Function::oneVariableIntegral(const float a, const float b) {
 
 }
 
+float Function::twoVariableIntegral(const float a1, const float b1, const float a2, const float b2) {
+    size_t n = 1001;
+
+    std::vector<float> x = linspace(a1, b1, n);
+    float hx = (b1 - a1) / static_cast<float>(n);
+
+    std::vector<float> y = linspace(a2, b2, n);
+    float hy = (b2 - a2) / static_cast<float>(n);
+
+    size_t array_size = x.size();
+
+    std::vector<std::vector<float> > matrix_f(array_size);
+
+    for (size_t i = 0; i < array_size; i++) {
+        matrix_f[i].resize(array_size);
+    }
+
+    mglFormula formula(m_function.toUtf8().constData());
+
+    for (size_t i = 0; i < array_size; i++) {
+        for (size_t j = 0; j < array_size; j++) {
+            matrix_f[i][j] = formula.Calc(x[i], y[j]);
+        }
+    }
+
+    std::vector<float> ax(array_size);
+
+    for (size_t i = 0; i < array_size; i++) {
+        float sumOddIndexElements = 0;
+        float sumEvenIndexElements = 0;
+
+        for (size_t j = 0; j < array_size; j++) {
+            if (j % 2 != 0) {
+                sumOddIndexElements += matrix_f[i][j];
+            }
+            else {
+                sumEvenIndexElements += matrix_f[i][j];
+            }
+        }
+
+        ax[i] = (hy/3) * (matrix_f[i][0] + matrix_f[i][array_size-1] + 4*sumOddIndexElements + 2*sumEvenIndexElements);
+
+    }
+
+    float sumOddIndexElements = 0;
+    float sumEvenIndexElements = 0;
+
+    for (size_t i = 0; i < array_size; i++) {
+        if (i % 2 != 0) {
+            sumOddIndexElements += ax[i];
+        }
+        else {
+            sumEvenIndexElements += ax[i];
+        }
+    }
+
+    float result = (hx/3) * (ax[0] + ax[array_size-1] + 4*sumOddIndexElements + 2*sumEvenIndexElements);
+
+
+
+    return result;
+}
+
 
 
 

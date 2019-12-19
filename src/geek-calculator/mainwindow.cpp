@@ -102,7 +102,12 @@ void MainWindow::on_integralValueFunction_clicked() {
             ui->resultIntegralLineEdit->setText(QString::number(calculatedValue));
         }
         else {
-
+            float firstLowerBound = ui->firstLowerBoundLineEdit->text().toFloat();
+            float firstUpperBound = ui->firstUpperBoundLineEdit->text().toFloat();
+            float secondLowerBound = ui->secondLowerBoundLineEdit->text().toFloat();
+            float secondUpperBound = ui->secondUpperBoundLineEdit->text().toFloat();
+            float calculatedValue = function.twoVariableIntegral(firstLowerBound, firstUpperBound, secondLowerBound, secondUpperBound);
+            ui->resultIntegralLineEdit->setText(QString::number(calculatedValue));
         }
 
 

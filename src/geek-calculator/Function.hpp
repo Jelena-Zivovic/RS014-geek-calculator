@@ -14,6 +14,7 @@ public:
     ~Function();
     float get_value();
     float oneVariableIntegral(const float a, const float b);
+    float twoVariableIntegral(const float a1, const float b1, const float a2, const float b2);
     QString get_string_function() const;
 
     

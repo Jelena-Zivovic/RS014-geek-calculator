@@ -14,6 +14,7 @@ public:
     ~Function();
     float get_value();
     float integral(const float a, const float b);
+    QString get_string_function() const;
 
     
 
@@ -27,6 +28,7 @@ private:
     
 
 };
+
 
 
 #endif

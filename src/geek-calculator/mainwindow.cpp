@@ -45,6 +45,9 @@ void MainWindow::on_goToFunctionsButton_clicked()
     ui->firstLowerBoundLineEdit->clear();
     ui->firstUpperBoundLineEdit->clear();
     ui->resultIntegralLineEdit->clear();
+    ui->enterFunctionDerivativeLineEdit->clear();
+    ui->resultDerivativeLineEdit->clear();
+    ui->enterPointLineEdit->clear();
     ui->oneVariableRadioButton->setChecked(true);
     ui->firstDerivativeRadioButton->setChecked(true);
     ui->functionsTab->setCurrentIndex(0);

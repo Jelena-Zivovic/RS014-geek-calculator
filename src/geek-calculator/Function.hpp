@@ -25,9 +25,10 @@ public:
 private:
     QString m_function;
     float function_value;
+    int m_number_of_variables;
     bool check_function();
     std::vector<float> linspace(const float a, const float b, const size_t n);
-    int m_number_of_variables;
+
     
 
 };

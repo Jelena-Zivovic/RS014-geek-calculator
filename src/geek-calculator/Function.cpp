@@ -43,6 +43,7 @@ bool Function::check_function()  {
     
 }
 
+//get_value returns integer instead of float, that needs to be fixed
 float Function::get_value()  {
 
     indicator_calculating_value = true;
@@ -76,12 +77,8 @@ std::vector<float> Function::linspace(const float a, const float b, const size_t
         first++;
     }
 
-
-
     return xs;
 }
-
-
 
 float Function::oneVariableIntegral(const float a, const float b) {
 

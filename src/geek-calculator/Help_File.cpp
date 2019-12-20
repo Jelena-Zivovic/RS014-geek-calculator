@@ -12,6 +12,7 @@ Help_File::~Help_File() {
 }
 
 void Help_File::write(const QString& text) {
+
     m_file << text.toStdString() << std::endl;
 }
 

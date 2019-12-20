@@ -90,6 +90,28 @@ private slots:
 
     void on_calculateDerivativeButton_clicked();
 
+    void on_number1Button_clicked();
+
+    void on_dotButton_clicked();
+
+    void on_pushButton_2_clicked();
+
+    void on_number3Button_clicked();
+
+    void on_number4Button_clicked();
+
+    void on_number5Button_clicked();
+
+    void on_number6Button_clicked();
+
+    void on_number7Button_clicked();
+
+    void on_number8Button_clicked();
+
+    void on_number9Button_clicked();
+
+    void on_number0Button_clicked();
+
 private:
     Ui::MainWindow *ui;
     void configureFunctionPage();

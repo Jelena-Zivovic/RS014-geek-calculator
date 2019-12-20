@@ -4,6 +4,7 @@
 #include "Matrix.hpp"
 #include <QMessageBox>
 #include <mgl2/eval.h>
+#include <mgl2/data.h>
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent), ui(new Ui::MainWindow)
@@ -76,7 +77,7 @@ void MainWindow::on_calculateValueButton_clicked()
     try
     {
         Function function(enteredText);
-        std::cout << "valid " << std::endl;
+
         ui->outputTextEdit->setText(QString::number(function.get_value()));
     }
     catch (const char *message)
@@ -503,4 +504,84 @@ void MainWindow::on_calculateDerivativeButton_clicked()
     } catch (const char *message) {
         std::cout << message << std::endl;
     }
+}
+
+void MainWindow::on_dotButton_clicked()
+{
+    ui->enterFunctionToCalculateValueTextEdit->moveCursor(QTextCursor::End);
+    ui->enterFunctionToCalculateValueTextEdit->insertPlainText(QString("."));
+    ui->enterFunctionToCalculateValueTextEdit->moveCursor(QTextCursor::End);
+}
+
+void MainWindow::on_number1Button_clicked()
+{
+    ui->enterFunctionToCalculateValueTextEdit->moveCursor(QTextCursor::End);
+    ui->enterFunctionToCalculateValueTextEdit->insertPlainText(QString("1"));
+    ui->enterFunctionToCalculateValueTextEdit->moveCursor(QTextCursor::End);
+
+}
+
+
+
+void MainWindow::on_pushButton_2_clicked()
+{
+    ui->enterFunctionToCalculateValueTextEdit->moveCursor(QTextCursor::End);
+    ui->enterFunctionToCalculateValueTextEdit->insertPlainText(QString("2"));
+    ui->enterFunctionToCalculateValueTextEdit->moveCursor(QTextCursor::End);
+}
+
+void MainWindow::on_number3Button_clicked()
+{
+    ui->enterFunctionToCalculateValueTextEdit->moveCursor(QTextCursor::End);
+    ui->enterFunctionToCalculateValueTextEdit->insertPlainText(QString("3"));
+    ui->enterFunctionToCalculateValueTextEdit->moveCursor(QTextCursor::End);
+}
+
+void MainWindow::on_number4Button_clicked()
+{
+    ui->enterFunctionToCalculateValueTextEdit->moveCursor(QTextCursor::End);
+    ui->enterFunctionToCalculateValueTextEdit->insertPlainText(QString("4"));
+    ui->enterFunctionToCalculateValueTextEdit->moveCursor(QTextCursor::End);
+}
+
+void MainWindow::on_number5Button_clicked()
+{
+    ui->enterFunctionToCalculateValueTextEdit->moveCursor(QTextCursor::End);
+    ui->enterFunctionToCalculateValueTextEdit->insertPlainText(QString("5"));
+    ui->enterFunctionToCalculateValueTextEdit->moveCursor(QTextCursor::End);
+}
+
+void MainWindow::on_number6Button_clicked()
+{
+    ui->enterFunctionToCalculateValueTextEdit->moveCursor(QTextCursor::End);
+    ui->enterFunctionToCalculateValueTextEdit->insertPlainText(QString("6"));
+    ui->enterFunctionToCalculateValueTextEdit->moveCursor(QTextCursor::End);
+}
+
+void MainWindow::on_number7Button_clicked()
+{
+    ui->enterFunctionToCalculateValueTextEdit->moveCursor(QTextCursor::End);
+    ui->enterFunctionToCalculateValueTextEdit->insertPlainText(QString("7"));
+    ui->enterFunctionToCalculateValueTextEdit->moveCursor(QTextCursor::End);
+}
+
+void MainWindow::on_number8Button_clicked()
+{
+    ui->enterFunctionToCalculateValueTextEdit->moveCursor(QTextCursor::End);
+    ui->enterFunctionToCalculateValueTextEdit->insertPlainText(QString("8"));
+    ui->enterFunctionToCalculateValueTextEdit->moveCursor(QTextCursor::End);
+}
+
+void MainWindow::on_number9Button_clicked()
+{
+    ui->enterFunctionToCalculateValueTextEdit->moveCursor(QTextCursor::End);
+    ui->enterFunctionToCalculateValueTextEdit->insertPlainText(QString("9"));
+    ui->enterFunctionToCalculateValueTextEdit->moveCursor(QTextCursor::End);
+}
+
+void MainWindow::on_number0Button_clicked()
+{
+    ui->enterFunctionToCalculateValueTextEdit->moveCursor(QTextCursor::End);
+    ui->enterFunctionToCalculateValueTextEdit->insertPlainText(QString("0"));
+    ui->enterFunctionToCalculateValueTextEdit->moveCursor(QTextCursor::End);
 }

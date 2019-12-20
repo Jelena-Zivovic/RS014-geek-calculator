@@ -824,6 +824,32 @@
          <string>clear</string>
         </property>
        </widget>
+       <widget class="QRadioButton" name="firstDerivativeRadioButton">
+        <property name="geometry">
+         <rect>
+          <x>280</x>
+          <y>50</y>
+          <width>112</width>
+          <height>23</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>first</string>
+        </property>
+       </widget>
+       <widget class="QRadioButton" name="secondDerivativeRadioButton">
+        <property name="geometry">
+         <rect>
+          <x>420</x>
+          <y>50</y>
+          <width>112</width>
+          <height>23</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>second</string>
+        </property>
+       </widget>
       </widget>
      </widget>
     </widget>

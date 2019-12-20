@@ -46,6 +46,7 @@ void MainWindow::on_goToFunctionsButton_clicked()
     ui->firstUpperBoundLineEdit->clear();
     ui->resultIntegralLineEdit->clear();
     ui->oneVariableRadioButton->setChecked(true);
+    ui->firstDerivativeRadioButton->setChecked(true);
     ui->functionsTab->setCurrentIndex(0);
     ui->stackedWidgets->setCurrentWidget(ui->functionsPage);
 }
@@ -484,12 +485,15 @@ void MainWindow::on_calculateDerivativeButton_clicked()
     try {
        Function function(enteredText);
 
-       mglFormula formula(function.get_string_function().toUtf8().constData());
-
        float point = ui->enterPointLineEdit->text().toFloat();
-       float h = 0.01;
+       float result;
 
-       float result = (formula.Calc(point+h) - formula.Calc(point-h))/(2*h);
+       if (ui->firstDerivativeRadioButton->isChecked()) {
+           result = function.firstDerivative(point);
+       }
+       else {
+           result = function.secondDerivative(point);
+       }
 
        ui->resultDerivativeLineEdit->setText(QString::number(result));
 

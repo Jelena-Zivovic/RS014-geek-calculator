@@ -177,6 +177,26 @@ float Function::twoVariableIntegral(const float a1, const float b1, const float 
     return result;
 }
 
+float Function::firstDerivative(const float point) {
+
+    mglFormula formula(m_function.toUtf8().constData());
+
+    float h = 0.01;
+
+    float result = (formula.Calc(point+h) - formula.Calc(point-h))/(2*h);
+
+    return result;
+
+}
+float Function::secondDerivative(const float point) {
+    mglFormula formula(m_function.toUtf8().constData());
+
+    float h = 0.01;
+
+    float result = (formula.Calc(point+h) - 2*formula.Calc(point) + formula.Calc(point-h))/(h*h);
+
+    return result;
+}
 
 
 

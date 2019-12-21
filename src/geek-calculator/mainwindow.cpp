@@ -16,6 +16,7 @@ MainWindow::MainWindow(QWidget *parent)
     configureMatrixPage();
     //ui->resultLineEdit->setReadOnly(true);
     ui->matrixOutputPlainTextEdit->setReadOnly(true);
+
 }
 
 MainWindow::~MainWindow()
@@ -681,5 +682,13 @@ void MainWindow::on_clearMatrixButton_clicked()
     ui->multiplyBylineEditA->clear();
     ui->raisePowerlineEditA->clear();
     ui->matrixOutputPlainTextEdit->clear();
+
+}
+
+void MainWindow::on_oneVariablePlottingRadioButton_clicked()
+{
+    QPixmap pm(":/images/sample.png");
+    ui->label->setPixmap(pm);
+    ui->label->setScaledContents(true);
 
 }

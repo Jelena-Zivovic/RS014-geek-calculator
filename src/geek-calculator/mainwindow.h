@@ -116,6 +116,8 @@ private slots:
 
     void on_clearMatrixButton_clicked();
 
+    void on_oneVariablePlottingRadioButton_clicked();
+
 private:
     Ui::MainWindow *ui;
     void configureFunctionPage();

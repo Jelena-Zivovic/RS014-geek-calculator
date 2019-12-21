@@ -74,10 +74,12 @@ void MainWindow::on_calculateValueButton_clicked()
 {
     QString enteredText = ui->enterFunctionToCalculateValueTextEdit->toPlainText();
 
+
     try
     {
         Function function(enteredText);
-
+        float value = function.get_value();
+        //std::cout << value << std::endl;
         ui->outputTextEdit->setText(QString::number(function.get_value()));
     }
     catch (const char *message)

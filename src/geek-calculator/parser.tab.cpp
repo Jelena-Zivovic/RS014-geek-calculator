@@ -70,11 +70,11 @@
 #include <string>
 #include <cmath>
 
-extern bool indicator_calculating_value  ;
+extern bool indicator_calculating_value ;
 
 extern int yylex();
 
-void yyerror(float *return_value, std::string s);
+void yyerror(double *return_value, std::string s);
 
 
 #line 81 "parser.tab.cpp" /* yacc.c:339  */
@@ -139,7 +139,7 @@ union YYSTYPE
 {
 #line 16 "parser.ypp" /* yacc.c:355  */
 
-    float value;
+    double value;
     char variable;
 
 #line 146 "parser.tab.cpp" /* yacc.c:355  */
@@ -153,7 +153,7 @@ typedef union YYSTYPE YYSTYPE;
 
 extern YYSTYPE yylval;
 
-int yyparse (float *return_value);
+int yyparse (double *return_value);
 
 #endif /* !YY_YY_PARSER_TAB_HPP_INCLUDED  */
 
@@ -713,7 +713,7 @@ do {                                                                      \
 `----------------------------------------*/
 
 static void
-yy_symbol_value_print (FILE *yyoutput, int yytype, YYSTYPE const * const yyvaluep, float *return_value)
+yy_symbol_value_print (FILE *yyoutput, int yytype, YYSTYPE const * const yyvaluep, double *return_value)
 {
   FILE *yyo = yyoutput;
   YYUSE (yyo);
@@ -733,7 +733,7 @@ yy_symbol_value_print (FILE *yyoutput, int yytype, YYSTYPE const * const yyvalue
 `--------------------------------*/
 
 static void
-yy_symbol_print (FILE *yyoutput, int yytype, YYSTYPE const * const yyvaluep, float *return_value)
+yy_symbol_print (FILE *yyoutput, int yytype, YYSTYPE const * const yyvaluep, double *return_value)
 {
   YYFPRINTF (yyoutput, "%s %s (",
              yytype < YYNTOKENS ? "token" : "nterm", yytname[yytype]);
@@ -771,7 +771,7 @@ do {                                                            \
 `------------------------------------------------*/
 
 static void
-yy_reduce_print (yytype_int16 *yyssp, YYSTYPE *yyvsp, int yyrule, float *return_value)
+yy_reduce_print (yytype_int16 *yyssp, YYSTYPE *yyvsp, int yyrule, double *return_value)
 {
   unsigned long int yylno = yyrline[yyrule];
   int yynrhs = yyr2[yyrule];
@@ -1051,7 +1051,7 @@ yysyntax_error (YYSIZE_T *yymsg_alloc, char **yymsg,
 `-----------------------------------------------*/
 
 static void
-yydestruct (const char *yymsg, int yytype, YYSTYPE *yyvaluep, float *return_value)
+yydestruct (const char *yymsg, int yytype, YYSTYPE *yyvaluep, double *return_value)
 {
   YYUSE (yyvaluep);
   YYUSE (return_value);
@@ -1081,7 +1081,7 @@ int yynerrs;
 `----------*/
 
 int
-yyparse (float *return_value)
+yyparse (double *return_value)
 {
     int yystate;
     /* Number of tokens to shift before error messages enabled.  */
@@ -1806,11 +1806,12 @@ yyreturn:
 #line 176 "parser.ypp" /* yacc.c:1906  */
 
 
-void yyerror(float *return_value, std::string s)
+void yyerror(double *return_value, std::string s)
 {
    std::cout << "no no " << std::endl;
    
 }
+
 
 
 

@@ -72,7 +72,7 @@ union YYSTYPE
 {
 #line 16 "parser.ypp" /* yacc.c:1909  */
 
-    float value;
+    double value;
     char variable;
 
 #line 79 "parser.tab.hpp" /* yacc.c:1909  */
@@ -86,6 +86,6 @@ typedef union YYSTYPE YYSTYPE;
 
 extern YYSTYPE yylval;
 
-int yyparse (float *return_value);
+int yyparse (double *return_value);
 
 #endif /* !YY_YY_PARSER_TAB_HPP_INCLUDED  */

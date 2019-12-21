@@ -36,7 +36,7 @@ bool Function::check_function()  {
     file.write(m_function);
 
     yyin = file.get_FILE();
-    float ignore_value;
+    double ignore_value;
     int return_value = yyparse(&ignore_value);
 
     return return_value == 0 ? true : false;
@@ -44,7 +44,7 @@ bool Function::check_function()  {
 }
 
 //get_value returns integer instead of float, that needs to be fixed
-float Function::get_value()  {
+double Function::get_value()  {
 
     indicator_calculating_value = true;
 
@@ -64,9 +64,9 @@ QString Function::get_string_function() const {
     return m_function;
 }
 
-std::vector<float> Function::linspace(const float a, const float b, const size_t n) {
+std::vector<double> Function::linspace(const double a, const double b, const size_t n) {
     float h = (b-a) / static_cast<float>(n-1);
-    std::vector<float> xs(n);
+    std::vector<double> xs(n);
     float val = a;
     auto first = std::begin(xs);
     auto last = std::end(xs);
@@ -80,22 +80,22 @@ std::vector<float> Function::linspace(const float a, const float b, const size_t
     return xs;
 }
 
-float Function::oneVariableIntegral(const float a, const float b) {
+double Function::oneVariableIntegral(const double a, const double b) {
 
    size_t n = 1001;
 
-   std::vector<float> x = linspace(a, b, n);
+   std::vector<double> x = linspace(a, b, n);
 
-   float h = (b - a) / static_cast<float>(n);
+   double h = (b - a) / static_cast<double>(n);
 
-   std::vector<float> result(x.size());
-   std::transform(x.begin(), x.end(), result.begin(), [this](float element) {
+   std::vector<double> result(x.size());
+   std::transform(x.begin(), x.end(), result.begin(), [this](double element) {
        mglFormula formula(m_function.toUtf8().constData());
        return formula.Calc(static_cast<mreal>(element));
    });
 
-    float sumOddIndexElements = 0;
-    float sumEvenIndexElements = 0;
+    double sumOddIndexElements = 0;
+    double sumEvenIndexElements = 0;
 
     for (size_t i = 0; i < x.size(); i++) {
         if (i % 2 != 0) {
@@ -111,18 +111,18 @@ float Function::oneVariableIntegral(const float a, const float b) {
 
 }
 
-float Function::twoVariableIntegral(const float a1, const float b1, const float a2, const float b2) {
+double Function::twoVariableIntegral(const double a1, const double b1, const double a2, const double b2) {
     size_t n = 1001;
 
-    std::vector<float> x = linspace(a1, b1, n);
-    float hx = (b1 - a1) / static_cast<float>(n);
+    std::vector<double> x = linspace(a1, b1, n);
+    double hx = (b1 - a1) / static_cast<double>(n);
 
-    std::vector<float> y = linspace(a2, b2, n);
-    float hy = (b2 - a2) / static_cast<float>(n);
+    std::vector<double> y = linspace(a2, b2, n);
+    double hy = (b2 - a2) / static_cast<double>(n);
 
     size_t array_size = x.size();
 
-    std::vector<std::vector<float> > matrix_f(array_size);
+    std::vector<std::vector<double> > matrix_f(array_size);
 
     for (size_t i = 0; i < array_size; i++) {
         matrix_f[i].resize(array_size);
@@ -132,15 +132,15 @@ float Function::twoVariableIntegral(const float a1, const float b1, const float 
 
     for (size_t i = 0; i < array_size; i++) {
         for (size_t j = 0; j < array_size; j++) {
-            matrix_f[i][j] = formula.Calc(x[i], y[j]);
+            matrix_f[i][j] = formula.Calc(static_cast<mreal>(x[i]), static_cast<mreal>(y[j]));
         }
     }
 
-    std::vector<float> ax(array_size);
+    std::vector<double> ax(array_size);
 
     for (size_t i = 0; i < array_size; i++) {
-        float sumOddIndexElements = 0;
-        float sumEvenIndexElements = 0;
+        double sumOddIndexElements = 0;
+        double sumEvenIndexElements = 0;
 
         for (size_t j = 0; j < array_size; j++) {
             if (j % 2 != 0) {
@@ -155,8 +155,8 @@ float Function::twoVariableIntegral(const float a1, const float b1, const float 
 
     }
 
-    float sumOddIndexElements = 0;
-    float sumEvenIndexElements = 0;
+    double sumOddIndexElements = 0;
+    double sumEvenIndexElements = 0;
 
     for (size_t i = 0; i < array_size; i++) {
         if (i % 2 != 0) {
@@ -167,30 +167,30 @@ float Function::twoVariableIntegral(const float a1, const float b1, const float 
         }
     }
 
-    float result = (hx/3) * (ax[0] + ax[array_size-1] + 4*sumOddIndexElements + 2*sumEvenIndexElements);
+    double result = (hx/3) * (ax[0] + ax[array_size-1] + 4*sumOddIndexElements + 2*sumEvenIndexElements);
 
 
 
     return result;
 }
 
-float Function::firstDerivative(const float point) {
+double Function::firstDerivative(const double point) {
 
     mglFormula formula(m_function.toUtf8().constData());
 
-    float h = 0.01;
+    double h = 0.01;
 
-    float result = (formula.Calc(point+h) - formula.Calc(point-h))/(2*h);
+    double result = (formula.Calc(point+h) - formula.Calc(point-h))/(2*h);
 
     return result;
 
 }
-float Function::secondDerivative(const float point) {
+double Function::secondDerivative(const double point) {
     mglFormula formula(m_function.toUtf8().constData());
 
-    float h = 0.01;
+    double h = 0.01;
 
-    float result = (formula.Calc(point+h) - 2*formula.Calc(point) + formula.Calc(point-h))/(h*h);
+    double result = (formula.Calc(point+h) - 2*formula.Calc(point) + formula.Calc(point-h))/(h*h);
 
     return result;
 }

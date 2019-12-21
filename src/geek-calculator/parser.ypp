@@ -5,20 +5,20 @@
 #include <string>
 #include <cmath>
 
-extern bool indicator_calculating_value  ;
+extern bool indicator_calculating_value ;
 
 extern int yylex();
 
-void yyerror(float *return_value, std::string s);
+void yyerror(double *return_value, std::string s);
 
 %}
 
 %union {
-    float value;
+    double value;
     char variable;
 }
 
-%parse-param  { float *return_value}
+%parse-param  { double *return_value}
 
 %left '+' '-'
 %left '*' '/' '%'
@@ -175,11 +175,12 @@ E
     ;
 %%
 
-void yyerror(float *return_value, std::string s)
+void yyerror(double *return_value, std::string s)
 {
    std::cout << "no no " << std::endl;
    
 }
+
 
 
 

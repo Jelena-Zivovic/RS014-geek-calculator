@@ -17,10 +17,10 @@
    <widget class="QStackedWidget" name="stackedWidgets">
     <property name="geometry">
      <rect>
-      <x>40</x>
-      <y>20</y>
-      <width>731</width>
-      <height>541</height>
+      <x>0</x>
+      <y>10</y>
+      <width>771</width>
+      <height>551</height>
      </rect>
     </property>
     <property name="currentIndex">
@@ -660,10 +660,10 @@
      <widget class="QTabWidget" name="functionsTab">
       <property name="geometry">
        <rect>
-        <x>0</x>
-        <y>0</y>
-        <width>731</width>
-        <height>521</height>
+        <x>10</x>
+        <y>10</y>
+        <width>741</width>
+        <height>561</height>
        </rect>
       </property>
       <property name="currentIndex">
@@ -1188,6 +1188,32 @@
           </widget>
          </item>
         </layout>
+       </widget>
+       <widget class="QPushButton" name="backPlotButton">
+        <property name="geometry">
+         <rect>
+          <x>430</x>
+          <y>480</y>
+          <width>89</width>
+          <height>25</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>back</string>
+        </property>
+       </widget>
+       <widget class="QPushButton" name="clearPlotButton">
+        <property name="geometry">
+         <rect>
+          <x>540</x>
+          <y>480</y>
+          <width>89</width>
+          <height>25</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>clear</string>
+        </property>
        </widget>
        <widget class="QWidget" name="">
         <property name="geometry">

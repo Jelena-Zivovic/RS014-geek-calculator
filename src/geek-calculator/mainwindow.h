@@ -122,6 +122,12 @@ private slots:
 
     void on_plotFunctionButton_clicked();
 
+
+
+    void on_backPlotButton_clicked();
+
+    void on_clearPlotButton_clicked();
+
 private:
     Ui::MainWindow *ui;
     void configureFunctionPage();

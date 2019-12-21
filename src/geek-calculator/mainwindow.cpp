@@ -783,3 +783,20 @@ void MainWindow::on_plotFunctionButton_clicked()
     }
 
 }
+
+
+
+void MainWindow::on_backPlotButton_clicked()
+{
+    ui->stackedWidgets->setCurrentWidget(ui->mainPage);
+}
+
+void MainWindow::on_clearPlotButton_clicked()
+{
+    ui->enterFunctionPlottingLineEdit->clear();
+    ui->plotWidget->clearGraphs();
+    ui->xRangeLeftPlotDoubleSpinBox->setValue(-1);
+    ui->xRangeRightPlotDoubleSpinBox->setValue(1);
+    ui->yLeftRangePlotDoubleSpinBox->setValue(-1);
+    ui->yRangeRightPlotDoubleSpinBox->setValue(1);
+}

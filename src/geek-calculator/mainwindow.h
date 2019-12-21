@@ -116,11 +116,11 @@ private slots:
 
     void on_clearMatrixButton_clicked();
 
-    void on_oneVariablePlottingRadioButton_clicked();
-
     void on_matrixRankButton_clicked();
 
     void on_LUDecompButton_clicked();
+
+    void on_plotFunctionButton_clicked();
 
 private:
     Ui::MainWindow *ui;

@@ -65,9 +65,9 @@ QString Function::get_string_function() const {
 }
 
 std::vector<double> Function::linspace(const double a, const double b, const size_t n) {
-    float h = (b-a) / static_cast<float>(n-1);
+    double h = (b-a) / static_cast<double>(n-1);
     std::vector<double> xs(n);
-    float val = a;
+    double val = a;
     auto first = std::begin(xs);
     auto last = std::end(xs);
 

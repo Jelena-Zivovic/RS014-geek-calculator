@@ -75,7 +75,12 @@ void MainWindow::on_goToFunctionsButton_clicked()
     ui->enterPointLineEdit->clear();
     ui->oneVariableRadioButton->setChecked(true);
     ui->firstDerivativeRadioButton->setChecked(true);
+    ui->oneVariablePlottingRadioButton->setChecked(true);
     ui->functionsTab->setCurrentIndex(0);
+    ui->xRangeLeftPlotDoubleSpinBox->setValue(-1);
+    ui->xRangeRightPlotDoubleSpinBox->setValue(1);
+    ui->yLeftRangePlotDoubleSpinBox->setValue(-1);
+    ui->yRangeRightPlotDoubleSpinBox->setValue(1);
     ui->stackedWidgets->setCurrentWidget(ui->functionsPage);
 }
 void MainWindow::on_goToMatrixButton_clicked()
@@ -102,9 +107,9 @@ void MainWindow::on_calculateValueButton_clicked()
     try
     {
         Function function(enteredText);
-        float value = function.get_value();
+        double value = function.get_value();
         //std::cout << value << std::endl;
-        ui->outputTextEdit->setText(QString::number(function.get_value()));
+        ui->outputTextEdit->setText(QString::number(value));
     }
     catch (const char *message)
     {
@@ -685,13 +690,7 @@ void MainWindow::on_clearMatrixButton_clicked()
 
 }
 
-void MainWindow::on_oneVariablePlottingRadioButton_clicked()
-{
-    QPixmap pm(":/images/sample.png");
-    ui->label->setPixmap(pm);
-    ui->label->setScaledContents(true);
 
-}
 
 void MainWindow::on_matrixRankButton_clicked()
 {
@@ -724,4 +723,63 @@ void MainWindow::on_LUDecompButton_clicked()
     Matrix U = A.getU();
     ui->matrixOutputPlainTextEdit->appendPlainText("LU decomposition of A: ");
     ui->matrixOutputPlainTextEdit->appendPlainText(L.matrix_format() + "x\n" + U.matrix_format());
+}
+
+void MainWindow::on_plotFunctionButton_clicked()
+{
+    QString enteredFunction = ui->enterFunctionPlottingLineEdit->text();
+    int number_of_variables = ui->oneVariablePlottingRadioButton->isChecked() ? 1 : 2;
+
+    try {
+        Function function(enteredFunction, number_of_variables);
+
+        if (number_of_variables == 1) {
+            double xLeft = ui->xRangeLeftPlotDoubleSpinBox->value();
+            double xRight = ui->xRangeRightPlotDoubleSpinBox->value();
+
+            if (xLeft >= xRight) {
+                error_boxMsg("invalid range for x");
+                return;
+            }
+
+            double yLeft = ui->yLeftRangePlotDoubleSpinBox->value();
+            double yRight = ui->yRangeRightPlotDoubleSpinBox->value();
+
+            if (yLeft >= yRight) {
+                error_boxMsg("invalid range for x");
+                return;
+            }
+
+            int number_of_points = static_cast<int>((xRight-xLeft)/0.02);
+
+            QVector<double> x(number_of_points), y(number_of_points);
+
+            double h = (xRight-xLeft) / static_cast<double>(number_of_points-1);
+
+            mglFormula formula(function.get_string_function().toUtf8().constData());
+
+            for (int i = 0; i < number_of_points; i++) {
+                x[i] = xLeft + h*i;
+                y[i] = formula.Calc(x[i]);
+            }
+
+
+            ui->plotWidget->addGraph();
+            ui->plotWidget->graph(0)->setData(x, y);
+
+            ui->plotWidget->xAxis->setRange(xLeft, xRight);
+            ui->plotWidget->yAxis->setRange(yLeft, yRight);
+
+            ui->plotWidget->replot();
+
+
+        }
+        else {
+
+        }
+
+    } catch (const char *message) {
+        std::cout << message << std::endl;
+    }
+
 }

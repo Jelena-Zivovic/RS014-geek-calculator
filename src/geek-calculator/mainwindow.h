@@ -118,6 +118,10 @@ private slots:
 
     void on_oneVariablePlottingRadioButton_clicked();
 
+    void on_matrixRankButton_clicked();
+
+    void on_LUDecompButton_clicked();
+
 private:
     Ui::MainWindow *ui;
     void configureFunctionPage();

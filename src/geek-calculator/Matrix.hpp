@@ -5,6 +5,7 @@
 #include <eigen3/Eigen/Core>
 #include <eigen3/Eigen/Dense>
 #include <eigen3/unsupported/Eigen/MatrixFunctions>
+#include <eigen3/Eigen/LU>
 #include <iostream>
 #include <QString>
 #include <QStringList>
@@ -45,10 +46,15 @@ public:
     Matrix pow(double power) const;
     Matrix normalized() const;
 
+    Matrix lu() const;
+    Matrix getL() const;
+    Matrix getU() const;
+
     static Eigen::MatrixXd parseText(QString text, unsigned n, unsigned m);
     static bool check_matrix(QString text, unsigned n, unsigned m);
     double det() const;
     double norm() const;
+    long rank() const;
 
     QString matrix_format() const;
 

@@ -12,12 +12,11 @@ Matrix::Matrix(unsigned n, unsigned m) : _n(n), _m(m){
 Matrix::Matrix(Eigen::MatrixXd matrix) : _matrix(matrix){
     _n = static_cast<unsigned>(matrix.rows());
     _m = static_cast<unsigned>(matrix.cols());
-    std::cout << _n  << " " << _m;
+
 }
 
 Matrix::Matrix(const Matrix& m) : _n(m._n), _m(m._m){
     _matrix.resize(m._n, m._m);
-    //_matrix=Eigen::Matrix<double, Eigen::Dynamic, Eigen::Dynamic>(m._matrix);
     _matrix = m._matrix;
 }
 Matrix::Matrix(std::vector<std::vector<double>>& vec){
@@ -118,6 +117,30 @@ bool Matrix::check_matrix(QString text, unsigned n, unsigned m){
 
     return true;
 }
+long Matrix::rank() const{
+    Eigen::FullPivLU<Eigen::MatrixXd> lu_decomp(_matrix);
+    return lu_decomp.rank();
+}
+Matrix Matrix::lu() const{
+    Eigen::FullPivLU<Eigen::MatrixXd> lu_decomp(_matrix);
+    Matrix newMatrix(lu_decomp.matrixLU());
+    return newMatrix;
+}
+Matrix Matrix::getL() const{
+    Eigen::MatrixXd l;
+    l.resize(_n, _n);
+    l = Eigen::MatrixXd::Identity(_n, _n);
+    Matrix matrix = this->lu();
+    l.block(0,0, matrix._n, matrix._m).triangularView<Eigen::StrictlyLower>() = matrix._matrix;
+    Matrix result(l);
+    return result;
+}
+Matrix Matrix::getU() const{
+   // Eigen::MatrixXd l = Eigen::MatrixXd::Identity();
+    Matrix matrix = this->lu();
+    Matrix result = Matrix(matrix._matrix.triangularView<Eigen::Upper>());
+    return result;
+}
 Eigen::MatrixXd Matrix::parseText(QString text, unsigned n, unsigned m){
     QStringList list = text.trimmed().split(QRegExp("\\s+|\\n+"));
     int k=0;
@@ -146,7 +169,6 @@ QString Matrix::matrix_format() const{
         }
         text.append("|");
         text.append("\n");
-
     }
 
     return text;

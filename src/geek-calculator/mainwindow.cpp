@@ -473,7 +473,7 @@ void MainWindow::on_raisePowerButtonA_clicked()
         return;
     }
     Matrix tmp = A.pow(num);
-    ui->matrixOutputPlainTextEdit->appendPlainText("B^" + num_txt + ": ");
+    ui->matrixOutputPlainTextEdit->appendPlainText("A^" + num_txt + ": ");
     ui->matrixOutputPlainTextEdit->appendPlainText(tmp.matrix_format());
 }
 /*
@@ -691,4 +691,37 @@ void MainWindow::on_oneVariablePlottingRadioButton_clicked()
     ui->label->setPixmap(pm);
     ui->label->setScaledContents(true);
 
+}
+
+void MainWindow::on_matrixRankButton_clicked()
+{
+    if (ui->matrixInputPlainTextEditA->toPlainText().isEmpty())
+    {
+        return;
+    }
+    if (A.rows() == 0)
+    {
+        return;
+    }
+
+    long rank  = A.rank();
+    ui->matrixOutputPlainTextEdit->appendPlainText("Rank of A: ");
+    ui->matrixOutputPlainTextEdit->appendPlainText(QString::number(rank));
+}
+
+void MainWindow::on_LUDecompButton_clicked()
+{
+    if (ui->matrixInputPlainTextEditA->toPlainText().isEmpty())
+    {
+        return;
+    }
+    if (A.rows() == 0)
+    {
+        return;
+    }
+
+    Matrix L = A.getL();
+    Matrix U = A.getU();
+    ui->matrixOutputPlainTextEdit->appendPlainText("LU decomposition of A: ");
+    ui->matrixOutputPlainTextEdit->appendPlainText(L.matrix_format() + "x\n" + U.matrix_format());
 }

@@ -13,7 +13,7 @@ MainWindow::MainWindow(QWidget *parent)
     ui->stackedWidgets->setCurrentWidget(ui->mainPage);
     ui->outputTextEdit->setReadOnly(true);
     configureFunctionPage();
-
+    configureMatrixPage();
     //ui->resultLineEdit->setReadOnly(true);
     ui->matrixOutputPlainTextEdit->setReadOnly(true);
 }
@@ -32,7 +32,30 @@ void MainWindow::configureFunctionPage()
     ui->resultIntegralLineEdit->setReadOnly(true);
     ui->resultDerivativeLineEdit->setReadOnly(true);
 }
-
+void MainWindow::configureMatrixPage()
+{
+    ui->matrixInputPlainTextEditA->clear();
+    ui->matrixInputPlainTextEditB->clear();
+    ui->dimMLineEditA->clear();
+    ui->dimNLineEditA->clear();
+    ui->dimMLineEditB->clear();
+    ui->dimNLineEditB->clear();
+    ui->multiplyBylineEditA->clear();
+    ui->raisePowerlineEditA->clear();
+    ui->matrixOutputPlainTextEdit->clear();
+    ui->matrixInputPlainTextEditB->hide();
+    ui->enterDimensionButtonB->hide();
+    ui->dimMLabelB->hide();
+    ui->dimNLabelB->hide();
+    ui->dimMLineEditB->hide();
+    ui->dimNLineEditB->hide();
+    ui->matrixInputPlainTextEditA->hide();
+    ui->enterMatrixButtonA->hide();
+    ui->enterMatrixButtonB->hide();
+    ui->matrixPlusButton->hide();
+    ui->matrixMinusButton->hide();
+    ui->matrixMultiplyButton->hide();
+}
 void MainWindow::on_goToBasicCalculatorButton_clicked()
 {
     ui->enterFunctionToCalculateValueTextEdit->clear();
@@ -130,22 +153,12 @@ void MainWindow::on_integralValueFunction_clicked()
 }
 void MainWindow::on_enterDimensionButtonA_clicked()
 {
-    read_matrix(1);
-}
-void MainWindow::read_matrix(int indicator)
-{
     QString n_txt;
     QString m_txt;
-    if (indicator == 1)
-    {
-        n_txt = ui->dimNLineEditA->text();
-        m_txt = ui->dimMLineEditA->text();
-    }
-    else
-    {
-        n_txt = ui->dimNLineEditB->text();
-        m_txt = ui->dimMLineEditB->text();
-    }
+
+    n_txt = ui->dimNLineEditA->text();
+    m_txt = ui->dimMLineEditA->text();
+
     bool ok;
     unsigned n, m;
     n = static_cast<unsigned>(n_txt.toInt(&ok));
@@ -160,6 +173,21 @@ void MainWindow::read_matrix(int indicator)
         error_boxMsg("Dimension m of matrix needs to be a unsigned number");
         return;
     }
+    Matrix tmp(n,m);
+    A = tmp;
+    ui->enterMatrixButtonA->show();
+    ui->matrixInputPlainTextEditA->show();
+}
+void MainWindow::read_matrix(int indicator)
+{
+    unsigned n,m;
+    if(indicator==1){
+        n = A.rows();
+        m = A.cols();
+    }else{
+        n=B.rows();
+        m = B.cols();
+    }
     QString text;
     if (indicator == 1)
     {
@@ -169,10 +197,10 @@ void MainWindow::read_matrix(int indicator)
     {
         text = ui->matrixInputPlainTextEditB->toPlainText();
     }
-    ok = Matrix::check_matrix(text, n, m);
+    bool ok = Matrix::check_matrix(text, n, m);
     if (ok == false)
     {
-        error_boxMsg("Matrix format need to be " + n_txt + "x" + m_txt + " numbers");
+        error_boxMsg("Matrix format need to be " + QString::number(n) + "x" + QString::number(m) + " numbers");
         if (indicator == 1)
         {
             ui->matrixInputPlainTextEditA->clear();
@@ -183,7 +211,8 @@ void MainWindow::read_matrix(int indicator)
         }
         return;
     }
-    Eigen::MatrixXd _matrix = Matrix::parseText(text, n, m);
+
+    Eigen::MatrixXd _matrix = Matrix::parseText(text, n,m);
     Matrix matrix(_matrix);
     if (indicator == 1)
     {
@@ -208,10 +237,33 @@ void MainWindow::error_boxMsg(QString error_msg)
 
 void MainWindow::on_enterDimensionButtonB_clicked()
 {
-    read_matrix(0);
+    QString n_txt;
+    QString m_txt;
+
+    n_txt = ui->dimNLineEditB->text();
+    m_txt = ui->dimMLineEditB->text();
+
+    bool ok;
+    unsigned n, m;
+    n = static_cast<unsigned>(n_txt.toInt(&ok));
+    if (ok == false)
+    {
+        error_boxMsg("Dimension n of matrix needs to be a unsigned number");
+        return;
+    }
+    m = static_cast<unsigned>(m_txt.toInt(&ok));
+    if (ok == false)
+    {
+        error_boxMsg("Dimension m of matrix needs to be a unsigned number");
+        return;
+    }
+    Matrix tmp(n,m);
+    B = tmp;
+    ui->enterMatrixButtonB->show();
+    ui->matrixInputPlainTextEditB->show();
 }
 
-void MainWindow::on_plusButton_clicked()
+void MainWindow::on_matrixPlusButton_clicked()
 {
     if (ui->matrixInputPlainTextEditA->toPlainText().isEmpty() || ui->matrixInputPlainTextEditB->toPlainText().isEmpty())
     {
@@ -223,9 +275,10 @@ void MainWindow::on_plusButton_clicked()
         ui->matrixOutputPlainTextEdit->appendPlainText("A+B: ");
         ui->matrixOutputPlainTextEdit->appendPlainText(plus.matrix_format());
     }
+
 }
 
-void MainWindow::on_minusButton_clicked()
+void MainWindow::on_matrixMinusButton_clicked()
 {
     if (ui->matrixInputPlainTextEditA->toPlainText().isEmpty() || ui->matrixInputPlainTextEditB->toPlainText().isEmpty())
     {
@@ -237,10 +290,13 @@ void MainWindow::on_minusButton_clicked()
         ui->matrixOutputPlainTextEdit->appendPlainText("A-B: ");
         ui->matrixOutputPlainTextEdit->appendPlainText(minus.matrix_format());
     }
+
 }
 
-void MainWindow::on_multiplyButton_clicked()
+void MainWindow::on_matrixMultiplyButton_clicked()
 {
+
+
     if (ui->matrixInputPlainTextEditA->toPlainText().isEmpty() || ui->matrixInputPlainTextEditB->toPlainText().isEmpty())
     {
         return;
@@ -251,6 +307,7 @@ void MainWindow::on_multiplyButton_clicked()
         ui->matrixOutputPlainTextEdit->appendPlainText("A*B: ");
         ui->matrixOutputPlainTextEdit->appendPlainText(multiply.matrix_format());
     }
+
 }
 
 void MainWindow::on_determinantButtonA_clicked()
@@ -268,7 +325,7 @@ void MainWindow::on_determinantButtonA_clicked()
     QString det_txt = QString::number(det);
     ui->matrixOutputPlainTextEdit->appendPlainText("Determant of A: " + det_txt);
 }
-
+/*
 void MainWindow::on_determinantButtonB_clicked()
 {
     if (ui->matrixInputPlainTextEditB->toPlainText().isEmpty())
@@ -283,7 +340,7 @@ void MainWindow::on_determinantButtonB_clicked()
     double det = B.det();
     QString det_txt = QString::number(det);
     ui->matrixOutputPlainTextEdit->appendPlainText("Determant of B: " + det_txt);
-}
+}*/
 
 void MainWindow::on_inverseButtonA_clicked()
 {
@@ -305,7 +362,7 @@ void MainWindow::on_inverseButtonA_clicked()
     ui->matrixOutputPlainTextEdit->appendPlainText("Inverse of A: ");
     ui->matrixOutputPlainTextEdit->appendPlainText(inv.matrix_format());
 }
-
+/*
 void MainWindow::on_inverseButtonB_clicked()
 {
     if (ui->matrixInputPlainTextEditB->toPlainText().isEmpty())
@@ -325,7 +382,7 @@ void MainWindow::on_inverseButtonB_clicked()
     Matrix inv = B.inv();
     ui->matrixOutputPlainTextEdit->appendPlainText("Inverse of B: ");
     ui->matrixOutputPlainTextEdit->appendPlainText(inv.matrix_format());
-}
+}*/
 
 void MainWindow::on_transposeButtonA_clicked()
 {
@@ -342,7 +399,7 @@ void MainWindow::on_transposeButtonA_clicked()
     ui->matrixOutputPlainTextEdit->appendPlainText("Transpose of A: ");
     ui->matrixOutputPlainTextEdit->appendPlainText(transpose.matrix_format());
 }
-
+/*
 void MainWindow::on_transposeButtonB_clicked()
 {
     if (ui->matrixInputPlainTextEditB->toPlainText().isEmpty())
@@ -357,7 +414,7 @@ void MainWindow::on_transposeButtonB_clicked()
     Matrix transpose = B.transpose();
     ui->matrixOutputPlainTextEdit->appendPlainText("Transpose of A: ");
     ui->matrixOutputPlainTextEdit->appendPlainText(transpose.matrix_format());
-}
+}*/
 
 void MainWindow::on_multiplyByButtonA_clicked()
 {
@@ -377,7 +434,7 @@ void MainWindow::on_multiplyByButtonA_clicked()
     ui->matrixOutputPlainTextEdit->appendPlainText("A*" + num_txt + ": ");
     ui->matrixOutputPlainTextEdit->appendPlainText(tmp.matrix_format());
 }
-
+/*
 void MainWindow::on_multiplyByButtonB_clicked()
 {
     if (ui->multiplBylineEditB->text().isEmpty())
@@ -395,7 +452,7 @@ void MainWindow::on_multiplyByButtonB_clicked()
     Matrix tmp = B * num;
     ui->matrixOutputPlainTextEdit->appendPlainText("B*" + num_txt + ": ");
     ui->matrixOutputPlainTextEdit->appendPlainText(tmp.matrix_format());
-}
+}*/
 
 void MainWindow::on_raisePowerButtonA_clicked()
 {
@@ -418,6 +475,7 @@ void MainWindow::on_raisePowerButtonA_clicked()
     ui->matrixOutputPlainTextEdit->appendPlainText("B^" + num_txt + ": ");
     ui->matrixOutputPlainTextEdit->appendPlainText(tmp.matrix_format());
 }
+/*
 void MainWindow::on_raisePowerButtonB_clicked()
 {
     if (ui->raisePowerlineEditB->text().isEmpty())
@@ -438,10 +496,11 @@ void MainWindow::on_raisePowerButtonB_clicked()
     Matrix tmp = B.pow(num);
     ui->matrixOutputPlainTextEdit->appendPlainText("B^" + num_txt + ": ");
     ui->matrixOutputPlainTextEdit->appendPlainText(tmp.matrix_format());
-}
+}*/
 
 void MainWindow::on_goFromMatrixToMainPageButton_clicked()
 {
+    configureMatrixPage();
     ui->stackedWidgets->setCurrentWidget(ui->mainPage);
 }
 
@@ -586,4 +645,41 @@ void MainWindow::on_number0Button_clicked()
     ui->enterFunctionToCalculateValueTextEdit->moveCursor(QTextCursor::End);
     ui->enterFunctionToCalculateValueTextEdit->insertPlainText(QString("0"));
     ui->enterFunctionToCalculateValueTextEdit->moveCursor(QTextCursor::End);
+}
+
+void MainWindow::on_enterMatrixButtonA_clicked()
+{
+    read_matrix(1);
+}
+
+void MainWindow::on_enterMatrixButtonB_clicked()
+{
+    read_matrix(2);
+
+}
+
+void MainWindow::on_addMatrixButton_clicked()
+{
+    ui->dimMLabelB->show();
+    ui->dimNLabelB->show();
+    ui->dimMLineEditB->show();
+    ui->dimNLineEditB->show();
+    ui->enterDimensionButtonB->show();
+    ui->matrixPlusButton->show();
+    ui->matrixMinusButton->show();
+    ui->matrixMultiplyButton->show();
+}
+
+void MainWindow::on_clearMatrixButton_clicked()
+{
+    ui->matrixInputPlainTextEditA->clear();
+    ui->matrixInputPlainTextEditB->clear();
+    ui->dimMLineEditA->clear();
+    ui->dimNLineEditA->clear();
+    ui->dimMLineEditB->clear();
+    ui->dimNLineEditB->clear();
+    ui->multiplyBylineEditA->clear();
+    ui->raisePowerlineEditA->clear();
+    ui->matrixOutputPlainTextEdit->clear();
+
 }

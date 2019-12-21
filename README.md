@@ -14,5 +14,6 @@ Biblioteke:
    + Flex
    + YACC
    + Eigen
+   + QCustomPlot
     
 

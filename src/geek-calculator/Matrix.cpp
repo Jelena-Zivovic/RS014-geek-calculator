@@ -84,7 +84,7 @@ Matrix Matrix::operator/(double scalar) const{
 }
 Matrix Matrix::pow(double power) const{
     Matrix newMatrix(_n,_m);
-    _matrix.MatrixBase::pow(power);
+    newMatrix._matrix = _matrix.pow(power);
     return newMatrix;
 }
 

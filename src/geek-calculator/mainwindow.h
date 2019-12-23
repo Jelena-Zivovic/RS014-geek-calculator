@@ -166,6 +166,14 @@ private slots:
 
     void on_deleteCharacterButton_clicked();
 
+    void on_pushButton_10_clicked();
+
+    void on_asinButton_clicked();
+
+    void on_pushButton_11_clicked();
+
+    void on_pushButton_12_clicked();
+
 private:
     Ui::MainWindow *ui;
     void configureFunctionPage();

@@ -907,3 +907,23 @@ void MainWindow::on_deleteCharacterButton_clicked()
 {
     ui->enterFunctionToCalculateValueTextEdit->textCursor().deletePreviousChar();
 }
+
+void MainWindow::on_pushButton_10_clicked()
+{
+    ui->enterFunctionToCalculateValueTextEdit->insertPlainText(QString("sqrt("));
+}
+
+void MainWindow::on_asinButton_clicked()
+{
+    ui->enterFunctionToCalculateValueTextEdit->insertPlainText(QString("asin("));
+}
+
+void MainWindow::on_pushButton_11_clicked()
+{
+    ui->enterFunctionToCalculateValueTextEdit->insertPlainText(QString("acos("));
+}
+
+void MainWindow::on_pushButton_12_clicked()
+{
+    ui->enterFunctionToCalculateValueTextEdit->insertPlainText(QString("atan("));
+}

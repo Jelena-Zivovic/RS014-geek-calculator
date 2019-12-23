@@ -466,8 +466,8 @@
      <widget class="QPushButton" name="goBackToMainPageButton">
       <property name="geometry">
        <rect>
-        <x>550</x>
-        <y>420</y>
+        <x>160</x>
+        <y>390</y>
         <width>89</width>
         <height>25</height>
        </rect>
@@ -479,9 +479,9 @@
      <widget class="QTextEdit" name="outputTextEdit">
       <property name="geometry">
        <rect>
-        <x>140</x>
-        <y>350</y>
-        <width>221</width>
+        <x>10</x>
+        <y>240</y>
+        <width>391</width>
         <height>70</height>
        </rect>
       </property>
@@ -841,7 +841,7 @@
       <property name="geometry">
        <rect>
         <x>590</x>
-        <y>100</y>
+        <y>130</y>
         <width>89</width>
         <height>25</height>
        </rect>
@@ -874,6 +874,32 @@
       </property>
       <property name="text">
        <string>x^2</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="clearCommonCalculatorButton">
+      <property name="geometry">
+       <rect>
+        <x>260</x>
+        <y>390</y>
+        <width>89</width>
+        <height>25</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>clear</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="deleteCharacterButton">
+      <property name="geometry">
+       <rect>
+        <x>590</x>
+        <y>100</y>
+        <width>89</width>
+        <height>25</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>delete</string>
       </property>
      </widget>
     </widget>

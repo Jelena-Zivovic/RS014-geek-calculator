@@ -162,6 +162,10 @@ private slots:
 
     void on_pushButton_9_clicked();
 
+    void on_clearCommonCalculatorButton_clicked();
+
+    void on_deleteCharacterButton_clicked();
+
 private:
     Ui::MainWindow *ui;
     void configureFunctionPage();

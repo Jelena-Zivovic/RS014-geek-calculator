@@ -896,3 +896,14 @@ void MainWindow::on_pushButton_9_clicked()
 {
     ui->enterFunctionToCalculateValueTextEdit->insertPlainText(QString("^2"));
 }
+
+void MainWindow::on_clearCommonCalculatorButton_clicked()
+{
+    ui->enterFunctionToCalculateValueTextEdit->clear();
+    ui->outputTextEdit->clear();
+}
+
+void MainWindow::on_deleteCharacterButton_clicked()
+{
+    ui->enterFunctionToCalculateValueTextEdit->textCursor().deletePreviousChar();
+}

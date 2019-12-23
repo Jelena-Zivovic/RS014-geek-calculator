@@ -22,33 +22,33 @@ public:
     MatrixH();
     //Matrix(const QString text);
     MatrixH(unsigned n, unsigned m);
-    Matrix(Eigen::MatrixHXd matrix);
+    MatrixH(Eigen::MatrixXd matrix);
     MatrixH(std::vector<std::vector<double>> &vec);
-    Matrix(const MatrixH &m);
-    ~Matrix() = default;
+    MatrixH(const MatrixH &m);
+    ~MatrixH() = default;
 
     unsigned rows() const;
     unsigned cols() const;
 
-    MatrixH *operator+(const Matrix &m) const;
-    MatrixH *operator-(const Matrix &m) const;
-    MatrixH *operator*(const Matrix &m) const;
-    MatrixH &operator=(const Matrix &m);
+    MatrixH *operator+(const MatrixH &m) const;
+    MatrixH *operator-(const MatrixH &m) const;
+    MatrixH *operator*(const MatrixH &m) const;
+    MatrixH &operator=(const MatrixH &m);
     MatrixH *inv() const;
-    Matrix *transpose() const;
+    MatrixH *transpose() const;
 
     MatrixH *operator*(double scalar) const;
-    Matrix *operator/(double scalar) const;
+    MatrixH *operator/(double scalar) const;
 
     MatrixH *operator-() const;
 
-    Matrix *pow(double power) const;
+    MatrixH *pow(double power) const;
     MatrixH *normalized() const;
 
     double det() const;
     double norm() const;
 };
 
-std::ostream &operator<<(std::ostream &out, const Matrix &m);
+std::ostream &operator<<(std::ostream &out, const MatrixH &m);
 
 #endif // MATRIX_HPP

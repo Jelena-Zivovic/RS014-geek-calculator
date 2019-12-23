@@ -161,13 +161,13 @@ E
 
 %%
 
-void yyerror(Matrix *return_value, std::string s)
+void yyerror(MatrixH *return_value, std::string s)
 {
    std::cout << "no no " << std::endl;
    
 }
 int main(){
-    Matrix v;
+    MatrixH v;
     if(yyparse(&v) != 0){
         std::cout << "previse tokena na ulazu" << std::endl;
         exit(EXIT_FAILURE);

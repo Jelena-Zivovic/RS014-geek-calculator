@@ -7,7 +7,7 @@
     #include <cstdlib>
     #include <string>
     #include <fstream>
-    
+    #include "MatrixHelper.hpp"
     #include "parserMatrix.tab.hpp"
     
 %}

@@ -96,39 +96,39 @@ MatrixH *MatrixH::inv() const
     {
         return nullptr;
     }
-    Matrix *newMatrix = new MatrixH(_n, _m);
+    MatrixH *newMatrix = new MatrixH(_n, _m);
     newMatrix->_matrix = _matrix.inverse();
     return newMatrix;
 }
 MatrixH *MatrixH::transpose() const
 {
-    Matrix *newMatrix = new MatrixH(_m, _n);
+    MatrixH *newMatrix = new MatrixH(_m, _n);
     newMatrix->_matrix = _matrix.transpose();
     return newMatrix;
 }
 MatrixH *MatrixH::operator*(double scalar) const
 {
-    Matrix *newMatrix = new MatrixH(_n, _m);
+    MatrixH *newMatrix = new MatrixH(_n, _m);
     newMatrix->_matrix = _matrix * scalar;
     return newMatrix;
 }
 
 MatrixH *MatrixH::operator/(double scalar) const
 {
-    Matrix *newMatrix = new MatrixH(_n, _m);
+    MatrixH *newMatrix = new MatrixH(_n, _m);
     newMatrix->_matrix = _matrix / scalar;
     return newMatrix;
 }
 MatrixH *MatrixH::pow(double power) const
 {
-    Matrix *newMatrix = new MatrixH(_n, _m);
+    MatrixH *newMatrix = new MatrixH(_n, _m);
     newMatrix->_matrix = _matrix.pow(power);
     return newMatrix;
 }
 
-Matrix *Matrix::normalized() const
+MatrixH *MatrixH::normalized() const
 {
-    Matrix *newMatrix = new MatrixH(_n, _m);
+    MatrixH *newMatrix = new MatrixH(_n, _m);
     newMatrix->_matrix = _matrix.normalized();
     return newMatrix;
 }

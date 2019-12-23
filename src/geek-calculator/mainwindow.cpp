@@ -590,7 +590,7 @@ void MainWindow::on_number1Button_clicked()
 
 
 
-void MainWindow::on_pushButton_2_clicked()
+void MainWindow::on_number2Button_clicked()
 {
     ui->enterFunctionToCalculateValueTextEdit->moveCursor(QTextCursor::End);
     ui->enterFunctionToCalculateValueTextEdit->insertPlainText(QString("2"));
@@ -799,4 +799,100 @@ void MainWindow::on_clearPlotButton_clicked()
     ui->xRangeRightPlotDoubleSpinBox->setValue(1);
     ui->yLeftRangePlotDoubleSpinBox->setValue(-1);
     ui->yRangeRightPlotDoubleSpinBox->setValue(1);
+}
+
+void MainWindow::on_plusButton_clicked()
+{
+    ui->enterFunctionToCalculateValueTextEdit->moveCursor(QTextCursor::End);
+    ui->enterFunctionToCalculateValueTextEdit->insertPlainText(QString("+"));
+    ui->enterFunctionToCalculateValueTextEdit->moveCursor(QTextCursor::End);
+}
+
+void MainWindow::on_minusButton_clicked()
+{
+    ui->enterFunctionToCalculateValueTextEdit->moveCursor(QTextCursor::End);
+    ui->enterFunctionToCalculateValueTextEdit->insertPlainText(QString("-"));
+    ui->enterFunctionToCalculateValueTextEdit->moveCursor(QTextCursor::End);
+}
+
+void MainWindow::on_multiplyButton_clicked()
+{
+    ui->enterFunctionToCalculateValueTextEdit->moveCursor(QTextCursor::End);
+    ui->enterFunctionToCalculateValueTextEdit->insertPlainText(QString("*"));
+    ui->enterFunctionToCalculateValueTextEdit->moveCursor(QTextCursor::End);
+}
+
+void MainWindow::on_pushButton_5_clicked()
+{
+    ui->enterFunctionToCalculateValueTextEdit->moveCursor(QTextCursor::End);
+    ui->enterFunctionToCalculateValueTextEdit->insertPlainText(QString("/"));
+    ui->enterFunctionToCalculateValueTextEdit->moveCursor(QTextCursor::End);
+}
+
+void MainWindow::on_sinButton_clicked()
+{
+    ui->enterFunctionToCalculateValueTextEdit->insertPlainText(QString("sin("));
+
+
+
+}
+
+void MainWindow::on_cosButton_clicked()
+{
+     ui->enterFunctionToCalculateValueTextEdit->insertPlainText(QString("cos("));
+}
+
+void MainWindow::on_tanButton_clicked()
+{
+     ui->enterFunctionToCalculateValueTextEdit->insertPlainText(QString("tan("));
+}
+
+void MainWindow::on_pushButton_6_clicked()
+{
+     ui->enterFunctionToCalculateValueTextEdit->insertPlainText(QString("ctan("));
+}
+
+void MainWindow::on_leftBracketButton_clicked()
+{
+    ui->enterFunctionToCalculateValueTextEdit->insertPlainText(QString("("));
+}
+
+void MainWindow::on_rightBracketButton_clicked()
+{
+    ui->enterFunctionToCalculateValueTextEdit->insertPlainText(QString(")"));
+}
+
+void MainWindow::on_pushButton_clicked()
+{
+    ui->enterFunctionToCalculateValueTextEdit->insertPlainText(QString("^"));
+}
+
+void MainWindow::on_pushButton_2_clicked()
+{
+    ui->enterFunctionToCalculateValueTextEdit->insertPlainText(QString("exp("));
+}
+
+void MainWindow::on_pushButton_3_clicked()
+{
+    ui->enterFunctionToCalculateValueTextEdit->insertPlainText(QString("ln("));
+}
+
+void MainWindow::on_pushButton_4_clicked()
+{
+    ui->enterFunctionToCalculateValueTextEdit->insertPlainText(QString("log("));
+}
+
+void MainWindow::on_pushButton_7_clicked()
+{
+    ui->enterFunctionToCalculateValueTextEdit->insertPlainText(QString(","));
+}
+
+void MainWindow::on_pushButton_8_clicked()
+{
+    ui->enterFunctionToCalculateValueTextEdit->insertPlainText(QString("abs("));
+}
+
+void MainWindow::on_pushButton_9_clicked()
+{
+    ui->enterFunctionToCalculateValueTextEdit->insertPlainText(QString("^2"));
 }

@@ -90,7 +90,7 @@ private slots:
 
     void on_dotButton_clicked();
 
-    void on_pushButton_2_clicked();
+    void on_number2Button_clicked();
 
     void on_number3Button_clicked();
 
@@ -127,6 +127,40 @@ private slots:
     void on_backPlotButton_clicked();
 
     void on_clearPlotButton_clicked();
+
+    void on_plusButton_clicked();
+
+    void on_minusButton_clicked();
+
+    void on_multiplyButton_clicked();
+
+    void on_pushButton_5_clicked();
+
+    void on_sinButton_clicked();
+
+    void on_cosButton_clicked();
+
+    void on_tanButton_clicked();
+
+    void on_pushButton_6_clicked();
+
+    void on_leftBracketButton_clicked();
+
+    void on_rightBracketButton_clicked();
+
+    void on_pushButton_clicked();
+
+    void on_pushButton_2_clicked();
+
+    void on_pushButton_3_clicked();
+
+    void on_pushButton_4_clicked();
+
+    void on_pushButton_7_clicked();
+
+    void on_pushButton_8_clicked();
+
+    void on_pushButton_9_clicked();
 
 private:
     Ui::MainWindow *ui;

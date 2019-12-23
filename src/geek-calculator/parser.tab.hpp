@@ -55,12 +55,13 @@ extern int yydebug;
     ACTG = 265,
     LN = 266,
     LOG = 267,
-    UMINUS = 268,
-    EXP = 269,
-    SQRT = 270,
-    ABS = 271,
-    NUMBER = 272,
-    VARIABLE = 273
+    MOD = 268,
+    UMINUS = 269,
+    EXP = 270,
+    SQRT = 271,
+    ABS = 272,
+    NUMBER = 273,
+    VARIABLE = 274
   };
 #endif
 
@@ -71,10 +72,10 @@ union YYSTYPE
 {
 #line 16 "parser.ypp" /* yacc.c:1909  */
 
-    float value;
+    double value;
     char variable;
 
-#line 78 "parser.tab.hpp" /* yacc.c:1909  */
+#line 79 "parser.tab.hpp" /* yacc.c:1909  */
 };
 
 typedef union YYSTYPE YYSTYPE;
@@ -85,6 +86,6 @@ typedef union YYSTYPE YYSTYPE;
 
 extern YYSTYPE yylval;
 
-int yyparse (float *return_value);
+int yyparse (double *return_value);
 
 #endif /* !YY_YY_PARSER_TAB_HPP_INCLUDED  */

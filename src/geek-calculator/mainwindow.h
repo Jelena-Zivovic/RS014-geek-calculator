@@ -178,6 +178,8 @@ private slots:
 
     void on_goToMainPageFromGeometryButton_clicked();
 
+    void on_triangleButton_clicked();
+
 private:
     Ui::MainWindow *ui;
     void configureFunctionPage();

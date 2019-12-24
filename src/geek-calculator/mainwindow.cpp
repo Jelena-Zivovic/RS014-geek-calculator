@@ -61,6 +61,38 @@ void MainWindow::configureGeometryPage() {
     QIcon parallelogramButtonIcon(imageParallelogram);
     ui->parallelogramButton->setIcon(parallelogramButtonIcon);
 
+    QPixmap imageRectangle(":/images/rectangle.png");
+    QIcon rectangleButtonIcon(imageRectangle);
+    ui->rectangleButton->setIcon(rectangleButtonIcon);
+
+    QPixmap imageTrapezoid(":/images/trapezoid.webp");
+    QIcon trapezoidButtonIcon(imageTrapezoid);
+    ui->trapezoidButton->setIcon(trapezoidButtonIcon);
+
+    QPixmap imageTriangle(":/images/triangle.jpg");
+    QIcon triangleButtonIcon(imageTriangle);
+    ui->triangleButton->setIcon(triangleButtonIcon);
+
+    QPixmap imageCone(":/images/cone.png");
+    QIcon coneButtonIcon(imageCone);
+    ui->coneButton->setIcon(coneButtonIcon);
+
+    QPixmap imageCube(":/images/cube.jpg");
+    QIcon cubeButtonIcon(imageCube);
+    ui->cubeButton->setIcon(cubeButtonIcon);
+
+    QPixmap imageCylinder(":/images/cylinder.jpeg");
+    QIcon cylinderButtonIcon(imageCylinder);
+    ui->cylinderButton->setIcon(cylinderButtonIcon);
+
+    QPixmap imageSquare(":/images/square.png");
+    QIcon squareButtonIcon(imageSquare);
+    ui->squareButton->setIcon(squareButtonIcon);
+
+    QPixmap imageSphere(":/images/sphere.jpeg");
+    QIcon sphereButtonIcon(imageSphere);
+    ui->sphereButton->setIcon(sphereButtonIcon);
+
 
 }
 
@@ -1086,4 +1118,9 @@ void MainWindow::on_goToGeometryButton_clicked()
 void MainWindow::on_goToMainPageFromGeometryButton_clicked()
 {
     ui->stackedWidgets->setCurrentWidget(ui->mainPage);
+}
+
+void MainWindow::on_triangleButton_clicked()
+{
+
 }

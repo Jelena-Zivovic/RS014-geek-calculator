@@ -186,6 +186,8 @@ private slots:
 
     void calculatecircumferenceCircleButton_clicked();
 
+    void clearCircleButton_clicked();
+
 private:
     Ui::MainWindow *ui;
     void configureFunctionPage();

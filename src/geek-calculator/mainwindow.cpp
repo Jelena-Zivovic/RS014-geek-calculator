@@ -1172,7 +1172,6 @@ void MainWindow::on_circleButton_clicked()
 
     QHBoxLayout *horizontalLayout2 = new QHBoxLayout(w2);
 
-
     QLabel *resultMessage = new QLabel("result:");
     resultMessage->setContentsMargins(0, 0, 0, 0);
     horizontalLayout2->addWidget(resultMessage);
@@ -1183,6 +1182,18 @@ void MainWindow::on_circleButton_clicked()
     horizontalLayout2->addWidget(resultCircleLineEdit);
 
     ui->verticalGeometryLayout->addWidget(w2);
+
+    QWidget *w3 = new QWidget(this);
+
+    QHBoxLayout *horizontalLayout3 = new QHBoxLayout(w3);
+
+    QPushButton *clearButton = new QPushButton("clear");
+    clearButton->setFixedSize(QSize(151, 25));
+    clearButton->setObjectName("clearCircleButton");
+    connect(clearButton, &QPushButton::clicked, this, &MainWindow::clearCircleButton_clicked);
+    horizontalLayout3->addWidget(clearButton);
+
+    ui->verticalGeometryLayout->addWidget(w3);
 
 }
 
@@ -1238,6 +1249,24 @@ void MainWindow::calculatecircumferenceCircleButton_clicked() {
     else {
         result->setText(QString::number(2*radius*M_PI));
     }
+}
+
+void MainWindow::clearCircleButton_clicked() {
+    QLineEdit *enter = ui->geometryPage->findChild<QLineEdit*>("enterRadiusCircleLineEdit");
+
+    if (enter == nullptr) {
+        exit(1);
+    }
+
+    enter->clear();
+
+    QLineEdit *result = ui->geometryPage->findChild<QLineEdit*>("resultCircleLineEdit");
+
+    if (result == nullptr) {
+        exit(1);
+    }
+
+    result->clear();
 }
 
 

@@ -4,6 +4,10 @@
 #include <QMainWindow>
 #include <string>
 #include <Matrix.hpp>
+#include <QtDataVisualization/Q3DSurface>
+#include <QtCore/qmath.h>
+
+using namespace QtDataVisualization;
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -174,13 +178,23 @@ private slots:
 
     void on_pushButton_12_clicked();
 
+    void on_oneVariablePlottingRadioButton_clicked();
+
+    void on_twoVariablesPlottingRadioButton_clicked();
+
 private:
     Ui::MainWindow *ui;
     void configureFunctionPage();
     void configureMatrixPage();
     void error_boxMsg(QString error_msg);
     void read_matrix(int indicator);
+    void create_q3dsurface();
     Matrix A;
     Matrix B;
+    Q3DSurface *graph = new Q3DSurface();
+    Q3DSurface *modifier;
+
+
+
 };
 #endif // MAINWINDOW_H

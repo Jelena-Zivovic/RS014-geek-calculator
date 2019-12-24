@@ -811,7 +811,7 @@ void MainWindow::on_plotFunctionButton_clicked()
                 x[i] = xLeft + h*i;
                 y[i] = formula.Calc(x[i]);
             }
-
+            //Changes color of function
             QPen pen;
             pen.setWidth(1);
             int r = qrand()%255;
@@ -847,11 +847,12 @@ void MainWindow::on_plotFunctionButton_clicked()
             double yRight = ui->yRangeRightPlotDoubleSpinBox->value();
 
             if (yLeft >= yRight) {
-                error_boxMsg("invalid range for x");
+                error_boxMsg("invalid range for y");
                 return;
             }
             int sampleCountX = 50;
             int sampleCountZ = 50;
+            //range for X and Z axis
             float sampleMinX = float(xLeft);
             float sampleMaxX = float(xRight);
             float sampleMinZ = float(yLeft);
@@ -859,6 +860,7 @@ void MainWindow::on_plotFunctionButton_clicked()
             float stepX =(sampleMaxX-sampleMinX)/ float(sampleCountX - 1);
             float stepZ = (sampleMaxZ-sampleMinZ) / float(sampleCountZ - 1);
 
+            //setting range for axis
             modifier->axisX()->setRange(sampleMinX, sampleMaxX);
             modifier->axisZ()->setRange(sampleMinZ, sampleMaxZ);
             modifier->axisY()->setRange(-5.0,5.0);
@@ -875,13 +877,12 @@ void MainWindow::on_plotFunctionButton_clicked()
                 int index = 0;
                 for (int j = 0; j < sampleCountX; j++) {
                     float x = qMin(sampleMaxX, (j * stepX + sampleMinX));
-                   // float R = qSqrt(z * z + x * x) + 0.01f;
                     float y = formula.Calc(x,z);
                     (*newRow)[index++].setPosition(QVector3D(x, y, z));
                 }
                 *dataArray << newRow;
             }
-
+            //setting a new color for new function
             int r = qrand()%255;
             int g = qrand()%255;
             int b = qrand()%255;
@@ -898,18 +899,13 @@ void MainWindow::on_plotFunctionButton_clicked()
     }
 
 }
-void MainWindow::setup_q3dsurface(){
-
-}
 
 void MainWindow::create_q3dsurface(){
        graph = new Q3DSurface();
        QWidget *container = QWidget::createWindowContainer(graph);
        ui->hLayout->addWidget(container,1);
-       //ui->widget->show();
        Q3DSurface *tmp(graph);
-       modifier=tmp;
-
+       modifier = tmp;
 }
 
 void MainWindow::on_backPlotButton_clicked()

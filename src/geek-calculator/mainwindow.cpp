@@ -812,10 +812,15 @@ void MainWindow::on_plotFunctionButton_clicked()
                 y[i] = formula.Calc(x[i]);
             }
 
-
+            QPen pen;
+            pen.setWidth(1);
+            int r = qrand()%255;
+            int g = qrand()%255;
+            int b = qrand()%255;
+            pen.setColor(QColor(r,g,b));
             ui->plotWidget->addGraph();
             ui->plotWidget->graph(0)->setData(x, y);
-
+            ui->plotWidget->graph(0)->setPen(pen);
             ui->plotWidget->xAxis->setRange(xLeft, xRight);
             ui->plotWidget->yAxis->setRange(yLeft, yRight);
 
@@ -829,6 +834,7 @@ void MainWindow::on_plotFunctionButton_clicked()
             modifier->setAxisZ(new QValue3DAxis);
             QSurfaceDataProxy *dataProxy = new QSurfaceDataProxy();
             QSurface3DSeries *dataSeries = new QSurface3DSeries(dataProxy);
+
             double xLeft = ui->xRangeLeftPlotDoubleSpinBox->value();
             double xRight = ui->xRangeRightPlotDoubleSpinBox->value();
 
@@ -876,18 +882,23 @@ void MainWindow::on_plotFunctionButton_clicked()
                 *dataArray << newRow;
             }
 
-            dataProxy->resetArray(dataArray);
-            modifier->axisX()->setRange(-8.0,8.0);
-            modifier->axisY()->setRange(0.0,2.0);
-            modifier->axisZ()->setRange(-8.0,8.0);
+            int r = qrand()%255;
+            int g = qrand()%255;
+            int b = qrand()%255;
 
+            dataProxy->resetArray(dataArray);
             modifier->addSeries(dataSeries);
+            modifier->seriesList().back()->setBaseColor(QColor(r,g,b));
+
 
         }
 
     } catch (const char *message) {
         std::cout << message << std::endl;
     }
+
+}
+void MainWindow::setup_q3dsurface(){
 
 }
 

@@ -6,6 +6,9 @@
 #include <mgl2/eval.h>
 #include <mgl2/data.h>
 
+#include <QtDataVisualization/Q3DSurface>
+using namespace QtDataVisualization;
+
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent), ui(new Ui::MainWindow)
 {
@@ -14,6 +17,7 @@ MainWindow::MainWindow(QWidget *parent)
     ui->outputTextEdit->setReadOnly(true);
     configureFunctionPage();
     configureMatrixPage();
+    create_q3dsurface();
 
 }
 
@@ -30,6 +34,9 @@ void MainWindow::configureFunctionPage()
     ui->secondUpperBoundLineEdit->hide();
     ui->resultIntegralLineEdit->setReadOnly(true);
     ui->resultDerivativeLineEdit->setReadOnly(true);
+    ui->widget->hide();
+    ui->plotWidget->show();
+    ui->oneVariableRadioButton->setChecked(true);
 }
 void MainWindow::configureMatrixPage()
 {
@@ -343,22 +350,6 @@ void MainWindow::on_determinantButtonA_clicked()
       }
 }
 
-/*
-void MainWindow::on_determinantButtonB_clicked()
-{
-    if (ui->matrixInputPlainTextEditB->toPlainText().isEmpty())
-    {
-        return;
-    }
-    if (B.rows() == 0)
-    {
-        return;
-    }
-
-    double det = B.det();
-    QString det_txt = QString::number(det);
-    ui->matrixOutputPlainTextEdit->appendPlainText("Determant of B: " + det_txt);
-}*/
 
 void MainWindow::on_inverseButtonA_clicked()
 {
@@ -403,27 +394,7 @@ void MainWindow::on_inverseButtonA_clicked()
         ui->matrixOutputPlainTextEdit->appendPlainText(inv.matrix_format());
     }
 }
-/*
-void MainWindow::on_inverseButtonB_clicked()
-{
-    if (ui->matrixInputPlainTextEditB->toPlainText().isEmpty())
-    {
-        return;
-    }
-    if (B.rows() == 0)
-    {
-        return;
-    }
-    if (B.det() == 0)
-    {
-        ui->matrixOutputPlainTextEdit->appendPlainText("No inverse for B");
-        return;
-    }
 
-    Matrix inv = B.inv();
-    ui->matrixOutputPlainTextEdit->appendPlainText("Inverse of B: ");
-    ui->matrixOutputPlainTextEdit->appendPlainText(inv.matrix_format());
-}*/
 
 void MainWindow::on_transposeButtonA_clicked()
 {
@@ -458,22 +429,6 @@ void MainWindow::on_transposeButtonA_clicked()
         ui->matrixOutputPlainTextEdit->appendPlainText(transpose.matrix_format());
     }
 }
-/*
-void MainWindow::on_transposeButtonB_clicked()
-{
-    if (ui->matrixInputPlainTextEditB->toPlainText().isEmpty())
-    {
-        return;
-    }
-    if (B.rows() == 0)
-    {
-        return;
-    }
-
-    Matrix transpose = B.transpose();
-    ui->matrixOutputPlainTextEdit->appendPlainText("Transpose of A: ");
-    ui->matrixOutputPlainTextEdit->appendPlainText(transpose.matrix_format());
-}*/
 
 void MainWindow::on_multiplyByButtonA_clicked()
 {
@@ -514,25 +469,6 @@ void MainWindow::on_multiplyByButtonA_clicked()
         ui->matrixOutputPlainTextEdit->appendPlainText(tmp.matrix_format());
     }
 }
-/*
-void MainWindow::on_multiplyByButtonB_clicked()
-{
-    if (ui->multiplBylineEditB->text().isEmpty())
-    {
-        return;
-    }
-    QString num_txt = ui->multiplBylineEditB->text();
-    bool ok;
-    double num = num_txt.toDouble(&ok);
-    if (ok == false)
-    {
-        error_boxMsg("Multiply must be a number");
-        return;
-    }
-    Matrix tmp = B * num;
-    ui->matrixOutputPlainTextEdit->appendPlainText("B*" + num_txt + ": ");
-    ui->matrixOutputPlainTextEdit->appendPlainText(tmp.matrix_format());
-}*/
 
 void MainWindow::on_raisePowerButtonA_clicked()
 {
@@ -579,28 +515,7 @@ void MainWindow::on_raisePowerButtonA_clicked()
         ui->matrixOutputPlainTextEdit->appendPlainText(tmp.matrix_format());
     }
 }
-/*
-void MainWindow::on_raisePowerButtonB_clicked()
-{
-    if (ui->raisePowerlineEditB->text().isEmpty())
-    {
-        return;
-    }
-    if(B.rows() != B.cols()){
-        return;
-    }
-    QString num_txt = ui->raisePowerlineEditB->text();
-    bool ok;
-    double num = num_txt.toDouble(&ok);
-    if (ok == false)
-    {
-        error_boxMsg("Multiply must be a number");
-        return;
-    }
-    Matrix tmp = B.pow(num);
-    ui->matrixOutputPlainTextEdit->appendPlainText("B^" + num_txt + ": ");
-    ui->matrixOutputPlainTextEdit->appendPlainText(tmp.matrix_format());
-}*/
+
 
 void MainWindow::on_goFromMatrixToMainPageButton_clicked()
 {
@@ -909,6 +824,64 @@ void MainWindow::on_plotFunctionButton_clicked()
 
         }
         else {
+            modifier->setAxisX(new QValue3DAxis);
+            modifier->setAxisY(new QValue3DAxis);
+            modifier->setAxisZ(new QValue3DAxis);
+            QSurfaceDataProxy *dataProxy = new QSurfaceDataProxy();
+            QSurface3DSeries *dataSeries = new QSurface3DSeries(dataProxy);
+            double xLeft = ui->xRangeLeftPlotDoubleSpinBox->value();
+            double xRight = ui->xRangeRightPlotDoubleSpinBox->value();
+
+            if (xLeft >= xRight) {
+                error_boxMsg("invalid range for x");
+                return;
+            }
+
+            double yLeft = ui->yLeftRangePlotDoubleSpinBox->value();
+            double yRight = ui->yRangeRightPlotDoubleSpinBox->value();
+
+            if (yLeft >= yRight) {
+                error_boxMsg("invalid range for x");
+                return;
+            }
+            int sampleCountX = 50;
+            int sampleCountZ = 50;
+            float sampleMinX = float(xLeft);
+            float sampleMaxX = float(xRight);
+            float sampleMinZ = float(yLeft);
+            float sampleMaxZ= float(yRight);
+            float stepX =(sampleMaxX-sampleMinX)/ float(sampleCountX - 1);
+            float stepZ = (sampleMaxZ-sampleMinZ) / float(sampleCountZ - 1);
+
+            modifier->axisX()->setRange(sampleMinX, sampleMaxX);
+            modifier->axisZ()->setRange(sampleMinZ, sampleMaxZ);
+            modifier->axisY()->setRange(-5.0,5.0);
+
+            mglFormula formula(function.get_string_function().toUtf8().constData());
+
+            QSurfaceDataArray *dataArray = new QSurfaceDataArray;
+            dataArray->reserve(sampleCountZ);
+            for (int i = 0 ; i < sampleCountZ ; i++) {
+                QSurfaceDataRow *newRow = new QSurfaceDataRow(sampleCountX);
+                // Keep values within range bounds, since just adding step can cause minor drift due
+                // to the rounding errors.
+                float z = qMin(sampleMaxZ, (i * stepZ + sampleMinZ));
+                int index = 0;
+                for (int j = 0; j < sampleCountX; j++) {
+                    float x = qMin(sampleMaxX, (j * stepX + sampleMinX));
+                   // float R = qSqrt(z * z + x * x) + 0.01f;
+                    float y = formula.Calc(x,z);
+                    (*newRow)[index++].setPosition(QVector3D(x, y, z));
+                }
+                *dataArray << newRow;
+            }
+
+            dataProxy->resetArray(dataArray);
+            modifier->axisX()->setRange(-8.0,8.0);
+            modifier->axisY()->setRange(0.0,2.0);
+            modifier->axisZ()->setRange(-8.0,8.0);
+
+            modifier->addSeries(dataSeries);
 
         }
 
@@ -918,7 +891,15 @@ void MainWindow::on_plotFunctionButton_clicked()
 
 }
 
+void MainWindow::create_q3dsurface(){
+       graph = new Q3DSurface();
+       QWidget *container = QWidget::createWindowContainer(graph);
+       ui->hLayout->addWidget(container,1);
+       //ui->widget->show();
+       Q3DSurface *tmp(graph);
+       modifier=tmp;
 
+}
 
 void MainWindow::on_backPlotButton_clicked()
 {
@@ -933,6 +914,11 @@ void MainWindow::on_clearPlotButton_clicked()
     ui->xRangeRightPlotDoubleSpinBox->setValue(1);
     ui->yLeftRangePlotDoubleSpinBox->setValue(-1);
     ui->yRangeRightPlotDoubleSpinBox->setValue(1);
+    QList<QSurface3DSeries *> series = modifier->seriesList();
+    for(auto s : series){
+        modifier->removeSeries(s);
+    }
+
 }
 
 void MainWindow::on_plusButton_clicked()
@@ -1060,4 +1046,16 @@ void MainWindow::on_pushButton_11_clicked()
 void MainWindow::on_pushButton_12_clicked()
 {
     ui->enterFunctionToCalculateValueTextEdit->insertPlainText(QString("atan("));
+}
+
+void MainWindow::on_oneVariablePlottingRadioButton_clicked()
+{
+    ui->widget->hide();
+    ui->plotWidget->show();
+}
+
+void MainWindow::on_twoVariablesPlottingRadioButton_clicked()
+{
+    ui->plotWidget->hide();
+    ui->widget->show();
 }

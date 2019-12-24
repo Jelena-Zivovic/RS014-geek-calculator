@@ -163,9 +163,10 @@ QString Matrix::matrix_format() const{
             double num = _matrix(i,j);
             QString num_text = QString::number(num);
             text.append(num_text);
-            if(j < _m-1){
+            if(j<_m-1){
                 text.append(", ");
             }
+
         }
         text.append("|");
         text.append("\n");

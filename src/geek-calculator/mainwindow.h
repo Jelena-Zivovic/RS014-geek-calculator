@@ -174,10 +174,15 @@ private slots:
 
     void on_pushButton_12_clicked();
 
+    void on_goToGeometryButton_clicked();
+
+    void on_goToMainPageFromGeometryButton_clicked();
+
 private:
     Ui::MainWindow *ui;
     void configureFunctionPage();
     void configureMatrixPage();
+    void configureGeometryPage();
     void error_boxMsg(QString error_msg);
     void read_matrix(int indicator);
     Matrix A;

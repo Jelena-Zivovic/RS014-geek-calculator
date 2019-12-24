@@ -24,41 +24,60 @@
      </rect>
     </property>
     <property name="currentIndex">
-     <number>1</number>
+     <number>4</number>
     </property>
     <widget class="QWidget" name="mainPage">
-     <widget class="QWidget" name="horizontalLayoutWidget">
+     <widget class="QPushButton" name="goToBasicCalculatorButton">
       <property name="geometry">
        <rect>
-        <x>50</x>
-        <y>110</y>
-        <width>381</width>
-        <height>80</height>
+        <x>30</x>
+        <y>220</y>
+        <width>122</width>
+        <height>25</height>
        </rect>
       </property>
-      <layout class="QHBoxLayout" name="horizontalBoxMainPage">
-       <item>
-        <widget class="QPushButton" name="goToBasicCalculatorButton">
-         <property name="text">
-          <string>basic</string>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <widget class="QPushButton" name="goToFunctionsButton">
-         <property name="text">
-          <string>functions</string>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <widget class="QPushButton" name="goToMatrixButton">
-         <property name="text">
-          <string>matrix</string>
-         </property>
-        </widget>
-       </item>
-      </layout>
+      <property name="text">
+       <string>basic</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="goToFunctionsButton">
+      <property name="geometry">
+       <rect>
+        <x>150</x>
+        <y>220</y>
+        <width>121</width>
+        <height>25</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>functions</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="goToMatrixButton">
+      <property name="geometry">
+       <rect>
+        <x>270</x>
+        <y>220</y>
+        <width>121</width>
+        <height>25</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>matrix</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="goToGeometryButton">
+      <property name="geometry">
+       <rect>
+        <x>390</x>
+        <y>220</y>
+        <width>111</width>
+        <height>25</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>geometry</string>
+      </property>
      </widget>
     </widget>
     <widget class="QWidget" name="matrixPage">
@@ -1545,6 +1564,92 @@
         </layout>
        </widget>
       </widget>
+     </widget>
+    </widget>
+    <widget class="QWidget" name="geometryPage">
+     <widget class="QPushButton" name="goToMainPageFromGeometryButton">
+      <property name="geometry">
+       <rect>
+        <x>280</x>
+        <y>430</y>
+        <width>89</width>
+        <height>25</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>back</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="circleButton">
+      <property name="geometry">
+       <rect>
+        <x>20</x>
+        <y>30</y>
+        <width>151</width>
+        <height>25</height>
+       </rect>
+      </property>
+      <property name="cursor">
+       <cursorShape>PointingHandCursor</cursorShape>
+      </property>
+      <property name="toolTip">
+       <string extracomment="circle"/>
+      </property>
+      <property name="toolTipDuration">
+       <number>2</number>
+      </property>
+      <property name="layoutDirection">
+       <enum>Qt::RightToLeft</enum>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QPushButton#circleButton {
+	text-align: left;
+	padding: 0px 10px 0px 10px;
+}</string>
+      </property>
+      <property name="text">
+       <string>circle</string>
+      </property>
+      <property name="iconSize">
+       <size>
+        <width>16</width>
+        <height>16</height>
+       </size>
+      </property>
+      <property name="autoExclusive">
+       <bool>true</bool>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="parallelogramButton">
+      <property name="geometry">
+       <rect>
+        <x>180</x>
+        <y>30</y>
+        <width>151</width>
+        <height>25</height>
+       </rect>
+      </property>
+      <property name="cursor">
+       <cursorShape>PointingHandCursor</cursorShape>
+      </property>
+      <property name="layoutDirection">
+       <enum>Qt::RightToLeft</enum>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QPushButton#parallelogramButton {
+	text-align: left;
+	padding: 0px 10px 0px 10px;
+}</string>
+      </property>
+      <property name="text">
+       <string>parallelogram</string>
+      </property>
+      <property name="iconSize">
+       <size>
+        <width>18</width>
+        <height>18</height>
+       </size>
+      </property>
      </widget>
     </widget>
    </widget>

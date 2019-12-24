@@ -14,6 +14,7 @@ MainWindow::MainWindow(QWidget *parent)
     ui->outputTextEdit->setReadOnly(true);
     configureFunctionPage();
     configureMatrixPage();
+    configureGeometryPage();
 
 }
 
@@ -49,6 +50,21 @@ void MainWindow::configureMatrixPage()
     ui->enterMatrixButtonA->hide();
     ui->enterMatrixButtonB->hide();
 }
+
+void MainWindow::configureGeometryPage() {
+
+    QPixmap imageCircle(":/images/circle.png");
+    QIcon circleButtonIcon(imageCircle);
+    ui->circleButton->setIcon(circleButtonIcon);
+
+    QPixmap imageParallelogram(":/images/parallelogram.jpg");
+    QIcon parallelogramButtonIcon(imageParallelogram);
+    ui->parallelogramButton->setIcon(parallelogramButtonIcon);
+
+
+}
+
+
 void MainWindow::on_goToBasicCalculatorButton_clicked()
 {
     ui->enterFunctionToCalculateValueTextEdit->clear();
@@ -1060,4 +1076,14 @@ void MainWindow::on_pushButton_11_clicked()
 void MainWindow::on_pushButton_12_clicked()
 {
     ui->enterFunctionToCalculateValueTextEdit->insertPlainText(QString("atan("));
+}
+
+void MainWindow::on_goToGeometryButton_clicked()
+{
+    ui->stackedWidgets->setCurrentWidget(ui->geometryPage);
+}
+
+void MainWindow::on_goToMainPageFromGeometryButton_clicked()
+{
+    ui->stackedWidgets->setCurrentWidget(ui->mainPage);
 }

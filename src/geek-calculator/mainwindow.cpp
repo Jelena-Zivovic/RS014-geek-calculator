@@ -5,6 +5,7 @@
 #include <QMessageBox>
 #include <mgl2/eval.h>
 #include <mgl2/data.h>
+#include <QtMath>
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent), ui(new Ui::MainWindow)
@@ -92,6 +93,8 @@ void MainWindow::configureGeometryPage() {
     QPixmap imageSphere(":/images/sphere.jpeg");
     QIcon sphereButtonIcon(imageSphere);
     ui->sphereButton->setIcon(sphereButtonIcon);
+
+
 
 
 }
@@ -1113,6 +1116,7 @@ void MainWindow::on_pushButton_12_clicked()
 void MainWindow::on_goToGeometryButton_clicked()
 {
     ui->stackedWidgets->setCurrentWidget(ui->geometryPage);
+
 }
 
 void MainWindow::on_goToMainPageFromGeometryButton_clicked()
@@ -1124,3 +1128,116 @@ void MainWindow::on_triangleButton_clicked()
 {
 
 }
+
+void MainWindow::on_circleButton_clicked()
+{
+    QWidget *w = new QWidget(this);
+    QHBoxLayout *horizontalLayout = new QHBoxLayout(w);
+    horizontalLayout->setSpacing(30);
+    horizontalLayout->setObjectName("radiusHorizontalLayout");
+
+
+    QLabel *message = new QLabel("enter radius:");
+    horizontalLayout->addWidget(message);
+    QLineEdit *lineEdit = new QLineEdit();
+    lineEdit->setObjectName("enterRadiusCircleLineEdit");
+    horizontalLayout->addWidget(lineEdit);
+
+
+    //connect(okButton, &QPushButton::clicked, this, &MainWindow::okButtonClickedCircle);
+
+    ui->verticalGeometryLayout->addWidget(w);
+
+    QWidget *w1 = new QWidget(this);
+
+    QHBoxLayout *horizontalLayout1 = new QHBoxLayout(w1);
+
+    QPushButton *areaButton = new QPushButton("area");
+    areaButton->setObjectName("areaCircleButton");
+    areaButton->setCursor(QCursor(Qt::PointingHandCursor));
+    areaButton->setFixedSize(QSize(151, 25));
+    connect(areaButton, &QPushButton::clicked, this, &MainWindow::calculateAreaCircleButton_clicked);
+    horizontalLayout1->addWidget(areaButton);
+
+    QPushButton *circumferenceButton = new QPushButton("circumference");
+    circumferenceButton->setObjectName("circumferenceCircleButton");
+    circumferenceButton->setCursor(QCursor(Qt::PointingHandCursor));
+    circumferenceButton->setFixedSize(QSize(151, 25));
+    connect(circumferenceButton, &QPushButton::clicked, this, &MainWindow::calculatecircumferenceCircleButton_clicked);
+    horizontalLayout1->addWidget(circumferenceButton);
+
+    ui->verticalGeometryLayout->addWidget(w1);
+
+    QWidget *w2 = new QWidget(this);
+
+    QHBoxLayout *horizontalLayout2 = new QHBoxLayout(w2);
+
+
+    QLabel *resultMessage = new QLabel("result:");
+    resultMessage->setContentsMargins(0, 0, 0, 0);
+    horizontalLayout2->addWidget(resultMessage);
+
+    QLineEdit *resultCircleLineEdit = new QLineEdit();
+    resultCircleLineEdit->setObjectName("resultCircleLineEdit");
+    resultCircleLineEdit->setReadOnly(true);
+    horizontalLayout2->addWidget(resultCircleLineEdit);
+
+    ui->verticalGeometryLayout->addWidget(w2);
+
+}
+
+void MainWindow::calculateAreaCircleButton_clicked() {
+    QLineEdit *enter = ui->geometryPage->findChild<QLineEdit*>("enterRadiusCircleLineEdit");
+
+    if (enter == nullptr) {
+        exit(1);
+    }
+
+    QLineEdit *result = ui->geometryPage->findChild<QLineEdit*>("resultCircleLineEdit");
+
+    if (result == nullptr) {
+        exit(1);
+    }
+
+    bool ok;
+    double radius = enter->text().toDouble(&ok);
+
+    if (!ok) {
+        result->setText("radius is not valid");
+    }
+    else {
+        result->setText(QString::number(radius*radius*M_PI));
+    }
+
+
+
+
+
+
+}
+
+void MainWindow::calculatecircumferenceCircleButton_clicked() {
+    QLineEdit *enter = ui->geometryPage->findChild<QLineEdit*>("enterRadiusCircleLineEdit");
+
+    if (enter == nullptr) {
+        exit(1);
+    }
+
+    QLineEdit *result = ui->geometryPage->findChild<QLineEdit*>("resultCircleLineEdit");
+
+    if (result == nullptr) {
+        exit(1);
+    }
+
+    bool ok;
+    double radius = enter->text().toDouble(&ok);
+
+    if (!ok) {
+        result->setText("radius is not valid");
+    }
+    else {
+        result->setText(QString::number(2*radius*M_PI));
+    }
+}
+
+

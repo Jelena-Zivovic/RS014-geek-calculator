@@ -180,6 +180,12 @@ private slots:
 
     void on_triangleButton_clicked();
 
+    void on_circleButton_clicked();
+
+    void calculateAreaCircleButton_clicked();
+
+    void calculatecircumferenceCircleButton_clicked();
+
 private:
     Ui::MainWindow *ui;
     void configureFunctionPage();

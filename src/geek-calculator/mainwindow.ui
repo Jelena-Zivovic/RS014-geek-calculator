@@ -1881,6 +1881,17 @@
        <string>sphere</string>
       </property>
      </widget>
+     <widget class="QWidget" name="verticalLayoutWidget">
+      <property name="geometry">
+       <rect>
+        <x>170</x>
+        <y>120</y>
+        <width>651</width>
+        <height>221</height>
+       </rect>
+      </property>
+      <layout class="QVBoxLayout" name="verticalGeometryLayout"/>
+     </widget>
     </widget>
    </widget>
   </widget>

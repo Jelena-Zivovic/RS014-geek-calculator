@@ -15,5 +15,6 @@ Biblioteke:
    + YACC
    + Eigen
    + QCustomPlot
+   + Q3DSurface
     
 

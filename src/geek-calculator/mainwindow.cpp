@@ -14,8 +14,6 @@ MainWindow::MainWindow(QWidget *parent)
     ui->outputTextEdit->setReadOnly(true);
     configureFunctionPage();
     configureMatrixPage();
-    //ui->resultLineEdit->setReadOnly(true);
-    ui->matrixOutputPlainTextEdit->setReadOnly(true);
 
 }
 
@@ -35,6 +33,8 @@ void MainWindow::configureFunctionPage()
 }
 void MainWindow::configureMatrixPage()
 {
+    ui->ARadioButton->setChecked(1);
+    ui->matrixOutputPlainTextEdit->setReadOnly(true);
     ui->matrixInputPlainTextEditA->clear();
     ui->matrixInputPlainTextEditB->clear();
     ui->dimMLineEditA->clear();
@@ -45,17 +45,9 @@ void MainWindow::configureMatrixPage()
     ui->raisePowerlineEditA->clear();
     ui->matrixOutputPlainTextEdit->clear();
     ui->matrixInputPlainTextEditB->hide();
-    ui->enterDimensionButtonB->hide();
-    ui->dimMLabelB->hide();
-    ui->dimNLabelB->hide();
-    ui->dimMLineEditB->hide();
-    ui->dimNLineEditB->hide();
     ui->matrixInputPlainTextEditA->hide();
     ui->enterMatrixButtonA->hide();
     ui->enterMatrixButtonB->hide();
-    ui->matrixPlusButton->hide();
-    ui->matrixMinusButton->hide();
-    ui->matrixMultiplyButton->hide();
 }
 void MainWindow::on_goToBasicCalculatorButton_clicked()
 {
@@ -318,19 +310,39 @@ void MainWindow::on_matrixMultiplyButton_clicked()
 
 void MainWindow::on_determinantButtonA_clicked()
 {
-    if (ui->matrixInputPlainTextEditA->toPlainText().isEmpty())
+    if(ui->ARadioButton->isChecked())
     {
-        return;
-    }
-    if (A.rows() == 0)
-    {
-        return;
-    }
+        if (ui->matrixInputPlainTextEditA->toPlainText().isEmpty())
+        {
+            return;
+        }
+        if (A.rows() == 0)
+        {
+            return;
+        }
 
-    double det = A.det();
-    QString det_txt = QString::number(det);
-    ui->matrixOutputPlainTextEdit->appendPlainText("Determant of A: " + det_txt);
+        double det = A.det();
+        QString det_txt = QString::number(det);
+        ui->matrixOutputPlainTextEdit->appendPlainText("Determant of A: " + det_txt);
+     }
+    else
+    {
+        if (ui->matrixInputPlainTextEditB->toPlainText().isEmpty())
+        {
+            return;
+        }
+
+        if (B.rows() == 0)
+        {
+            return;
+        }
+
+        double det = B.det();
+        QString det_txt = QString::number(det);
+        ui->matrixOutputPlainTextEdit->appendPlainText("Determant of B: " + det_txt);
+      }
 }
+
 /*
 void MainWindow::on_determinantButtonB_clicked()
 {
@@ -350,23 +362,46 @@ void MainWindow::on_determinantButtonB_clicked()
 
 void MainWindow::on_inverseButtonA_clicked()
 {
-    if (ui->matrixInputPlainTextEditA->toPlainText().isEmpty())
+    if(ui->ARadioButton->isChecked())
     {
-        return;
-    }
-    if (A.rows() == 0)
-    {
-        return;
-    }
-    if (A.det() == 0)
-    {
-        ui->matrixOutputPlainTextEdit->appendPlainText("No inverse for A");
-        return;
-    }
+        if (ui->matrixInputPlainTextEditA->toPlainText().isEmpty())
+        {
+            return;
+        }
+        if (A.rows() == 0)
+        {
+            return;
+        }
+        if (A.det() == 0)
+        {
+            ui->matrixOutputPlainTextEdit->appendPlainText("No inverse for A");
+            return;
+        }
 
-    Matrix inv = A.inv();
-    ui->matrixOutputPlainTextEdit->appendPlainText("Inverse of A: ");
-    ui->matrixOutputPlainTextEdit->appendPlainText(inv.matrix_format());
+        Matrix inv = A.inv();
+        ui->matrixOutputPlainTextEdit->appendPlainText("Inverse of A: ");
+        ui->matrixOutputPlainTextEdit->appendPlainText(inv.matrix_format());
+    }
+    else
+    {
+        if (ui->matrixInputPlainTextEditB->toPlainText().isEmpty())
+        {
+            return;
+        }
+        if (B.rows() == 0)
+        {
+            return;
+        }
+        if (B.det() == 0)
+        {
+            ui->matrixOutputPlainTextEdit->appendPlainText("No inverse for B");
+            return;
+        }
+
+        Matrix inv = B.inv();
+        ui->matrixOutputPlainTextEdit->appendPlainText("Inverse of B: ");
+        ui->matrixOutputPlainTextEdit->appendPlainText(inv.matrix_format());
+    }
 }
 /*
 void MainWindow::on_inverseButtonB_clicked()
@@ -392,18 +427,36 @@ void MainWindow::on_inverseButtonB_clicked()
 
 void MainWindow::on_transposeButtonA_clicked()
 {
-    if (ui->matrixInputPlainTextEditA->toPlainText().isEmpty())
+    if(ui->ARadioButton->isChecked())
     {
-        return;
-    }
-    if (A.rows() == 0)
-    {
-        return;
-    }
+        if (ui->matrixInputPlainTextEditA->toPlainText().isEmpty())
+        {
+            return;
+        }
+        if (A.rows() == 0)
+        {
+            return;
+        }
 
-    Matrix transpose = A.transpose();
-    ui->matrixOutputPlainTextEdit->appendPlainText("Transpose of A: ");
-    ui->matrixOutputPlainTextEdit->appendPlainText(transpose.matrix_format());
+        Matrix transpose = A.transpose();
+        ui->matrixOutputPlainTextEdit->appendPlainText("Transpose of A: ");
+        ui->matrixOutputPlainTextEdit->appendPlainText(transpose.matrix_format());
+     }
+    else
+    {
+        if (ui->matrixInputPlainTextEditB->toPlainText().isEmpty())
+        {
+            return;
+        }
+        if (B.rows() == 0)
+        {
+            return;
+        }
+
+        Matrix transpose = B.transpose();
+        ui->matrixOutputPlainTextEdit->appendPlainText("Transpose of B: ");
+        ui->matrixOutputPlainTextEdit->appendPlainText(transpose.matrix_format());
+    }
 }
 /*
 void MainWindow::on_transposeButtonB_clicked()
@@ -424,21 +477,42 @@ void MainWindow::on_transposeButtonB_clicked()
 
 void MainWindow::on_multiplyByButtonA_clicked()
 {
-    if (ui->multiplyBylineEditA->text().isEmpty())
+    if(ui->ARadioButton->isChecked())
     {
-        return;
-    }
-    QString num_txt = ui->multiplyBylineEditA->text();
-    bool ok;
-    double num = num_txt.toDouble(&ok);
-    if (ok == false)
+        if (ui->multiplyBylineEditA->text().isEmpty())
+        {
+            return;
+        }
+        QString num_txt = ui->multiplyBylineEditA->text();
+        bool ok;
+        double num = num_txt.toDouble(&ok);
+        if (ok == false)
+        {
+            error_boxMsg("Multiply must be a number");
+            return;
+        }
+        Matrix tmp = A * num;
+        ui->matrixOutputPlainTextEdit->appendPlainText("A*" + num_txt + ": ");
+        ui->matrixOutputPlainTextEdit->appendPlainText(tmp.matrix_format());
+        }
+    else
     {
-        error_boxMsg("Multiply must be a number");
-        return;
+        if (ui->multiplyBylineEditA->text().isEmpty())
+        {
+            return;
+        }
+        QString num_txt = ui->multiplyBylineEditA->text();
+        bool ok;
+        double num = num_txt.toDouble(&ok);
+        if (ok == false)
+        {
+            error_boxMsg("Multiply must be a number");
+            return;
+        }
+        Matrix tmp = B * num;
+        ui->matrixOutputPlainTextEdit->appendPlainText("B*" + num_txt + ": ");
+        ui->matrixOutputPlainTextEdit->appendPlainText(tmp.matrix_format());
     }
-    Matrix tmp = A * num;
-    ui->matrixOutputPlainTextEdit->appendPlainText("A*" + num_txt + ": ");
-    ui->matrixOutputPlainTextEdit->appendPlainText(tmp.matrix_format());
 }
 /*
 void MainWindow::on_multiplyByButtonB_clicked()
@@ -462,24 +536,48 @@ void MainWindow::on_multiplyByButtonB_clicked()
 
 void MainWindow::on_raisePowerButtonA_clicked()
 {
-    if (ui->raisePowerlineEditA->text().isEmpty())
+    if(ui->ARadioButton->isChecked())
     {
-        return;
+        if (ui->raisePowerlineEditA->text().isEmpty())
+        {
+            return;
+        }
+        if(A.rows() != A.cols()){
+            return;
+        }
+        QString num_txt = ui->raisePowerlineEditA->text();
+        bool ok;
+        double num = num_txt.toDouble(&ok);
+        if (ok == false)
+        {
+            error_boxMsg("Multiply must be a number");
+            return;
+        }
+        Matrix tmp = A.pow(num);
+        ui->matrixOutputPlainTextEdit->appendPlainText("A^" + num_txt + ": ");
+        ui->matrixOutputPlainTextEdit->appendPlainText(tmp.matrix_format());
     }
-    if(A.rows() != A.cols()){
-        return;
-    }
-    QString num_txt = ui->raisePowerlineEditA->text();
-    bool ok;
-    double num = num_txt.toDouble(&ok);
-    if (ok == false)
+    else
     {
-        error_boxMsg("Multiply must be a number");
-        return;
+        if (ui->raisePowerlineEditA->text().isEmpty())
+        {
+            return;
+        }
+        if(B.rows() != B.cols()){
+            return;
+        }
+        QString num_txt = ui->raisePowerlineEditA->text();
+        bool ok;
+        double num = num_txt.toDouble(&ok);
+        if (ok == false)
+        {
+            error_boxMsg("Multiply must be a number");
+            return;
+        }
+        Matrix tmp = B.pow(num);
+        ui->matrixOutputPlainTextEdit->appendPlainText("B^" + num_txt + ": ");
+        ui->matrixOutputPlainTextEdit->appendPlainText(tmp.matrix_format());
     }
-    Matrix tmp = A.pow(num);
-    ui->matrixOutputPlainTextEdit->appendPlainText("A^" + num_txt + ": ");
-    ui->matrixOutputPlainTextEdit->appendPlainText(tmp.matrix_format());
 }
 /*
 void MainWindow::on_raisePowerButtonB_clicked()
@@ -661,7 +759,6 @@ void MainWindow::on_enterMatrixButtonA_clicked()
 void MainWindow::on_enterMatrixButtonB_clicked()
 {
     read_matrix(2);
-
 }
 
 void MainWindow::on_addMatrixButton_clicked()
@@ -694,35 +791,72 @@ void MainWindow::on_clearMatrixButton_clicked()
 
 void MainWindow::on_matrixRankButton_clicked()
 {
-    if (ui->matrixInputPlainTextEditA->toPlainText().isEmpty())
+    if(ui->ARadioButton->isChecked())
     {
-        return;
-    }
-    if (A.rows() == 0)
-    {
-        return;
-    }
+        if (ui->matrixInputPlainTextEditA->toPlainText().isEmpty())
+        {
+            return;
+        }
+        if (A.rows() == 0)
+        {
+            return;
+        }
 
-    long rank  = A.rank();
-    ui->matrixOutputPlainTextEdit->appendPlainText("Rank of A: ");
-    ui->matrixOutputPlainTextEdit->appendPlainText(QString::number(rank));
+        long rank  = A.rank();
+        ui->matrixOutputPlainTextEdit->appendPlainText("Rank of A: ");
+        ui->matrixOutputPlainTextEdit->appendPlainText(QString::number(rank));
+    }
+    else
+    {
+        if (ui->matrixInputPlainTextEditB->toPlainText().isEmpty())
+        {
+            return;
+        }
+        if (B.rows() == 0)
+        {
+            return;
+        }
+
+        long rank  = B.rank();
+        ui->matrixOutputPlainTextEdit->appendPlainText("Rank of B: ");
+        ui->matrixOutputPlainTextEdit->appendPlainText(QString::number(rank));
+    }
 }
 
 void MainWindow::on_LUDecompButton_clicked()
 {
-    if (ui->matrixInputPlainTextEditA->toPlainText().isEmpty())
+    if(ui->ARadioButton->isChecked())
     {
-        return;
-    }
-    if (A.rows() == 0)
-    {
-        return;
-    }
+        if (ui->matrixInputPlainTextEditA->toPlainText().isEmpty())
+        {
+            return;
+        }
+        if (A.rows() == 0)
+        {
+            return;
+        }
 
-    Matrix L = A.getL();
-    Matrix U = A.getU();
-    ui->matrixOutputPlainTextEdit->appendPlainText("LU decomposition of A: ");
-    ui->matrixOutputPlainTextEdit->appendPlainText(L.matrix_format() + "x\n" + U.matrix_format());
+        Matrix L = A.getL();
+        Matrix U = A.getU();
+        ui->matrixOutputPlainTextEdit->appendPlainText("LU decomposition of A: ");
+        ui->matrixOutputPlainTextEdit->appendPlainText(L.matrix_format() + "x\n" + U.matrix_format());
+    }
+    else
+    {
+        if (ui->matrixInputPlainTextEditB->toPlainText().isEmpty())
+        {
+            return;
+        }
+        if (B.rows() == 0)
+        {
+            return;
+        }
+
+        Matrix L = B.getL();
+        Matrix U = B.getU();
+        ui->matrixOutputPlainTextEdit->appendPlainText("LU decomposition of B: ");
+        ui->matrixOutputPlainTextEdit->appendPlainText(L.matrix_format() + "x\n" + U.matrix_format());
+    }
 }
 
 void MainWindow::on_plotFunctionButton_clicked()

@@ -17,14 +17,14 @@
    <widget class="QStackedWidget" name="stackedWidgets">
     <property name="geometry">
      <rect>
-      <x>0</x>
-      <y>10</y>
+      <x>40</x>
+      <y>-10</y>
       <width>771</width>
       <height>551</height>
      </rect>
     </property>
     <property name="currentIndex">
-     <number>2</number>
+     <number>1</number>
     </property>
     <widget class="QWidget" name="mainPage">
      <widget class="QWidget" name="horizontalLayoutWidget">
@@ -191,7 +191,7 @@
       <property name="geometry">
        <rect>
         <x>300</x>
-        <y>50</y>
+        <y>10</y>
         <width>89</width>
         <height>25</height>
        </rect>
@@ -204,7 +204,7 @@
       <property name="geometry">
        <rect>
         <x>300</x>
-        <y>90</y>
+        <y>50</y>
         <width>89</width>
         <height>25</height>
        </rect>
@@ -217,7 +217,7 @@
       <property name="geometry">
        <rect>
         <x>300</x>
-        <y>130</y>
+        <y>90</y>
         <width>89</width>
         <height>25</height>
        </rect>
@@ -373,19 +373,6 @@
        <string>Enter Matrix</string>
       </property>
      </widget>
-     <widget class="QPushButton" name="addMatrixButton">
-      <property name="geometry">
-       <rect>
-        <x>300</x>
-        <y>10</y>
-        <width>89</width>
-        <height>25</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>Add Matrix</string>
-      </property>
-     </widget>
      <widget class="QPushButton" name="clearMatrixButton">
       <property name="geometry">
        <rect>
@@ -425,40 +412,30 @@
        <string>LU-decomposition</string>
       </property>
      </widget>
-     <widget class="QLabel" name="matrixExpressionLabel">
+     <widget class="QRadioButton" name="ARadioButton">
       <property name="geometry">
        <rect>
-        <x>270</x>
+        <x>260</x>
         <y>260</y>
-        <width>131</width>
-        <height>31</height>
+        <width>112</width>
+        <height>23</height>
        </rect>
       </property>
       <property name="text">
-       <string>Matrix expression</string>
+       <string>Matrix A</string>
       </property>
      </widget>
-     <widget class="QLineEdit" name="matrixExspressionLabel">
+     <widget class="QRadioButton" name="BRadioButton">
       <property name="geometry">
        <rect>
-        <x>270</x>
+        <x>260</x>
         <y>290</y>
-        <width>441</width>
-        <height>25</height>
-       </rect>
-      </property>
-     </widget>
-     <widget class="QPushButton" name="matrixCalculateExpressionButton">
-      <property name="geometry">
-       <rect>
-        <x>540</x>
-        <y>250</y>
-        <width>171</width>
-        <height>31</height>
+        <width>112</width>
+        <height>23</height>
        </rect>
       </property>
       <property name="text">
-       <string>Calculate expression</string>
+       <string>Matrix B</string>
       </property>
      </widget>
     </widget>

@@ -205,6 +205,7 @@ private:
     void error_boxMsg(QString error_msg);
     void read_matrix(int indicator);
     void create_q3dsurface();
+    void clearLayout(QLayout *layout);
     Matrix A;
     Matrix B;
     Q3DSurface *graph = new Q3DSurface();

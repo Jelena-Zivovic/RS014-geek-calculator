@@ -1119,6 +1119,7 @@ void MainWindow::on_twoVariablesPlottingRadioButton_clicked()
 }
 void MainWindow::on_goToGeometryButton_clicked()
 {
+    clearLayout(ui->verticalGeometryLayout);
     ui->stackedWidgets->setCurrentWidget(ui->geometryPage);
 
 }
@@ -1128,6 +1129,20 @@ void MainWindow::on_goToMainPageFromGeometryButton_clicked()
     ui->stackedWidgets->setCurrentWidget(ui->mainPage);
 }
 
+void MainWindow::clearLayout(QLayout *layout) {
+    QLayoutItem *item;
+    while((item = layout->takeAt(0))) {
+        if (item->layout()) {
+            clearLayout(item->layout());
+            delete item->layout();
+        }
+        if (item->widget()) {
+           delete item->widget();
+        }
+        delete item;
+    }
+}
+
 void MainWindow::on_triangleButton_clicked()
 {
 
@@ -1135,6 +1150,8 @@ void MainWindow::on_triangleButton_clicked()
 
 void MainWindow::on_circleButton_clicked()
 {
+    clearLayout(ui->verticalGeometryLayout);
+
     QWidget *w = new QWidget(this);
     QHBoxLayout *horizontalLayout = new QHBoxLayout(w);
     horizontalLayout->setSpacing(30);

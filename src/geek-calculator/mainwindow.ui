@@ -6,11 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-
     <width>1222</width>
     <height>711</height>
-  
-
    </rect>
   </property>
   <property name="windowTitle">
@@ -30,7 +27,7 @@
      <cursorShape>ArrowCursor</cursorShape>
     </property>
     <property name="currentIndex">
-     <number>4</number>
+     <number>3</number>
     </property>
     <widget class="QWidget" name="mainPage">
      <widget class="QPushButton" name="goToBasicCalculatorButton">
@@ -123,7 +120,7 @@
         <x>410</x>
         <y>12</y>
         <width>291</width>
-        <height>271</height>
+        <height>273</height>
        </rect>
       </property>
       <layout class="QGridLayout" name="matrixButtonsGrid">
@@ -866,7 +863,7 @@
        </rect>
       </property>
       <property name="currentIndex">
-       <number>0</number>
+       <number>2</number>
       </property>
       <widget class="QWidget" name="integralTab">
        <property name="layoutDirection">
@@ -1827,7 +1824,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>1000</width>
+     <width>1222</width>
      <height>22</height>
     </rect>
    </property>

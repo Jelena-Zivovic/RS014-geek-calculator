@@ -1114,6 +1114,10 @@ void MainWindow::on_oneVariablePlottingRadioButton_clicked()
 
 void MainWindow::on_twoVariablesPlottingRadioButton_clicked()
 {
+    ui->xRangeLeftPlotDoubleSpinBox->setValue(-5);
+    ui->xRangeRightPlotDoubleSpinBox->setValue(5);
+    ui->yLeftRangePlotDoubleSpinBox->setValue(-5);
+    ui->yRangeRightPlotDoubleSpinBox->setValue(5);
     ui->plotWidget->hide();
     ui->widget->show();
 }

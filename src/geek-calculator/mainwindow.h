@@ -182,10 +182,26 @@ private slots:
 
     void on_twoVariablesPlottingRadioButton_clicked();
 
+    void on_goToGeometryButton_clicked();
+
+    void on_goToMainPageFromGeometryButton_clicked();
+
+    void on_triangleButton_clicked();
+
+    void on_circleButton_clicked();
+
+    void calculateAreaCircleButton_clicked();
+
+    void calculatecircumferenceCircleButton_clicked();
+
+    void clearCircleButton_clicked();
+
+
 private:
     Ui::MainWindow *ui;
     void configureFunctionPage();
     void configureMatrixPage();
+    void configureGeometryPage();
     void error_boxMsg(QString error_msg);
     void read_matrix(int indicator);
     void create_q3dsurface();

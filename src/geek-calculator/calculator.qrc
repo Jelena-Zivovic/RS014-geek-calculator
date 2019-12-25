@@ -1,5 +1,15 @@
 <RCC>
     <qresource prefix="/" >
         <file>images/sample.png</file>
+        <file>images/circle.png</file>
+        <file>images/parallelogram.jpg</file>
+        <file>images/rectangle.png</file>
+        <file>images/trapezoid.webp</file>
+        <file>images/triangle.jpg</file>
+        <file>images/cone.png</file>
+        <file>images/cube.jpg</file>
+        <file>images/cylinder.jpeg</file>
+        <file>images/square.png</file>
+        <file>images/sphere.jpeg</file>
     </qresource>
 </RCC>

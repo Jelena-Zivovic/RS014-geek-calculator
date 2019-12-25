@@ -968,10 +968,18 @@ void MainWindow::on_clearPlotButton_clicked()
 {
     ui->enterFunctionPlottingLineEdit->clear();
     ui->plotWidget->clearGraphs();
-    ui->xRangeLeftPlotDoubleSpinBox->setValue(-1);
-    ui->xRangeRightPlotDoubleSpinBox->setValue(1);
-    ui->yLeftRangePlotDoubleSpinBox->setValue(-1);
-    ui->yRangeRightPlotDoubleSpinBox->setValue(1);
+    if (ui->oneVariablePlottingRadioButton->isChecked()) {
+        ui->xRangeLeftPlotDoubleSpinBox->setValue(-1);
+        ui->xRangeRightPlotDoubleSpinBox->setValue(1);
+        ui->yLeftRangePlotDoubleSpinBox->setValue(-1);
+        ui->yRangeRightPlotDoubleSpinBox->setValue(1);
+    }
+    if (ui->twoVariablesPlottingRadioButton->isChecked()) {
+        ui->xRangeLeftPlotDoubleSpinBox->setValue(-5);
+        ui->xRangeRightPlotDoubleSpinBox->setValue(5);
+        ui->yLeftRangePlotDoubleSpinBox->setValue(-5);
+        ui->yRangeRightPlotDoubleSpinBox->setValue(5);
+    }
     QList<QSurface3DSeries *> series = modifier->seriesList();
     for(auto s : series){
         modifier->removeSeries(s);

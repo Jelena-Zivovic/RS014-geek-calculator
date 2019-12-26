@@ -179,14 +179,30 @@ private slots:
     void on_goToMainPageFromGeometryButton_clicked();
 
     void on_triangleButton_clicked();
+    void calculateAreaTriangleButton_clicked();
+    void calculateCircumferenceTriangleButton_clicked();
 
     void on_circleButton_clicked();
-
     void calculateAreaCircleButton_clicked();
+    void calculateCircumferenceCircleButton_clicked();
 
-    void calculatecircumferenceCircleButton_clicked();
+    void on_parallelogramButton_clicked();
+    void calculateCirumreferenceParalelogramButton_clicked();
+    void calculateAreaParalelogramButton_clicked();
 
-    void clearCircleButton_clicked();
+    void on_rectangleButton_clicked();
+    void calculateCirumreferenceRectangleButton_clicked();
+    void calculateAreaRectangleButton_clicked();
+
+
+    void on_trapezoidButton_clicked();
+    void calculateCirumreferenceTrapezoiButton_clicked();
+    void calculateAreaTrapezoiButton_clicked();
+
+    void on_clearGeomtryButton_clicked();
+
+
+
 
 private:
     Ui::MainWindow *ui;
@@ -195,6 +211,8 @@ private:
     void configureGeometryPage();
     void error_boxMsg(QString error_msg);
     void read_matrix(int indicator);
+    void clear_geometry_page();
+    bool check_geometry_text(int i);
     Matrix A;
     Matrix B;
 };

@@ -18,7 +18,7 @@
     <property name="geometry">
      <rect>
       <x>10</x>
-      <y>-10</y>
+      <y>0</y>
       <width>991</width>
       <height>551</height>
      </rect>
@@ -1881,16 +1881,149 @@
        <string>sphere</string>
       </property>
      </widget>
-     <widget class="QWidget" name="verticalLayoutWidget">
+     <widget class="QLineEdit" name="enter1LineEdit">
       <property name="geometry">
        <rect>
-        <x>170</x>
-        <y>120</y>
-        <width>651</width>
-        <height>221</height>
+        <x>280</x>
+        <y>140</y>
+        <width>71</width>
+        <height>25</height>
        </rect>
       </property>
-      <layout class="QVBoxLayout" name="verticalGeometryLayout"/>
+     </widget>
+     <widget class="QLabel" name="enterLabel1">
+      <property name="geometry">
+       <rect>
+        <x>220</x>
+        <y>140</y>
+        <width>41</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>label1</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="enterLabel2">
+      <property name="geometry">
+       <rect>
+        <x>380</x>
+        <y>140</y>
+        <width>41</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>label2</string>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="enter2LineEdit">
+      <property name="geometry">
+       <rect>
+        <x>440</x>
+        <y>140</y>
+        <width>71</width>
+        <height>25</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="AreaButton">
+      <property name="geometry">
+       <rect>
+        <x>210</x>
+        <y>230</y>
+        <width>89</width>
+        <height>25</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Area</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="circumferenceButton">
+      <property name="geometry">
+       <rect>
+        <x>360</x>
+        <y>230</y>
+        <width>131</width>
+        <height>25</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Circumference</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="volumeButton">
+      <property name="geometry">
+       <rect>
+        <x>550</x>
+        <y>230</y>
+        <width>89</width>
+        <height>25</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Volume</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="resultGeomtryLabel">
+      <property name="geometry">
+       <rect>
+        <x>280</x>
+        <y>310</y>
+        <width>67</width>
+        <height>16</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Result</string>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="resultGeometryLineEdit">
+      <property name="geometry">
+       <rect>
+        <x>360</x>
+        <y>300</y>
+        <width>113</width>
+        <height>25</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="clearGeomtryButton">
+      <property name="geometry">
+       <rect>
+        <x>520</x>
+        <y>300</y>
+        <width>89</width>
+        <height>25</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Clear</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="enterLabel3">
+      <property name="geometry">
+       <rect>
+        <x>550</x>
+        <y>140</y>
+        <width>41</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>label2</string>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="enter3LineEdit">
+      <property name="geometry">
+       <rect>
+        <x>610</x>
+        <y>140</y>
+        <width>71</width>
+        <height>25</height>
+       </rect>
+      </property>
      </widget>
     </widget>
    </widget>

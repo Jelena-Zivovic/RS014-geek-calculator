@@ -16,6 +16,7 @@ MainWindow::MainWindow(QWidget *parent)
     configureFunctionPage();
     configureMatrixPage();
     configureGeometryPage();
+    clear_geometry_page();
 
 }
 
@@ -1124,11 +1125,8 @@ void MainWindow::on_goToMainPageFromGeometryButton_clicked()
     ui->stackedWidgets->setCurrentWidget(ui->mainPage);
 }
 
-void MainWindow::on_triangleButton_clicked()
-{
 
-}
-
+/*
 void MainWindow::on_circleButton_clicked()
 {
     QWidget *w = new QWidget(this);
@@ -1268,5 +1266,337 @@ void MainWindow::clearCircleButton_clicked() {
 
     result->clear();
 }
+
+*/
+void MainWindow::clear_geometry_page(){
+    ui->enterLabel1->hide();
+    ui->enterLabel2->hide();
+    ui->enter2LineEdit->hide();
+    ui->enter1LineEdit->hide();
+    ui->enter3LineEdit->hide();
+    ui->enterLabel3->hide();
+    ui->AreaButton->hide();
+    ui->circumferenceButton->hide();
+    ui->volumeButton->hide();
+    ui->resultGeometryLineEdit->hide();
+    ui->resultGeomtryLabel->hide();
+    ui->clearGeomtryButton->hide();
+}
+
+void MainWindow::on_parallelogramButton_clicked()
+{
+    clear_geometry_page();
+    on_clearGeomtryButton_clicked();
+    ui->enterLabel1->show();
+    ui->enter1LineEdit->show();
+    ui->enterLabel2->show();
+    ui->enter2LineEdit->show();
+    ui->enter3LineEdit->show();
+    ui->enterLabel3->show();
+    ui->AreaButton->show();
+    ui->circumferenceButton->show();
+    ui->resultGeomtryLabel->show();
+    ui->resultGeometryLineEdit->show();
+    ui->clearGeomtryButton->show();
+
+    ui->enterLabel1->setText("a");
+    ui->enterLabel2->setText("b");
+    ui->enterLabel3->setText("h(a)");
+
+    connect(ui->circumferenceButton, &QPushButton::clicked, this, &MainWindow::calculateCirumreferenceParalelogramButton_clicked);
+    connect(ui->AreaButton, &QPushButton::clicked, this, &MainWindow::calculateAreaParalelogramButton_clicked);
+
+}
+void MainWindow::calculateCirumreferenceParalelogramButton_clicked(){
+    if(!check_geometry_text(3)){
+        error_boxMsg("Enter data");
+        return;
+    }
+    QString A = ui->enter1LineEdit->text();
+    QString B = ui->enter2LineEdit->text();
+
+    bool ok;
+    double  a = A.toDouble(&ok);
+    if(!ok){
+        error_boxMsg("Side must be a number");
+        return;
+    }
+    double b = B.toDouble(&ok);
+    if(!ok){
+        error_boxMsg("Height must be a number");
+        return;
+    }
+    double circumference = 2*a+2*b;
+    ui->resultGeometryLineEdit->setText(QString::number(circumference));
+}
+void MainWindow::calculateAreaParalelogramButton_clicked(){
+    if(!check_geometry_text(3)){
+        error_boxMsg("Enter data");
+        return;
+    }
+    QString A = ui->enter1LineEdit->text();
+    QString H = ui->enter3LineEdit->text();
+
+    bool ok;
+    double  a = A.toDouble(&ok);
+    if(!ok){
+        error_boxMsg("Side must be a number");
+        return;
+    }
+    double h = H.toDouble(&ok);
+    if(!ok){
+        error_boxMsg("Height must be a number");
+        return;
+    }
+
+    double area = a*h;
+    ui->resultGeometryLineEdit->setText(QString::number(area));
+}
+
+void MainWindow::on_circleButton_clicked()
+{
+    clear_geometry_page();
+    on_clearGeomtryButton_clicked();
+    ui->enterLabel1->show();
+    ui->enter1LineEdit->show();
+    ui->AreaButton->show();
+    ui->circumferenceButton->show();
+    ui->resultGeomtryLabel->show();
+    ui->resultGeometryLineEdit->show();
+    ui->clearGeomtryButton->show();
+
+    ui->enterLabel1->setText("Radius");
+    connect(ui->circumferenceButton, &QPushButton::clicked, this, &MainWindow::calculateCircumferenceCircleButton_clicked);
+    connect(ui->AreaButton, &QPushButton::clicked, this, &MainWindow::calculateAreaCircleButton_clicked);
+
+}
+void MainWindow::calculateCircumferenceCircleButton_clicked(){
+    if(!check_geometry_text(1)){
+        error_boxMsg("Enter data");
+        return;
+    }
+    QString radius = ui->enter1LineEdit->text();
+    bool ok;
+    double  r = radius.toDouble(&ok);
+    if(!ok){
+        error_boxMsg("Radius must be a number");
+        return;
+    }
+
+    double circumference = 2*r*M_PI;
+    ui->resultGeometryLineEdit->setText(QString::number(circumference));
+}
+
+void MainWindow::calculateAreaCircleButton_clicked(){
+    if(ui->enter1LineEdit->text().isEmpty()){
+        error_boxMsg("Enter radius");
+        return;
+    }
+    QString radius = ui->enter1LineEdit->text();
+    bool ok;
+    double  r = radius.toDouble(&ok);
+    if(!ok){
+        error_boxMsg("Radius must be a number");
+        return;
+    }
+
+    double area = r*r*M_PI;
+    ui->resultGeometryLineEdit->setText(QString::number(area));
+}
+void MainWindow::on_triangleButton_clicked()
+{
+    clear_geometry_page();
+    on_clearGeomtryButton_clicked();
+    ui->enterLabel1->show();
+    ui->enter1LineEdit->show();
+    ui->enterLabel2->show();
+    ui->enter2LineEdit->show();
+    ui->enterLabel3->show();
+    ui->enter3LineEdit->show();
+    ui->AreaButton->show();
+    ui->circumferenceButton->show();
+    ui->resultGeomtryLabel->show();
+    ui->resultGeometryLineEdit->show();
+    ui->clearGeomtryButton->show();
+
+    ui->enterLabel1->setText("a");
+    ui->enterLabel2->setText("b");
+    ui->enterLabel3->setText("c");
+    connect(ui->circumferenceButton, &QPushButton::clicked, this, &MainWindow::calculateCircumferenceTriangleButton_clicked);
+    connect(ui->AreaButton, &QPushButton::clicked, this, &MainWindow::calculateAreaTriangleButton_clicked);
+}
+void MainWindow::calculateCircumferenceTriangleButton_clicked(){
+
+}
+void MainWindow::calculateAreaTriangleButton_clicked(){
+    if(!check_geometry_text(3)){
+        error_boxMsg("Enter data");
+        return;
+    }
+    QString A = ui->enter1LineEdit->text();
+    QString B = ui->enter2LineEdit->text();
+    QString C = ui->enter3LineEdit->text();
+
+    bool ok;
+    double  a = A.toDouble(&ok);
+    if(!ok){
+        error_boxMsg("Side must be a number");
+        return;
+    }
+    double b = B.toDouble(&ok);
+    if(!ok){
+        error_boxMsg("Side must be a number");
+        return;
+    }
+    double c = C.toDouble(&ok);
+    if(!ok){
+        error_boxMsg("Side must be a number");
+        return;
+    }
+
+    double s = (a+b+c)/2.0;
+    double area = sqrt(s*(s-a)*(s-b)*(s-c));
+    ui->resultGeometryLineEdit->setText(QString::number(area));
+}
+void MainWindow::on_rectangleButton_clicked()
+{
+    clear_geometry_page();
+    on_clearGeomtryButton_clicked();
+    ui->enterLabel1->show();
+    ui->enter1LineEdit->show();
+    ui->enterLabel2->show();
+    ui->enter2LineEdit->show();
+    ui->AreaButton->show();
+    ui->circumferenceButton->show();
+    ui->resultGeomtryLabel->show();
+    ui->resultGeometryLineEdit->show();
+    ui->clearGeomtryButton->show();
+
+    ui->enterLabel1->setText("a");
+    ui->enterLabel2->setText("b");
+
+    connect(ui->circumferenceButton, &QPushButton::clicked, this, &MainWindow::calculateCirumreferenceRectangleButton_clicked);
+    connect(ui->AreaButton, &QPushButton::clicked, this, &MainWindow::calculateAreaRectangleButton_clicked);
+}
+void MainWindow::calculateCirumreferenceRectangleButton_clicked(){
+    if(!check_geometry_text(2)){
+        error_boxMsg("Enter data");
+        return;
+    }
+    QString A = ui->enter1LineEdit->text();
+    QString B = ui->enter2LineEdit->text();
+
+    bool ok;
+    double  a = A.toDouble(&ok);
+    if(!ok){
+        error_boxMsg("Side must be a number");
+        return;
+    }
+    double b = B.toDouble(&ok);
+    if(!ok){
+        error_boxMsg("Side must be a number");
+        return;
+    }
+
+    double circum = a+b;
+    ui->resultGeometryLineEdit->setText(QString::number(circum));
+}
+void MainWindow::calculateAreaRectangleButton_clicked(){
+    if(!check_geometry_text(2)){
+        error_boxMsg("Enter data");
+        return;
+    }
+    QString A = ui->enter1LineEdit->text();
+    QString B = ui->enter2LineEdit->text();
+
+    bool ok;
+    double  a = A.toDouble(&ok);
+    if(!ok){
+        error_boxMsg("Side must be a number");
+        return;
+    }
+    double b = B.toDouble(&ok);
+    if(!ok){
+        error_boxMsg("Side must be a number");
+        return;
+    }
+
+    double area = a*b;
+    ui->resultGeometryLineEdit->setText(QString::number(area));
+}
+
+void MainWindow::on_trapezoidButton_clicked()
+{
+    clear_geometry_page();
+    on_clearGeomtryButton_clicked();
+    ui->enterLabel1->show();
+    ui->enter1LineEdit->show();
+    ui->enterLabel2->show();
+    ui->enter2LineEdit->show();
+    ui->enterLabel3->show();
+    ui->enter3LineEdit->show();
+    ui->AreaButton->show();
+    ui->circumferenceButton->show();
+    ui->resultGeomtryLabel->show();
+    ui->resultGeometryLineEdit->show();
+    ui->clearGeomtryButton->show();
+
+    ui->enterLabel1->setText("a");
+    ui->enterLabel2->setText("b");
+    ui->enterLabel3->setText("h");
+    //connect(ui->circumferenceButton, &QPushButton::clicked, this, &MainWindow::calculateCirumreferenceTrapezoiButton_clicked);
+    connect(ui->AreaButton, &QPushButton::clicked, this, &MainWindow::calculateAreaTrapezoiButton_clicked);
+}
+void MainWindow::calculateAreaTrapezoiButton_clicked(){
+    if(!check_geometry_text(3)){
+        error_boxMsg("Enter data");
+        return;
+    }
+    QString A = ui->enter1LineEdit->text();
+    QString B = ui->enter2LineEdit->text();
+    QString H = ui->enter3LineEdit->text();
+
+    bool ok;
+    double  a = A.toDouble(&ok);
+    if(!ok){
+        error_boxMsg("Side must be a number");
+        return;
+    }
+    double b = B.toDouble(&ok);
+    if(!ok){
+        error_boxMsg("Side must be a number");
+        return;
+    }
+    double h = H.toDouble(&ok);
+    if(!ok){
+        error_boxMsg("Side must be a number");
+        return;
+    }
+    double area = h*(a+b)/2;
+    ui->resultGeometryLineEdit->setText(QString::number(area));
+}
+
+bool MainWindow::check_geometry_text(int i){
+
+    if(ui->enter1LineEdit->text().isEmpty())
+        return false;
+    if(i==1)
+        return true;
+    if(ui->enter2LineEdit->text().isEmpty())
+        return false;
+    if(i==2)
+        return true;
+    if(ui->enter2LineEdit->text().isEmpty())
+        return false;
+    return true;
+}
+void MainWindow::on_clearGeomtryButton_clicked()
+{
+    ui->enter1LineEdit->clear();
+    ui->enter2LineEdit->clear();
+    ui->enter2LineEdit->clear();
+    ui->resultGeometryLineEdit->clear();
+}
+
 
 

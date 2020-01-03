@@ -1198,7 +1198,6 @@ void MainWindow::on_twoVariablesPlottingRadioButton_clicked()
 }
 void MainWindow::on_goToGeometryButton_clicked()
 {
-    clearLayout(ui->verticalGeometryLayout);
     ui->stackedWidgets->setCurrentWidget(ui->geometryPage);
 
 }

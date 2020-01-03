@@ -21,8 +21,8 @@ int main(int argc, char *argv[])
 
     qsrand(static_cast<unsigned>(QTime(0,0,0).secsTo(QTime::currentTime())));
 
-    w.showFullScreen();
+    //w.showFullScreen();
 
-    //w.show();
+    w.show();
     return a.exec();
 }

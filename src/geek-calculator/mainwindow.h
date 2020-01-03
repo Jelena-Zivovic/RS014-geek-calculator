@@ -186,15 +186,53 @@ private slots:
 
     void on_goToMainPageFromGeometryButton_clicked();
 
-    void on_triangleButton_clicked();
-
     void on_circleButton_clicked();
+    void circleCheck1RadioButton();
+    void circleCheck2RadioButton();
+    void calculateCircumreferenceCircle();
+    void calculateAreaCircle();
 
-    void calculateAreaCircleButton_clicked();
+    void on_parallelogramButton_clicked();
+    void parallelogramCheck1RadioButton();
+    void parallelogramCheck2RadioButton();
+    void calculateCircumreferenceParallelogram();
+    void calculateAreaParallelogram();
 
-    void calculatecircumferenceCircleButton_clicked();
+    void on_clearGeomtryButton_clicked();
 
-    void clearCircleButton_clicked();
+
+    void on_rectangleButton_clicked();
+
+    void on_trapezoidButton_clicked();
+    void trapezoidCheck1RadioButton();
+    void trapezoidCheck2RadioButton();
+    void calculateTrapezoid();
+
+    void on_triangleButton_clicked();
+    void triangleCheck12RadioButton();
+    void calculateTriangle();
+
+    void on_squareButton_clicked();
+    void squareCheck12RadioButton();
+    void calculateSquare();
+
+    void on_coneButton_clicked();
+    void coneCheck12RadioButton();
+    void calculateCone();
+
+    void on_cubeButton_clicked();
+    void cubeCheck12RadioButton();
+    void calculateCube();
+
+
+    void on_cylinderButton_clicked();
+    void cylinderCheck12RadioButton();
+    void calculateCylinder();
+
+
+    void on_sphereButton_clicked();
+    void sphereCheck12RadioButton();
+    void calculateSphere();
 
 
 
@@ -206,8 +244,9 @@ private:
     void configureGeometryPage();
     void error_boxMsg(QString error_msg);
     void read_matrix(int indicator);
+    void clear_geometry_page();
+    bool check_enter_geometry(int i);
     void create_q3dsurface();
-    void clearLayout(QLayout *layout);
     Matrix A;
     Matrix B;
     Q3DSurface *graph = new Q3DSurface();

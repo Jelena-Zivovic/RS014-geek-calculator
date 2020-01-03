@@ -11,7 +11,8 @@ O projektu:
 Potrebno uraditi:
    + Skinuti Eigen3 sa linka https://eigen.tuxfamily.org/dox/
    + U src/include/eigen3/unsupported/Eigen/MatrixFunctions fajlu svako pojavljivanje #include<Eigen/_> zameniti sa #include<eigen3/Eigen/_>
-   + U terminalu: sudo apt-get install flex bison
+   + U terminalu za flex i bison: sudo apt-get install flex bison
+   + U terminalu za MathGL: sudo apt-get install -y mathgl
 
 Biblioteke:
    + Qt5

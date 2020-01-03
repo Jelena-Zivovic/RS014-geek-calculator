@@ -197,6 +197,8 @@ private slots:
     void clearCircleButton_clicked();
 
 
+
+
 private:
     Ui::MainWindow *ui;
     void configureFunctionPage();

@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1222</width>
-    <height>711</height>
+    <width>1333</width>
+    <height>793</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -17,10 +17,10 @@
    <widget class="QStackedWidget" name="stackedWidgets">
     <property name="geometry">
      <rect>
-      <x>-10</x>
-      <y>30</y>
-      <width>1171</width>
-      <height>651</height>
+      <x>10</x>
+      <y>20</y>
+      <width>1321</width>
+      <height>701</height>
      </rect>
     </property>
     <property name="cursor">
@@ -858,8 +858,8 @@
        <rect>
         <x>10</x>
         <y>10</y>
-        <width>1161</width>
-        <height>621</height>
+        <width>1251</width>
+        <height>671</height>
        </rect>
       </property>
       <property name="currentIndex">
@@ -1485,11 +1485,85 @@
          <layout class="QHBoxLayout" name="hLayout"/>
         </widget>
        </widget>
-      </widget>
-      <widget class="QWidget" name="plotting3D">
-       <attribute name="title">
-        <string>Page</string>
-       </attribute>
+       <widget class="QCheckBox" name="combineMultiplyPlotsCheckBox">
+        <property name="geometry">
+         <rect>
+          <x>380</x>
+          <y>60</y>
+          <width>231</width>
+          <height>23</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>combine multiple plots</string>
+        </property>
+       </widget>
+       <widget class="QLabel" name="zLabelRange">
+        <property name="geometry">
+         <rect>
+          <x>970</x>
+          <y>340</y>
+          <width>67</width>
+          <height>17</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>z range:</string>
+        </property>
+       </widget>
+       <widget class="QWidget" name="layoutWidget_2">
+        <property name="geometry">
+         <rect>
+          <x>880</x>
+          <y>370</y>
+          <width>254</width>
+          <height>28</height>
+         </rect>
+        </property>
+        <layout class="QHBoxLayout" name="horizontalLayout_3">
+         <item>
+          <widget class="QLabel" name="zFromLabel">
+           <property name="text">
+            <string>from:</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QDoubleSpinBox" name="zLeftRangePlotDoubleSpinBox">
+           <property name="minimum">
+            <double>-990.000000000000000</double>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <spacer name="verticalSpacer_3">
+           <property name="orientation">
+            <enum>Qt::Vertical</enum>
+           </property>
+           <property name="sizeHint" stdset="0">
+            <size>
+             <width>20</width>
+             <height>40</height>
+            </size>
+           </property>
+          </spacer>
+         </item>
+         <item>
+          <widget class="QLabel" name="zToLabel">
+           <property name="text">
+            <string>to:</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QDoubleSpinBox" name="zRangeRightPlotDoubleSpinBox">
+           <property name="minimum">
+            <double>-990.000000000000000</double>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </widget>
       </widget>
      </widget>
     </widget>
@@ -1824,7 +1898,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>1222</width>
+     <width>1333</width>
      <height>22</height>
     </rect>
    </property>

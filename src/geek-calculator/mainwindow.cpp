@@ -38,11 +38,10 @@ void MainWindow::configureFunctionPage()
     ui->resultDerivativeLineEdit->setReadOnly(true);
     ui->widget->hide();
     ui->plotWidget->show();
-    ui->oneVariableRadioButton->setChecked(true);
 }
 void MainWindow::configureMatrixPage()
 {
-    ui->ARadioButton->setChecked(1);
+    ui->ARadioButton->setChecked(true);
     ui->matrixOutputPlainTextEdit->setReadOnly(true);
     ui->matrixInputPlainTextEditA->clear();
     ui->matrixInputPlainTextEditB->clear();
@@ -127,11 +126,8 @@ void MainWindow::on_goToFunctionsButton_clicked()
     ui->firstDerivativeRadioButton->setChecked(true);
     ui->oneVariablePlottingRadioButton->setChecked(true);
     ui->functionsTab->setCurrentIndex(0);
-    ui->xRangeLeftPlotDoubleSpinBox->setValue(-1);
-    ui->xRangeRightPlotDoubleSpinBox->setValue(1);
-    ui->yLeftRangePlotDoubleSpinBox->setValue(-1);
-    ui->yRangeRightPlotDoubleSpinBox->setValue(1);
     ui->stackedWidgets->setCurrentWidget(ui->functionsPage);
+    on_oneVariablePlottingRadioButton_clicked();
 }
 void MainWindow::on_goToMatrixButton_clicked()
 {
@@ -869,9 +865,14 @@ void MainWindow::on_plotFunctionButton_clicked()
             int g = qrand()%255;
             int b = qrand()%255;
             pen.setColor(QColor(r,g,b));
+            int i=0;
+            if(ui->combineMultiplyPlotsCheckBox->isChecked()){
+                i=ui->plotWidget->graphCount();
+            }
+
             ui->plotWidget->addGraph();
-            ui->plotWidget->graph(0)->setData(x, y);
-            ui->plotWidget->graph(0)->setPen(pen);
+            ui->plotWidget->graph(i)->setData(x, y);
+            ui->plotWidget->graph(i)->setPen(pen);
             ui->plotWidget->xAxis->setRange(xLeft, xRight);
             ui->plotWidget->yAxis->setRange(yLeft, yRight);
 
@@ -880,9 +881,6 @@ void MainWindow::on_plotFunctionButton_clicked()
 
         }
         else {
-            modifier->setAxisX(new QValue3DAxis);
-            modifier->setAxisY(new QValue3DAxis);
-            modifier->setAxisZ(new QValue3DAxis);
             QSurfaceDataProxy *dataProxy = new QSurfaceDataProxy();
             QSurface3DSeries *dataSeries = new QSurface3DSeries(dataProxy);
 
@@ -901,25 +899,39 @@ void MainWindow::on_plotFunctionButton_clicked()
                 error_boxMsg("invalid range for y");
                 return;
             }
+
+
+            double zLeft = ui->zLeftRangePlotDoubleSpinBox->value();
+            double zRight = ui->zRangeRightPlotDoubleSpinBox->value();
+
+            if (zLeft >= zRight) {
+                error_boxMsg("invalid range for z");
+                return;
+            }
+
             int sampleCountX = 50;
             int sampleCountZ = 50;
             //range for X and Z axis
             float sampleMinX = float(xLeft);
             float sampleMaxX = float(xRight);
-            float sampleMinZ = float(yLeft);
-            float sampleMaxZ= float(yRight);
+            float sampleMinZ = float(zLeft);
+            float sampleMaxZ= float(zRight);
             float stepX =(sampleMaxX-sampleMinX)/ float(sampleCountX - 1);
             float stepZ = (sampleMaxZ-sampleMinZ) / float(sampleCountZ - 1);
 
             //setting range for axis
+
             modifier->axisX()->setRange(sampleMinX, sampleMaxX);
             modifier->axisZ()->setRange(sampleMinZ, sampleMaxZ);
-            modifier->axisY()->setRange(-5.0,5.0);
+            modifier->axisY()->setRange(float(yLeft),float(yRight));
+
 
             mglFormula formula(function.get_string_function().toUtf8().constData());
 
             QSurfaceDataArray *dataArray = new QSurfaceDataArray;
             dataArray->reserve(sampleCountZ);
+
+
             for (int i = 0 ; i < sampleCountZ ; i++) {
                 QSurfaceDataRow *newRow = new QSurfaceDataRow(sampleCountX);
                 // Keep values within range bounds, since just adding step can cause minor drift due
@@ -929,7 +941,9 @@ void MainWindow::on_plotFunctionButton_clicked()
                 for (int j = 0; j < sampleCountX; j++) {
                     float x = qMin(sampleMaxX, (j * stepX + sampleMinX));
                     float y = formula.Calc(x,z);
+
                     (*newRow)[index++].setPosition(QVector3D(x, y, z));
+
                 }
                 *dataArray << newRow;
             }
@@ -937,6 +951,15 @@ void MainWindow::on_plotFunctionButton_clicked()
             int r = qrand()%255;
             int g = qrand()%255;
             int b = qrand()%255;
+
+            if(!ui->combineMultiplyPlotsCheckBox->isChecked())
+            {
+                QList<QSurface3DSeries *> series = modifier->seriesList();
+                for(auto s : series){
+                    modifier->removeSeries(s);
+                }
+            }
+
 
             dataProxy->resetArray(dataArray);
             modifier->addSeries(dataSeries);
@@ -953,10 +976,18 @@ void MainWindow::on_plotFunctionButton_clicked()
 
 void MainWindow::create_q3dsurface(){
        graph = new Q3DSurface();
+       graph->setAxisX(new QValue3DAxis);
+       graph->setAxisY(new QValue3DAxis);
+       graph->setAxisZ(new QValue3DAxis);
        QWidget *container = QWidget::createWindowContainer(graph);
        ui->hLayout->addWidget(container,1);
        Q3DSurface *tmp(graph);
        modifier = tmp;
+       modifier->setAxisX(new QValue3DAxis);
+       modifier->setAxisY(new QValue3DAxis);
+       modifier->setAxisZ(new QValue3DAxis);
+       modifier->axisX()->setLabelFormat("%.2f");
+       modifier->axisZ()->setLabelFormat("%.2f");
 }
 
 void MainWindow::on_backPlotButton_clicked()
@@ -968,18 +999,22 @@ void MainWindow::on_clearPlotButton_clicked()
 {
     ui->enterFunctionPlottingLineEdit->clear();
     ui->plotWidget->clearGraphs();
+    ui->plotWidget->replot();
+    /*
     if (ui->oneVariablePlottingRadioButton->isChecked()) {
+        ui->xRangeLeftPlotDoubleSpinBox->setValue(0);
+        ui->xRangeRightPlotDoubleSpinBox->setValue(1);
+        ui->yLeftRangePlotDoubleSpinBox->setValue(0);
+        ui->yRangeRightPlotDoubleSpinBox->setValue(1);
+    }
+    if (ui->twoVariablesPlottingRadioButton->isChecked()) {
         ui->xRangeLeftPlotDoubleSpinBox->setValue(-1);
         ui->xRangeRightPlotDoubleSpinBox->setValue(1);
         ui->yLeftRangePlotDoubleSpinBox->setValue(-1);
         ui->yRangeRightPlotDoubleSpinBox->setValue(1);
-    }
-    if (ui->twoVariablesPlottingRadioButton->isChecked()) {
-        ui->xRangeLeftPlotDoubleSpinBox->setValue(-5);
-        ui->xRangeRightPlotDoubleSpinBox->setValue(5);
-        ui->yLeftRangePlotDoubleSpinBox->setValue(-5);
-        ui->yRangeRightPlotDoubleSpinBox->setValue(5);
-    }
+        ui->zLeftRangePlotDoubleSpinBox->setValue(-1);
+        ui->zRangeRightPlotDoubleSpinBox->setValue(1);
+    }*/
     QList<QSurface3DSeries *> series = modifier->seriesList();
     for(auto s : series){
         modifier->removeSeries(s);
@@ -1118,14 +1153,33 @@ void MainWindow::on_oneVariablePlottingRadioButton_clicked()
 {
     ui->widget->hide();
     ui->plotWidget->show();
+    ui->zLabelRange->hide();
+    ui->zLeftRangePlotDoubleSpinBox->hide();
+    ui->zRangeRightPlotDoubleSpinBox->hide();
+    ui->zFromLabel->hide();
+    ui->zToLabel->hide();
+    ui->xRangeLeftPlotDoubleSpinBox->setValue(0);
+    ui->xRangeRightPlotDoubleSpinBox->setValue(1);
+    ui->yLeftRangePlotDoubleSpinBox->setValue(0);
+    ui->yRangeRightPlotDoubleSpinBox->setValue(1);
+    ui->plotWidget->xAxis->setLabel("x");
+    ui->plotWidget->yAxis->setLabel("y");
 }
 
 void MainWindow::on_twoVariablesPlottingRadioButton_clicked()
 {
-    ui->xRangeLeftPlotDoubleSpinBox->setValue(-5);
-    ui->xRangeRightPlotDoubleSpinBox->setValue(5);
-    ui->yLeftRangePlotDoubleSpinBox->setValue(-5);
-    ui->yRangeRightPlotDoubleSpinBox->setValue(5);
+    ui->xRangeLeftPlotDoubleSpinBox->setValue(-1);
+    ui->xRangeRightPlotDoubleSpinBox->setValue(1);
+    ui->yLeftRangePlotDoubleSpinBox->setValue(-1);
+    ui->yRangeRightPlotDoubleSpinBox->setValue(1);
+    ui->zLeftRangePlotDoubleSpinBox->setValue(-1);
+    ui->zRangeRightPlotDoubleSpinBox->setValue(1);
+
+    ui->zFromLabel->show();
+    ui->zToLabel->show();
+    ui->zLabelRange->show();
+    ui->zLeftRangePlotDoubleSpinBox->show();
+    ui->zRangeRightPlotDoubleSpinBox->show();
     ui->plotWidget->hide();
     ui->widget->show();
 }
@@ -1301,5 +1355,6 @@ void MainWindow::clearCircleButton_clicked() {
 
     result->clear();
 }
+
 
 

@@ -4,6 +4,10 @@
 #include <QMainWindow>
 #include <string>
 #include <Matrix.hpp>
+#include <QtDataVisualization/Q3DSurface>
+#include <QtCore/qmath.h>
+
+using namespace QtDataVisualization;
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -174,6 +178,10 @@ private slots:
 
     void on_pushButton_12_clicked();
 
+    void on_oneVariablePlottingRadioButton_clicked();
+
+    void on_twoVariablesPlottingRadioButton_clicked();
+
     void on_goToGeometryButton_clicked();
 
     void on_goToMainPageFromGeometryButton_clicked();
@@ -226,6 +234,9 @@ private slots:
     void sphereCheck12RadioButton();
     void calculateSphere();
 
+
+
+
 private:
     Ui::MainWindow *ui;
     void configureFunctionPage();
@@ -235,7 +246,13 @@ private:
     void read_matrix(int indicator);
     void clear_geometry_page();
     bool check_enter_geometry(int i);
+    void create_q3dsurface();
     Matrix A;
     Matrix B;
+    Q3DSurface *graph = new Q3DSurface();
+    Q3DSurface *modifier;
+
+
+
 };
 #endif // MAINWINDOW_H

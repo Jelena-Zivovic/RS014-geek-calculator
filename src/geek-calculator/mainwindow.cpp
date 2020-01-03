@@ -7,6 +7,9 @@
 #include <mgl2/data.h>
 #include <QtMath>
 
+#include <QtDataVisualization/Q3DSurface>
+using namespace QtDataVisualization;
+
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent), ui(new Ui::MainWindow)
 {
@@ -15,6 +18,7 @@ MainWindow::MainWindow(QWidget *parent)
     ui->outputTextEdit->setReadOnly(true);
     configureFunctionPage();
     configureMatrixPage();
+    create_q3dsurface();
     configureGeometryPage();
 
 
@@ -33,10 +37,12 @@ void MainWindow::configureFunctionPage()
     ui->secondUpperBoundLineEdit->hide();
     ui->resultIntegralLineEdit->setReadOnly(true);
     ui->resultDerivativeLineEdit->setReadOnly(true);
+    ui->widget->hide();
+    ui->plotWidget->show();
 }
 void MainWindow::configureMatrixPage()
 {
-    ui->ARadioButton->setChecked(1);
+    ui->ARadioButton->setChecked(true);
     ui->matrixOutputPlainTextEdit->setReadOnly(true);
     ui->matrixInputPlainTextEditA->clear();
     ui->matrixInputPlainTextEditB->clear();
@@ -133,11 +139,8 @@ void MainWindow::on_goToFunctionsButton_clicked()
     ui->firstDerivativeRadioButton->setChecked(true);
     ui->oneVariablePlottingRadioButton->setChecked(true);
     ui->functionsTab->setCurrentIndex(0);
-    ui->xRangeLeftPlotDoubleSpinBox->setValue(-1);
-    ui->xRangeRightPlotDoubleSpinBox->setValue(1);
-    ui->yLeftRangePlotDoubleSpinBox->setValue(-1);
-    ui->yRangeRightPlotDoubleSpinBox->setValue(1);
     ui->stackedWidgets->setCurrentWidget(ui->functionsPage);
+    on_oneVariablePlottingRadioButton_clicked();
 }
 void MainWindow::on_goToMatrixButton_clicked()
 {
@@ -407,22 +410,6 @@ void MainWindow::on_determinantButtonA_clicked()
       }
 }
 
-/*
-void MainWindow::on_determinantButtonB_clicked()
-{
-    if (ui->matrixInputPlainTextEditB->toPlainText().isEmpty())
-    {
-        return;
-    }
-    if (B.rows() == 0)
-    {
-        return;
-    }
-
-    double det = B.det();
-    QString det_txt = QString::number(det);
-    ui->matrixOutputPlainTextEdit->appendPlainText("Determant of B: " + det_txt);
-}*/
 
 void MainWindow::on_inverseButtonA_clicked()
 {
@@ -467,27 +454,7 @@ void MainWindow::on_inverseButtonA_clicked()
         ui->matrixOutputPlainTextEdit->appendPlainText(inv.matrix_format());
     }
 }
-/*
-void MainWindow::on_inverseButtonB_clicked()
-{
-    if (ui->matrixInputPlainTextEditB->toPlainText().isEmpty())
-    {
-        return;
-    }
-    if (B.rows() == 0)
-    {
-        return;
-    }
-    if (B.det() == 0)
-    {
-        ui->matrixOutputPlainTextEdit->appendPlainText("No inverse for B");
-        return;
-    }
 
-    Matrix inv = B.inv();
-    ui->matrixOutputPlainTextEdit->appendPlainText("Inverse of B: ");
-    ui->matrixOutputPlainTextEdit->appendPlainText(inv.matrix_format());
-}*/
 
 void MainWindow::on_transposeButtonA_clicked()
 {
@@ -522,22 +489,6 @@ void MainWindow::on_transposeButtonA_clicked()
         ui->matrixOutputPlainTextEdit->appendPlainText(transpose.matrix_format());
     }
 }
-/*
-void MainWindow::on_transposeButtonB_clicked()
-{
-    if (ui->matrixInputPlainTextEditB->toPlainText().isEmpty())
-    {
-        return;
-    }
-    if (B.rows() == 0)
-    {
-        return;
-    }
-
-    Matrix transpose = B.transpose();
-    ui->matrixOutputPlainTextEdit->appendPlainText("Transpose of A: ");
-    ui->matrixOutputPlainTextEdit->appendPlainText(transpose.matrix_format());
-}*/
 
 void MainWindow::on_multiplyByButtonA_clicked()
 {
@@ -578,25 +529,6 @@ void MainWindow::on_multiplyByButtonA_clicked()
         ui->matrixOutputPlainTextEdit->appendPlainText(tmp.matrix_format());
     }
 }
-/*
-void MainWindow::on_multiplyByButtonB_clicked()
-{
-    if (ui->multiplBylineEditB->text().isEmpty())
-    {
-        return;
-    }
-    QString num_txt = ui->multiplBylineEditB->text();
-    bool ok;
-    double num = num_txt.toDouble(&ok);
-    if (ok == false)
-    {
-        error_boxMsg("Multiply must be a number");
-        return;
-    }
-    Matrix tmp = B * num;
-    ui->matrixOutputPlainTextEdit->appendPlainText("B*" + num_txt + ": ");
-    ui->matrixOutputPlainTextEdit->appendPlainText(tmp.matrix_format());
-}*/
 
 void MainWindow::on_raisePowerButtonA_clicked()
 {
@@ -643,28 +575,7 @@ void MainWindow::on_raisePowerButtonA_clicked()
         ui->matrixOutputPlainTextEdit->appendPlainText(tmp.matrix_format());
     }
 }
-/*
-void MainWindow::on_raisePowerButtonB_clicked()
-{
-    if (ui->raisePowerlineEditB->text().isEmpty())
-    {
-        return;
-    }
-    if(B.rows() != B.cols()){
-        return;
-    }
-    QString num_txt = ui->raisePowerlineEditB->text();
-    bool ok;
-    double num = num_txt.toDouble(&ok);
-    if (ok == false)
-    {
-        error_boxMsg("Multiply must be a number");
-        return;
-    }
-    Matrix tmp = B.pow(num);
-    ui->matrixOutputPlainTextEdit->appendPlainText("B^" + num_txt + ": ");
-    ui->matrixOutputPlainTextEdit->appendPlainText(tmp.matrix_format());
-}*/
+
 
 void MainWindow::on_goFromMatrixToMainPageButton_clicked()
 {
@@ -960,11 +871,21 @@ void MainWindow::on_plotFunctionButton_clicked()
                 x[i] = xLeft + h*i;
                 y[i] = formula.Calc(x[i]);
             }
-
+            //Changes color of function
+            QPen pen;
+            pen.setWidth(1);
+            int r = qrand()%255;
+            int g = qrand()%255;
+            int b = qrand()%255;
+            pen.setColor(QColor(r,g,b));
+            int i=0;
+            if(ui->combineMultiplyPlotsCheckBox->isChecked()){
+                i=ui->plotWidget->graphCount();
+            }
 
             ui->plotWidget->addGraph();
-            ui->plotWidget->graph(0)->setData(x, y);
-
+            ui->plotWidget->graph(i)->setData(x, y);
+            ui->plotWidget->graph(i)->setPen(pen);
             ui->plotWidget->xAxis->setRange(xLeft, xRight);
             ui->plotWidget->yAxis->setRange(yLeft, yRight);
 
@@ -973,6 +894,90 @@ void MainWindow::on_plotFunctionButton_clicked()
 
         }
         else {
+            QSurfaceDataProxy *dataProxy = new QSurfaceDataProxy();
+            QSurface3DSeries *dataSeries = new QSurface3DSeries(dataProxy);
+
+            double xLeft = ui->xRangeLeftPlotDoubleSpinBox->value();
+            double xRight = ui->xRangeRightPlotDoubleSpinBox->value();
+
+            if (xLeft >= xRight) {
+                error_boxMsg("invalid range for x");
+                return;
+            }
+
+            double yLeft = ui->yLeftRangePlotDoubleSpinBox->value();
+            double yRight = ui->yRangeRightPlotDoubleSpinBox->value();
+
+            if (yLeft >= yRight) {
+                error_boxMsg("invalid range for y");
+                return;
+            }
+
+
+            double zLeft = ui->zLeftRangePlotDoubleSpinBox->value();
+            double zRight = ui->zRangeRightPlotDoubleSpinBox->value();
+
+            if (zLeft >= zRight) {
+                error_boxMsg("invalid range for z");
+                return;
+            }
+
+            int sampleCountX = 50;
+            int sampleCountZ = 50;
+            //range for X and Z axis
+            float sampleMinX = float(xLeft);
+            float sampleMaxX = float(xRight);
+            float sampleMinZ = float(zLeft);
+            float sampleMaxZ= float(zRight);
+            float stepX =(sampleMaxX-sampleMinX)/ float(sampleCountX - 1);
+            float stepZ = (sampleMaxZ-sampleMinZ) / float(sampleCountZ - 1);
+
+            //setting range for axis
+
+            modifier->axisX()->setRange(sampleMinX, sampleMaxX);
+            modifier->axisZ()->setRange(sampleMinZ, sampleMaxZ);
+            modifier->axisY()->setRange(float(yLeft),float(yRight));
+
+
+            mglFormula formula(function.get_string_function().toUtf8().constData());
+
+            QSurfaceDataArray *dataArray = new QSurfaceDataArray;
+            dataArray->reserve(sampleCountZ);
+
+
+            for (int i = 0 ; i < sampleCountZ ; i++) {
+                QSurfaceDataRow *newRow = new QSurfaceDataRow(sampleCountX);
+                // Keep values within range bounds, since just adding step can cause minor drift due
+                // to the rounding errors.
+                float z = qMin(sampleMaxZ, (i * stepZ + sampleMinZ));
+                int index = 0;
+                for (int j = 0; j < sampleCountX; j++) {
+                    float x = qMin(sampleMaxX, (j * stepX + sampleMinX));
+                    float y = formula.Calc(x,z);
+
+                    (*newRow)[index++].setPosition(QVector3D(x, y, z));
+
+                }
+                *dataArray << newRow;
+            }
+            //setting a new color for new function
+            int r = qrand()%255;
+            int g = qrand()%255;
+            int b = qrand()%255;
+
+            if(!ui->combineMultiplyPlotsCheckBox->isChecked())
+            {
+                QList<QSurface3DSeries *> series = modifier->seriesList();
+                for(auto s : series){
+                    modifier->removeSeries(s);
+                }
+            }
+
+
+            dataProxy->resetArray(dataArray);
+            modifier->addSeries(dataSeries);
+            modifier->seriesList().back()->setBaseColor(QColor(r,g,b));
+
 
         }
 
@@ -982,7 +987,21 @@ void MainWindow::on_plotFunctionButton_clicked()
 
 }
 
-
+void MainWindow::create_q3dsurface(){
+       graph = new Q3DSurface();
+       graph->setAxisX(new QValue3DAxis);
+       graph->setAxisY(new QValue3DAxis);
+       graph->setAxisZ(new QValue3DAxis);
+       QWidget *container = QWidget::createWindowContainer(graph);
+       ui->hLayout->addWidget(container,1);
+       Q3DSurface *tmp(graph);
+       modifier = tmp;
+       modifier->setAxisX(new QValue3DAxis);
+       modifier->setAxisY(new QValue3DAxis);
+       modifier->setAxisZ(new QValue3DAxis);
+       modifier->axisX()->setLabelFormat("%.2f");
+       modifier->axisZ()->setLabelFormat("%.2f");
+}
 
 void MainWindow::on_backPlotButton_clicked()
 {
@@ -993,10 +1012,27 @@ void MainWindow::on_clearPlotButton_clicked()
 {
     ui->enterFunctionPlottingLineEdit->clear();
     ui->plotWidget->clearGraphs();
-    ui->xRangeLeftPlotDoubleSpinBox->setValue(-1);
-    ui->xRangeRightPlotDoubleSpinBox->setValue(1);
-    ui->yLeftRangePlotDoubleSpinBox->setValue(-1);
-    ui->yRangeRightPlotDoubleSpinBox->setValue(1);
+    ui->plotWidget->replot();
+    /*
+    if (ui->oneVariablePlottingRadioButton->isChecked()) {
+        ui->xRangeLeftPlotDoubleSpinBox->setValue(0);
+        ui->xRangeRightPlotDoubleSpinBox->setValue(1);
+        ui->yLeftRangePlotDoubleSpinBox->setValue(0);
+        ui->yRangeRightPlotDoubleSpinBox->setValue(1);
+    }
+    if (ui->twoVariablesPlottingRadioButton->isChecked()) {
+        ui->xRangeLeftPlotDoubleSpinBox->setValue(-1);
+        ui->xRangeRightPlotDoubleSpinBox->setValue(1);
+        ui->yLeftRangePlotDoubleSpinBox->setValue(-1);
+        ui->yRangeRightPlotDoubleSpinBox->setValue(1);
+        ui->zLeftRangePlotDoubleSpinBox->setValue(-1);
+        ui->zRangeRightPlotDoubleSpinBox->setValue(1);
+    }*/
+    QList<QSurface3DSeries *> series = modifier->seriesList();
+    for(auto s : series){
+        modifier->removeSeries(s);
+    }
+
 }
 
 void MainWindow::on_plusButton_clicked()
@@ -1126,8 +1162,43 @@ void MainWindow::on_pushButton_12_clicked()
     ui->enterFunctionToCalculateValueTextEdit->insertPlainText(QString("atan("));
 }
 
+void MainWindow::on_oneVariablePlottingRadioButton_clicked()
+{
+    ui->widget->hide();
+    ui->plotWidget->show();
+    ui->zLabelRange->hide();
+    ui->zLeftRangePlotDoubleSpinBox->hide();
+    ui->zRangeRightPlotDoubleSpinBox->hide();
+    ui->zFromLabel->hide();
+    ui->zToLabel->hide();
+    ui->xRangeLeftPlotDoubleSpinBox->setValue(0);
+    ui->xRangeRightPlotDoubleSpinBox->setValue(1);
+    ui->yLeftRangePlotDoubleSpinBox->setValue(0);
+    ui->yRangeRightPlotDoubleSpinBox->setValue(1);
+    ui->plotWidget->xAxis->setLabel("x");
+    ui->plotWidget->yAxis->setLabel("y");
+}
+
+void MainWindow::on_twoVariablesPlottingRadioButton_clicked()
+{
+    ui->xRangeLeftPlotDoubleSpinBox->setValue(-1);
+    ui->xRangeRightPlotDoubleSpinBox->setValue(1);
+    ui->yLeftRangePlotDoubleSpinBox->setValue(-1);
+    ui->yRangeRightPlotDoubleSpinBox->setValue(1);
+    ui->zLeftRangePlotDoubleSpinBox->setValue(-1);
+    ui->zRangeRightPlotDoubleSpinBox->setValue(1);
+
+    ui->zFromLabel->show();
+    ui->zToLabel->show();
+    ui->zLabelRange->show();
+    ui->zLeftRangePlotDoubleSpinBox->show();
+    ui->zRangeRightPlotDoubleSpinBox->show();
+    ui->plotWidget->hide();
+    ui->widget->show();
+}
 void MainWindow::on_goToGeometryButton_clicked()
 {
+    clearLayout(ui->verticalGeometryLayout);
     ui->stackedWidgets->setCurrentWidget(ui->geometryPage);
 
 }
@@ -1137,364 +1208,7 @@ void MainWindow::on_goToMainPageFromGeometryButton_clicked()
     ui->stackedWidgets->setCurrentWidget(ui->mainPage);
 }
 
-/*
-void MainWindow::on_circleButton_clicked()
-{
-    QWidget *w = new QWidget(this);
-    QHBoxLayout *horizontalLayout = new QHBoxLayout(w);
-    horizontalLayout->setSpacing(30);
-    horizontalLayout->setObjectName("radiusHorizontalLayout");
 
-
-    QLabel *message = new QLabel("enter radius:");
-    horizontalLayout->addWidget(message);
-    QLineEdit *lineEdit = new QLineEdit();
-    lineEdit->setObjectName("enterRadiusCircleLineEdit");
-    horizontalLayout->addWidget(lineEdit);
-
-
-    //connect(okButton, &QPushButton::clicked, this, &MainWindow::okButtonClickedCircle);
-
-    ui->verticalGeometryLayout->addWidget(w);
-
-    QWidget *w1 = new QWidget(this);
-
-    QHBoxLayout *horizontalLayout1 = new QHBoxLayout(w1);
-
-    QPushButton *areaButton = new QPushButton("area");
-    areaButton->setObjectName("areaCircleButton");
-    areaButton->setCursor(QCursor(Qt::PointingHandCursor));
-    areaButton->setFixedSize(QSize(151, 25));
-    connect(areaButton, &QPushButton::clicked, this, &MainWindow::calculateAreaCircleButton_clicked);
-    horizontalLayout1->addWidget(areaButton);
-
-    QPushButton *circumferenceButton = new QPushButton("circumference");
-    circumferenceButton->setObjectName("circumferenceCircleButton");
-    circumferenceButton->setCursor(QCursor(Qt::PointingHandCursor));
-    circumferenceButton->setFixedSize(QSize(151, 25));
-    connect(circumferenceButton, &QPushButton::clicked, this, &MainWindow::calculatecircumferenceCircleButton_clicked);
-    horizontalLayout1->addWidget(circumferenceButton);
-
-    ui->verticalGeometryLayout->addWidget(w1);
-
-    QWidget *w2 = new QWidget(this);
-
-    QHBoxLayout *horizontalLayout2 = new QHBoxLayout(w2);
-
-    QLabel *resultMessage = new QLabel("result:");
-    resultMessage->setContentsMargins(0, 0, 0, 0);
-    horizontalLayout2->addWidget(resultMessage);
-
-    QLineEdit *resultCircleLineEdit = new QLineEdit();
-    resultCircleLineEdit->setObjectName("resultCircleLineEdit");
-    resultCircleLineEdit->setReadOnly(true);
-    horizontalLayout2->addWidget(resultCircleLineEdit);
-
-    ui->verticalGeometryLayout->addWidget(w2);
-
-    QWidget *w3 = new QWidget(this);
-
-    QHBoxLayout *horizontalLayout3 = new QHBoxLayout(w3);
-
-    QPushButton *clearButton = new QPushButton("clear");
-    clearButton->setFixedSize(QSize(151, 25));
-    clearButton->setObjectName("clearCircleButton");
-    connect(clearButton, &QPushButton::clicked, this, &MainWindow::clearCircleButton_clicked);
-    horizontalLayout3->addWidget(clearButton);
-
-    ui->verticalGeometryLayout->addWidget(w3);
-
-}
-
-void MainWindow::calculateAreaCircleButton_clicked() {
-    QLineEdit *enter = ui->geometryPage->findChild<QLineEdit*>("enterRadiusCircleLineEdit");
-
-    if (enter == nullptr) {
-        exit(1);
-    }
-
-    QLineEdit *result = ui->geometryPage->findChild<QLineEdit*>("resultCircleLineEdit");
-
-    if (result == nullptr) {
-        exit(1);
-    }
-
-    bool ok;
-    double radius = enter->text().toDouble(&ok);
-
-    if (!ok) {
-        result->setText("radius is not valid");
-    }
-    else {
-        result->setText(QString::number(radius*radius*M_PI));
-    }
-
-
-
-
-
-
-}
-
-void MainWindow::calculatecircumferenceCircleButton_clicked() {
-    QLineEdit *enter = ui->geometryPage->findChild<QLineEdit*>("enterRadiusCircleLineEdit");
-
-    if (enter == nullptr) {
-        exit(1);
-    }
-
-    QLineEdit *result = ui->geometryPage->findChild<QLineEdit*>("resultCircleLineEdit");
-
-    if (result == nullptr) {
-        exit(1);
-    }
-
-    bool ok;
-    double radius = enter->text().toDouble(&ok);
-
-    if (!ok) {
-        result->setText("radius is not valid");
-    }
-    else {
-        result->setText(QString::number(2*radius*M_PI));
-    }
-}
-
-void MainWindow::clearCircleButton_clicked() {
-    QLineEdit *enter = ui->geometryPage->findChild<QLineEdit*>("enterRadiusCircleLineEdit");
-
-    if (enter == nullptr) {
-        exit(1);
-    }
-
-    enter->clear();
-
-    QLineEdit *result = ui->geometryPage->findChild<QLineEdit*>("resultCircleLineEdit");
-
-    if (result == nullptr) {
-        exit(1);
-    }
-
-    result->clear();
-}
-
-*/
-/*
-void MainWindow::clear_geometry_page(){
-    ui->enterLabel1->hide();
-    ui->enterLabel2->hide();
-    ui->enter2LineEdit->hide();
-    ui->enter1LineEdit->hide();
-    ui->enter3LineEdit->hide();
-    ui->enterLabel3->hide();
-    ui->AreaButton->hide();
-    ui->circumferenceButton->hide();
-    ui->resultGeometryLineEdit->hide();
-    ui->resultGeomtryLabel->hide();
-    ui->clearGeomtryButton->hide();
-}
-
-void MainWindow::on_parallelogramButton_clicked()
-{
-    clear_geometry_page();
-    on_clearGeomtryButton_clicked();
-    ui->enterLabel1->show();
-    ui->enter1LineEdit->show();
-    ui->enterLabel2->show();
-    ui->enter2LineEdit->show();
-    ui->AreaButton->show();
-    ui->circumferenceButton->show();
-    ui->resultGeomtryLabel->show();
-    ui->resultGeometryLineEdit->show();
-    ui->clearGeomtryButton->show();
-
-    ui->enterLabel1->setText("base");
-    ui->enterLabel2->setText("height");
-    ui->circumferenceButton->hide();
-    ui->AreaButton->setText("Area");
-
-    //connect(ui->circumferenceButton, &QPushButton::clicked, this, &MainWindow::calculateCirumreferenceParalelogramButton_clicked);
-    connect(ui->AreaButton, &QPushButton::clicked, this, &MainWindow::calculateAreaParalelogramButton_clicked);
-
-}
-/*
-void MainWindow::calculateCirumreferenceParalelogramButton_clicked(){
-    if(!check_geometry_text(2)){
-        error_boxMsg("Enter data");
-        return;
-    }
-    QString base = ui->enter1LineEdit->text();
-    QString height = ui->enter2LineEdit->text();
-
-    bool ok;
-    double  a = base.toDouble(&ok);
-    if(!ok){
-        error_boxMsg("Side must be a number");
-        return;
-    }
-    double b = height.toDouble(&ok);
-    if(!ok){
-        error_boxMsg("Height must be a number");
-        return;
-    }
-    double circumference = 2*a+2*b;
-    ui->resultGeometryLineEdit->setText(QString::number(circumference));
-}*/
-/*
-void MainWindow::calculateAreaParalelogramButton_clicked(){
-    if(!check_geometry_text(2)){
-        error_boxMsg("Enter data");
-        return;
-    }
-    QString A = ui->enter1LineEdit->text();
-    QString H = ui->enter2LineEdit->text();
-
-    bool ok;
-    double  a = A.toDouble(&ok);
-    if(!ok){
-        error_boxMsg("Side must be a number");
-        return;
-    }
-    double h = H.toDouble(&ok);
-    if(!ok){
-        error_boxMsg("Height must be a number");
-        return;
-    }
-
-    double area = a*h;
-    ui->resultGeometryLineEdit->setText(QString::number(area));
-}
-
-void MainWindow::on_circleButton_clicked()
-{
-    clear_geometry_page();
-    on_clearGeomtryButton_clicked();
-    ui->enterLabel1->show();
-    ui->enter1LineEdit->show();
-    ui->AreaButton->show();
-    ui->circumferenceButton->show();
-    ui->resultGeomtryLabel->show();
-    ui->resultGeometryLineEdit->show();
-    ui->clearGeomtryButton->show();
-
-
-    ui->circumferenceButton->setText("Circumference");
-    ui->AreaButton->setText("Area");
-    ui->enterLabel1->setText("Radius");
-    connect(ui->circumferenceButton, &QPushButton::clicked, this, &MainWindow::calculateCircumferenceCircleButton_clicked);
-    connect(ui->AreaButton, &QPushButton::clicked, this, &MainWindow::calculateAreaCircleButton_clicked);
-
-}
-void MainWindow::calculateCircumferenceCircleButton_clicked(){
-    if(!check_geometry_text(1)){
-        error_boxMsg("Enter data");
-        return;
-    }
-    QString radius = ui->enter1LineEdit->text();
-    bool ok;
-    double  r = radius.toDouble(&ok);
-    if(!ok){
-        error_boxMsg("Radius must be a number");
-        return;
-    }
-
-    double circumference = 2*r*M_PI;
-    ui->resultGeometryLineEdit->setText(QString::number(circumference));
-}
-
-void MainWindow::calculateAreaCircleButton_clicked(){
-    if(ui->enter1LineEdit->text().isEmpty()){
-        error_boxMsg("Enter radius");
-        return;
-    }
-    QString radius = ui->enter1LineEdit->text();
-    bool ok;
-    double  r = radius.toDouble(&ok);
-    if(!ok){
-        error_boxMsg("Radius must be a number");
-        return;
-    }
-
-    double area = r*r*M_PI;
-    ui->resultGeometryLineEdit->setText(QString::number(area));
-}
-void MainWindow::on_triangleButton_clicked()
-{
-    clear_geometry_page();
-    on_clearGeomtryButton_clicked();
-    ui->enterLabel1->show();
-    ui->enter1LineEdit->show();
-    ui->enterLabel2->show();
-    ui->enter2LineEdit->show();
-    ui->enterLabel3->show();
-    ui->enter3LineEdit->show();
-    ui->AreaButton->show();
-    ui->circumferenceButton->show();
-    ui->resultGeomtryLabel->show();
-    ui->resultGeometryLineEdit->show();
-    ui->clearGeomtryButton->show();
-
-    ui->enterLabel1->setText("a");
-    ui->enterLabel2->setText("b");
-    ui->enterLabel3->setText("c");
-    connect(ui->circumferenceButton, &QPushButton::clicked, this, &MainWindow::calculateCircumferenceTriangleButton_clicked);
-    connect(ui->AreaButton, &QPushButton::clicked, this, &MainWindow::calculateAreaTriangleButton_clicked);
-}
-void MainWindow::calculateCircumferenceTriangleButton_clicked(){
-
-}
-void MainWindow::calculateAreaTriangleButton_clicked(){
-    if(!check_geometry_text(3)){
-        error_boxMsg("Enter data");
-        return;
-    }
-    QString A = ui->enter1LineEdit->text();
-    QString B = ui->enter2LineEdit->text();
-    QString C = ui->enter3LineEdit->text();
-
-    bool ok;
-    double  a = A.toDouble(&ok);
-    if(!ok){
-        error_boxMsg("Side must be a number");
-        return;
-    }
-    double b = B.toDouble(&ok);
-    if(!ok){
-        error_boxMsg("Side must be a number");
-        return;
-    }
-    double c = C.toDouble(&ok);
-    if(!ok){
-        error_boxMsg("Side must be a number");
-        return;
-    }
-
-    double s = (a+b+c)/2.0;
-    double area = sqrt(s*(s-a)*(s-b)*(s-c));
-    ui->resultGeometryLineEdit->setText(QString::number(area));
-}
-void MainWindow::on_rectangleButton_clicked()
-{
-    clear_geometry_page();
-    on_clearGeomtryButton_clicked();
-    ui->enterLabel1->show();
-    ui->enter1LineEdit->show();
-    ui->enterLabel2->show();
-    ui->enter2LineEdit->show();
-    ui->AreaButton->show();
-    ui->circumferenceButton->show();
-    ui->resultGeomtryLabel->show();
-    ui->resultGeometryLineEdit->show();
-    ui->clearGeomtryButton->show();
-
-    ui->enterLabel1->setText("a");
-    ui->enterLabel2->setText("b");
-
-    connect(ui->circumferenceButton, &QPushButton::clicked, this, &MainWindow::calculateCirumreferenceRectangleButton_clicked);
-    connect(ui->AreaButton, &QPushButton::clicked, this, &MainWindow::calculateAreaRectangleButton_clicked);
-}
-
-*/
 void MainWindow::clear_geometry_page(){
     on_clearGeomtryButton_clicked();
     ui->enterLabel1->hide();
@@ -2200,4 +1914,5 @@ void MainWindow::calculateSphere(){
 
     }
 }
+
 

@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1000</width>
-    <height>600</height>
+    <width>1333</width>
+    <height>793</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -27,7 +27,7 @@
      <cursorShape>ArrowCursor</cursorShape>
     </property>
     <property name="currentIndex">
-     <number>4</number>
+     <number>3</number>
     </property>
     <widget class="QWidget" name="mainPage">
      <widget class="QPushButton" name="goToBasicCalculatorButton">
@@ -84,381 +84,279 @@
      </widget>
     </widget>
     <widget class="QWidget" name="matrixPage">
-     <widget class="QLineEdit" name="dimNLineEditA">
-      <property name="geometry">
-       <rect>
-        <x>60</x>
-        <y>10</y>
-        <width>41</width>
-        <height>25</height>
-       </rect>
-      </property>
-     </widget>
-     <widget class="QLineEdit" name="dimMLineEditA">
-      <property name="geometry">
-       <rect>
-        <x>60</x>
-        <y>40</y>
-        <width>41</width>
-        <height>25</height>
-       </rect>
-      </property>
-     </widget>
-     <widget class="QLabel" name="dimNLabelA">
-      <property name="geometry">
-       <rect>
-        <x>10</x>
-        <y>10</y>
-        <width>67</width>
-        <height>17</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>dim n</string>
-      </property>
-     </widget>
-     <widget class="QLabel" name="dimMLabelA">
-      <property name="geometry">
-       <rect>
-        <x>10</x>
-        <y>40</y>
-        <width>67</width>
-        <height>17</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>dim m</string>
-      </property>
-     </widget>
-     <widget class="QPushButton" name="enterDimensionButtonA">
-      <property name="geometry">
-       <rect>
-        <x>10</x>
-        <y>90</y>
-        <width>101</width>
-        <height>25</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>Enter Dim</string>
-      </property>
-     </widget>
      <widget class="QPlainTextEdit" name="matrixInputPlainTextEditB">
       <property name="geometry">
        <rect>
-        <x>540</x>
+        <x>720</x>
         <y>10</y>
-        <width>181</width>
-        <height>141</height>
-       </rect>
-      </property>
-     </widget>
-     <widget class="QLabel" name="dimNLabelB">
-      <property name="geometry">
-       <rect>
-        <x>410</x>
-        <y>20</y>
-        <width>67</width>
-        <height>17</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>dim n</string>
-      </property>
-     </widget>
-     <widget class="QLabel" name="dimMLabelB">
-      <property name="geometry">
-       <rect>
-        <x>410</x>
-        <y>50</y>
-        <width>67</width>
-        <height>17</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>dim m</string>
-      </property>
-     </widget>
-     <widget class="QLineEdit" name="dimNLineEditB">
-      <property name="geometry">
-       <rect>
-        <x>482</x>
-        <y>10</y>
-        <width>51</width>
-        <height>25</height>
-       </rect>
-      </property>
-     </widget>
-     <widget class="QLineEdit" name="dimMLineEditB">
-      <property name="geometry">
-       <rect>
-        <x>482</x>
-        <y>40</y>
-        <width>51</width>
-        <height>25</height>
+        <width>191</width>
+        <height>201</height>
        </rect>
       </property>
      </widget>
      <widget class="QPlainTextEdit" name="matrixOutputPlainTextEdit">
       <property name="geometry">
        <rect>
-        <x>0</x>
-        <y>320</y>
-        <width>731</width>
-        <height>181</height>
+        <x>200</x>
+        <y>310</y>
+        <width>721</width>
+        <height>241</height>
        </rect>
-      </property>
-     </widget>
-     <widget class="QPushButton" name="matrixPlusButton">
-      <property name="geometry">
-       <rect>
-        <x>300</x>
-        <y>10</y>
-        <width>89</width>
-        <height>25</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>A + B</string>
-      </property>
-     </widget>
-     <widget class="QPushButton" name="matrixMinusButton">
-      <property name="geometry">
-       <rect>
-        <x>300</x>
-        <y>50</y>
-        <width>89</width>
-        <height>25</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>A - B</string>
-      </property>
-     </widget>
-     <widget class="QPushButton" name="matrixMultiplyButton">
-      <property name="geometry">
-       <rect>
-        <x>300</x>
-        <y>90</y>
-        <width>89</width>
-        <height>25</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>A * B</string>
       </property>
      </widget>
      <widget class="QPlainTextEdit" name="matrixInputPlainTextEditA">
       <property name="geometry">
        <rect>
-        <x>120</x>
+        <x>200</x>
         <y>10</y>
-        <width>171</width>
-        <height>141</height>
+        <width>191</width>
+        <height>201</height>
        </rect>
       </property>
      </widget>
-     <widget class="QPushButton" name="enterDimensionButtonB">
+     <widget class="QWidget" name="gridLayoutWidget">
       <property name="geometry">
        <rect>
         <x>410</x>
-        <y>80</y>
-        <width>101</width>
-        <height>25</height>
+        <y>12</y>
+        <width>291</width>
+        <height>273</height>
        </rect>
       </property>
-      <property name="text">
-       <string>Enter Dim</string>
-      </property>
+      <layout class="QGridLayout" name="matrixButtonsGrid">
+       <item row="5" column="0">
+        <widget class="QPushButton" name="transposeButtonA">
+         <property name="text">
+          <string>Transpose</string>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="0">
+        <widget class="QPushButton" name="matrixMinusButton">
+         <property name="text">
+          <string>A - B</string>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="0">
+        <widget class="QPushButton" name="matrixMultiplyButton">
+         <property name="text">
+          <string>A * B</string>
+         </property>
+        </widget>
+       </item>
+       <item row="5" column="1">
+        <widget class="QPushButton" name="matrixRankButton">
+         <property name="text">
+          <string>Rank</string>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="0">
+        <widget class="QPushButton" name="matrixPlusButton">
+         <property name="text">
+          <string>A + B</string>
+         </property>
+        </widget>
+       </item>
+       <item row="6" column="1">
+        <widget class="QLineEdit" name="raisePowerlineEditA"/>
+       </item>
+       <item row="4" column="1">
+        <widget class="QPushButton" name="inverseButtonA">
+         <property name="text">
+          <string>Inverse</string>
+         </property>
+        </widget>
+       </item>
+       <item row="6" column="0">
+        <widget class="QPushButton" name="raisePowerButtonA">
+         <property name="text">
+          <string>Raise to power of</string>
+         </property>
+        </widget>
+       </item>
+       <item row="4" column="0">
+        <widget class="QPushButton" name="determinantButtonA">
+         <property name="text">
+          <string>Determinant</string>
+         </property>
+        </widget>
+       </item>
+       <item row="8" column="0" colspan="2">
+        <widget class="QPushButton" name="LUDecompButton">
+         <property name="text">
+          <string>LU-decomposition</string>
+         </property>
+        </widget>
+       </item>
+       <item row="7" column="0">
+        <widget class="QPushButton" name="multiplyByButtonA">
+         <property name="text">
+          <string>Multiply by</string>
+         </property>
+        </widget>
+       </item>
+       <item row="7" column="1">
+        <widget class="QLineEdit" name="multiplyBylineEditA"/>
+       </item>
+       <item row="3" column="0">
+        <widget class="QRadioButton" name="ARadioButton">
+         <property name="text">
+          <string>Matrix A</string>
+         </property>
+        </widget>
+       </item>
+       <item row="3" column="1">
+        <widget class="QRadioButton" name="BRadioButton">
+         <property name="text">
+          <string>Matrix B</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
      </widget>
-     <widget class="QPushButton" name="determinantButtonA">
+     <widget class="QWidget" name="horizontalLayoutWidget_3">
       <property name="geometry">
        <rect>
-        <x>10</x>
-        <y>180</y>
-        <width>101</width>
-        <height>25</height>
+        <x>470</x>
+        <y>560</y>
+        <width>168</width>
+        <height>71</height>
        </rect>
       </property>
-      <property name="text">
-       <string>Determinant</string>
-      </property>
+      <layout class="QHBoxLayout" name="matrixClearBackLayout">
+       <item>
+        <widget class="QPushButton" name="goFromMatrixToMainPageButton">
+         <property name="text">
+          <string>Back</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="clearMatrixButton">
+         <property name="text">
+          <string>Clear</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
      </widget>
-     <widget class="QPushButton" name="inverseButtonA">
+     <widget class="QWidget" name="verticalLayoutWidget">
       <property name="geometry">
        <rect>
-        <x>130</x>
-        <y>180</y>
-        <width>101</width>
-        <height>25</height>
+        <x>920</x>
+        <y>130</y>
+        <width>111</width>
+        <height>80</height>
        </rect>
       </property>
-      <property name="text">
-       <string>Inverse</string>
-      </property>
+      <layout class="QVBoxLayout" name="matrixEnterBButtonsBLayout">
+       <item>
+        <widget class="QPushButton" name="enterDimensionButtonB">
+         <property name="text">
+          <string>Enter Dim B</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="enterMatrixButtonB">
+         <property name="text">
+          <string>Enter Matrix B</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
      </widget>
-     <widget class="QPushButton" name="transposeButtonA">
+     <widget class="QWidget" name="verticalLayoutWidget_2">
       <property name="geometry">
        <rect>
-        <x>10</x>
-        <y>220</y>
-        <width>101</width>
-        <height>25</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>Transpose</string>
-      </property>
-     </widget>
-     <widget class="QPushButton" name="multiplyByButtonA">
-      <property name="geometry">
-       <rect>
-        <x>10</x>
-        <y>290</y>
-        <width>141</width>
-        <height>25</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>Multiply by</string>
-      </property>
-     </widget>
-     <widget class="QLineEdit" name="multiplyBylineEditA">
-      <property name="geometry">
-       <rect>
-        <x>170</x>
-        <y>290</y>
+        <x>970</x>
+        <y>10</y>
         <width>61</width>
-        <height>25</height>
+        <height>111</height>
        </rect>
       </property>
+      <layout class="QVBoxLayout" name="matrixDimensionBLayout">
+       <item alignment="Qt::AlignHCenter">
+        <widget class="QLabel" name="dimNLabelB">
+         <property name="text">
+          <string>dim n</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLineEdit" name="dimNLineEditB"/>
+       </item>
+       <item alignment="Qt::AlignHCenter">
+        <widget class="QLabel" name="dimMLabelB">
+         <property name="text">
+          <string>dim m</string>
+         </property>
+        </widget>
+       </item>
+       <item alignment="Qt::AlignHCenter|Qt::AlignVCenter">
+        <widget class="QLineEdit" name="dimMLineEditB"/>
+       </item>
+      </layout>
      </widget>
-     <widget class="QPushButton" name="raisePowerButtonA">
+     <widget class="QWidget" name="verticalLayoutWidget_4">
       <property name="geometry">
        <rect>
-        <x>10</x>
-        <y>260</y>
-        <width>141</width>
-        <height>25</height>
+        <x>70</x>
+        <y>130</y>
+        <width>111</width>
+        <height>80</height>
        </rect>
       </property>
-      <property name="text">
-       <string>Raise to power of</string>
-      </property>
+      <layout class="QVBoxLayout" name="matrixEnterButtonsALayout">
+       <item>
+        <widget class="QPushButton" name="enterDimensionButtonA">
+         <property name="text">
+          <string>Enter Dim A</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="enterMatrixButtonA">
+         <property name="text">
+          <string>Enter Matrix A</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
      </widget>
-     <widget class="QLineEdit" name="raisePowerlineEditA">
+     <widget class="QWidget" name="verticalLayoutWidget_5">
       <property name="geometry">
        <rect>
-        <x>170</x>
-        <y>260</y>
+        <x>70</x>
+        <y>10</y>
         <width>61</width>
-        <height>25</height>
+        <height>104</height>
        </rect>
       </property>
-     </widget>
-     <widget class="QPushButton" name="goFromMatrixToMainPageButton">
-      <property name="geometry">
-       <rect>
-        <x>220</x>
-        <y>510</y>
-        <width>89</width>
-        <height>25</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>Back</string>
-      </property>
-     </widget>
-     <widget class="QPushButton" name="enterMatrixButtonA">
-      <property name="geometry">
-       <rect>
-        <x>10</x>
-        <y>120</y>
-        <width>101</width>
-        <height>25</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>Enter Matrix</string>
-      </property>
-     </widget>
-     <widget class="QPushButton" name="enterMatrixButtonB">
-      <property name="geometry">
-       <rect>
-        <x>410</x>
-        <y>110</y>
-        <width>101</width>
-        <height>25</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>Enter Matrix</string>
-      </property>
-     </widget>
-     <widget class="QPushButton" name="clearMatrixButton">
-      <property name="geometry">
-       <rect>
-        <x>390</x>
-        <y>510</y>
-        <width>89</width>
-        <height>25</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>Clear</string>
-      </property>
-     </widget>
-     <widget class="QPushButton" name="matrixRankButton">
-      <property name="geometry">
-       <rect>
-        <x>130</x>
-        <y>220</y>
-        <width>101</width>
-        <height>25</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>Rank</string>
-      </property>
-     </widget>
-     <widget class="QPushButton" name="LUDecompButton">
-      <property name="geometry">
-       <rect>
-        <x>250</x>
-        <y>200</y>
-        <width>141</width>
-        <height>25</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>LU-decomposition</string>
-      </property>
-     </widget>
-     <widget class="QRadioButton" name="ARadioButton">
-      <property name="geometry">
-       <rect>
-        <x>260</x>
-        <y>260</y>
-        <width>112</width>
-        <height>23</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>Matrix A</string>
-      </property>
-     </widget>
-     <widget class="QRadioButton" name="BRadioButton">
-      <property name="geometry">
-       <rect>
-        <x>260</x>
-        <y>290</y>
-        <width>112</width>
-        <height>23</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>Matrix B</string>
-      </property>
+      <layout class="QVBoxLayout" name="matrixDimensionALayout">
+       <item alignment="Qt::AlignHCenter">
+        <widget class="QLabel" name="dimNLabelA">
+         <property name="text">
+          <string>dim n</string>
+         </property>
+        </widget>
+       </item>
+       <item alignment="Qt::AlignHCenter|Qt::AlignVCenter">
+        <widget class="QLineEdit" name="dimNLineEditA"/>
+       </item>
+       <item alignment="Qt::AlignHCenter">
+        <widget class="QLabel" name="dimMLabelA">
+         <property name="text">
+          <string>dim m</string>
+         </property>
+        </widget>
+       </item>
+       <item alignment="Qt::AlignHCenter|Qt::AlignVCenter">
+        <widget class="QLineEdit" name="dimMLineEditA"/>
+       </item>
+      </layout>
      </widget>
     </widget>
     <widget class="QWidget" name="commonCalculatorPage">
@@ -960,8 +858,8 @@
        <rect>
         <x>10</x>
         <y>10</y>
-        <width>741</width>
-        <height>561</height>
+        <width>1251</width>
+        <height>671</height>
        </rect>
       </property>
       <property name="currentIndex">
@@ -1340,7 +1238,7 @@
         <property name="geometry">
          <rect>
           <x>10</x>
-          <y>30</y>
+          <y>20</y>
           <width>161</width>
           <height>17</height>
          </rect>
@@ -1352,8 +1250,8 @@
        <widget class="QLineEdit" name="enterFunctionPlottingLineEdit">
         <property name="geometry">
          <rect>
-          <x>10</x>
-          <y>60</y>
+          <x>170</x>
+          <y>20</y>
           <width>301</width>
           <height>25</height>
          </rect>
@@ -1362,8 +1260,8 @@
        <widget class="QRadioButton" name="oneVariablePlottingRadioButton">
         <property name="geometry">
          <rect>
-          <x>330</x>
-          <y>60</y>
+          <x>520</x>
+          <y>20</y>
           <width>112</width>
           <height>23</height>
          </rect>
@@ -1375,8 +1273,8 @@
        <widget class="QRadioButton" name="twoVariablesPlottingRadioButton">
         <property name="geometry">
          <rect>
-          <x>470</x>
-          <y>60</y>
+          <x>670</x>
+          <y>20</y>
           <width>112</width>
           <height>23</height>
          </rect>
@@ -1388,18 +1286,18 @@
        <widget class="QCustomPlot" name="plotWidget" native="true">
         <property name="geometry">
          <rect>
-          <x>40</x>
-          <y>150</y>
-          <width>401</width>
-          <height>261</height>
+          <x>30</x>
+          <y>110</y>
+          <width>751</width>
+          <height>411</height>
          </rect>
         </property>
        </widget>
        <widget class="QPushButton" name="plotFunctionButton">
         <property name="geometry">
          <rect>
-          <x>300</x>
-          <y>100</y>
+          <x>840</x>
+          <y>20</y>
           <width>89</width>
           <height>25</height>
          </rect>
@@ -1411,10 +1309,10 @@
        <widget class="QLabel" name="xRangeLabel">
         <property name="geometry">
          <rect>
-          <x>200</x>
-          <y>420</y>
-          <width>67</width>
-          <height>17</height>
+          <x>90</x>
+          <y>540</y>
+          <width>91</width>
+          <height>21</height>
          </rect>
         </property>
         <property name="text">
@@ -1424,8 +1322,8 @@
        <widget class="QLabel" name="yLabelRange">
         <property name="geometry">
          <rect>
-          <x>520</x>
-          <y>230</y>
+          <x>990</x>
+          <y>170</y>
           <width>67</width>
           <height>17</height>
          </rect>
@@ -1437,8 +1335,8 @@
        <widget class="QWidget" name="layoutWidget">
         <property name="geometry">
          <rect>
-          <x>450</x>
-          <y>260</y>
+          <x>890</x>
+          <y>210</y>
           <width>254</width>
           <height>28</height>
          </rect>
@@ -1490,8 +1388,8 @@
        <widget class="QPushButton" name="backPlotButton">
         <property name="geometry">
          <rect>
-          <x>430</x>
-          <y>480</y>
+          <x>690</x>
+          <y>540</y>
           <width>89</width>
           <height>25</height>
          </rect>
@@ -1503,8 +1401,8 @@
        <widget class="QPushButton" name="clearPlotButton">
         <property name="geometry">
          <rect>
-          <x>540</x>
-          <y>480</y>
+          <x>800</x>
+          <y>540</y>
           <width>89</width>
           <height>25</height>
          </rect>
@@ -1516,10 +1414,10 @@
        <widget class="QWidget" name="layoutWidget">
         <property name="geometry">
          <rect>
-          <x>110</x>
-          <y>450</y>
+          <x>200</x>
+          <y>540</y>
           <width>254</width>
-          <height>28</height>
+          <height>31</height>
          </rect>
         </property>
         <layout class="QHBoxLayout" name="horizontalLayout">
@@ -1559,6 +1457,106 @@
          </item>
          <item>
           <widget class="QDoubleSpinBox" name="xRangeRightPlotDoubleSpinBox">
+           <property name="minimum">
+            <double>-990.000000000000000</double>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </widget>
+       <widget class="QWidget" name="widget" native="true">
+        <property name="geometry">
+         <rect>
+          <x>30</x>
+          <y>110</y>
+          <width>761</width>
+          <height>411</height>
+         </rect>
+        </property>
+        <widget class="QWidget" name="horizontalLayoutWidget_2">
+         <property name="geometry">
+          <rect>
+           <x>-30</x>
+           <y>0</y>
+           <width>791</width>
+           <height>421</height>
+          </rect>
+         </property>
+         <layout class="QHBoxLayout" name="hLayout"/>
+        </widget>
+       </widget>
+       <widget class="QCheckBox" name="combineMultiplyPlotsCheckBox">
+        <property name="geometry">
+         <rect>
+          <x>380</x>
+          <y>60</y>
+          <width>231</width>
+          <height>23</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>combine multiple plots</string>
+        </property>
+       </widget>
+       <widget class="QLabel" name="zLabelRange">
+        <property name="geometry">
+         <rect>
+          <x>970</x>
+          <y>340</y>
+          <width>67</width>
+          <height>17</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>z range:</string>
+        </property>
+       </widget>
+       <widget class="QWidget" name="layoutWidget_2">
+        <property name="geometry">
+         <rect>
+          <x>880</x>
+          <y>370</y>
+          <width>254</width>
+          <height>28</height>
+         </rect>
+        </property>
+        <layout class="QHBoxLayout" name="horizontalLayout_3">
+         <item>
+          <widget class="QLabel" name="zFromLabel">
+           <property name="text">
+            <string>from:</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QDoubleSpinBox" name="zLeftRangePlotDoubleSpinBox">
+           <property name="minimum">
+            <double>-990.000000000000000</double>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <spacer name="verticalSpacer_3">
+           <property name="orientation">
+            <enum>Qt::Vertical</enum>
+           </property>
+           <property name="sizeHint" stdset="0">
+            <size>
+             <width>20</width>
+             <height>40</height>
+            </size>
+           </property>
+          </spacer>
+         </item>
+         <item>
+          <widget class="QLabel" name="zToLabel">
+           <property name="text">
+            <string>to:</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QDoubleSpinBox" name="zRangeRightPlotDoubleSpinBox">
            <property name="minimum">
             <double>-990.000000000000000</double>
            </property>
@@ -2056,7 +2054,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>1000</width>
+     <width>1333</width>
      <height>22</height>
     </rect>
    </property>

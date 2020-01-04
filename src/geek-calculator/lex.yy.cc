@@ -321,6 +321,8 @@ void yyfree ( void *  );
 	}
 #define YY_AT_BOL() (YY_CURRENT_BUFFER_LVALUE->yy_at_bol)
 
+/* Begin user sect3 */
+
 #define yywrap() (/*CONSTCOND*/1)
 #define YY_SKIP_YYWRAP
 typedef flex_uint8_t YY_CHAR;
@@ -485,8 +487,8 @@ char *yytext;
     
     #include "parser.tab.hpp"
     
-#line 489 "lex.yy.c"
-#line 490 "lex.yy.c"
+#line 491 "lex.yy.c"
+#line 492 "lex.yy.c"
 
 #define INITIAL 0
 
@@ -704,7 +706,7 @@ YY_DECL
 #line 16 "lexer.lex"
 
 
-#line 708 "lex.yy.c"
+#line 710 "lex.yy.c"
 
 	while ( /*CONSTCOND*/1 )		/* loops until end-of-file is reached */
 		{
@@ -926,10 +928,10 @@ YY_RULE_SETUP
 	YY_BREAK
 case 24:
 YY_RULE_SETUP
-#line 113 "lexer.lex"
+#line 114 "lexer.lex"
 ECHO;
 	YY_BREAK
-#line 933 "lex.yy.c"
+#line 935 "lex.yy.c"
 case YY_STATE_EOF(INITIAL):
 	yyterminate();
 
@@ -1897,4 +1899,14 @@ void yyfree (void * ptr )
 
 #define YYTABLES_NAME "yytables"
 
-#line 113 "lexer.lex"
+#line 114 "lexer.lex"
+
+
+void setInputString(const char *input) {
+    yy_scan_string(input);
+}
+
+void endLexicalScan(void) {
+    yy_delete_buffer(YY_CURRENT_BUFFER);
+}
+

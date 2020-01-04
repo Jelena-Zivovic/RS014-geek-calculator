@@ -19,7 +19,6 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 SOURCES += \
     Function.cpp \
-    Help_File.cpp \
     Matrix.cpp \
     lex.yy.cc \
     main.cpp \
@@ -30,7 +29,6 @@ SOURCES += \
 
 HEADERS += \
     Function.hpp \
-    Help_File.hpp \
     Matrix.hpp \
     mainwindow.h \
     parser.tab.hpp \

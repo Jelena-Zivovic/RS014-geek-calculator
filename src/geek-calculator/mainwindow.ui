@@ -27,7 +27,7 @@
      <cursorShape>ArrowCursor</cursorShape>
     </property>
     <property name="currentIndex">
-     <number>2</number>
+     <number>3</number>
     </property>
     <widget class="QWidget" name="mainPage">
      <widget class="QPushButton" name="goToBasicCalculatorButton">
@@ -876,7 +876,7 @@
        </rect>
       </property>
       <property name="currentIndex">
-       <number>1</number>
+       <number>2</number>
       </property>
       <widget class="QWidget" name="integralTab">
        <property name="enabled">

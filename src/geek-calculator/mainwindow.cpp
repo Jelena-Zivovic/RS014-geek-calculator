@@ -192,16 +192,12 @@ void MainWindow::setToolTipsFunctionsPage() {
     const QString firstDerivative =
             QString("f") + QString(0x2032) + QString("(x)");
     const QString secondDerivative =
-            QString("f") + QString(0x2032) + QString(0x2032)
-            + QString("(x)");
+            QString("f") + QString(0x2032) + QString(0x2032) + QString("(x)");
 
     ui->firstDerivativeRadioButton->setToolTip(firstDerivative);
     ui->firstDerivativeRadioButton->setToolTipDuration(10000);
     ui->secondDerivativeRadioButton->setToolTip(secondDerivative);
     ui->secondDerivativeRadioButton->setToolTipDuration(10000);
-
-
-
 
 }
 
@@ -230,12 +226,11 @@ void MainWindow::on_calculateValueButton_clicked()
     {
         Function function(enteredText);
         double value = function.get_value();
-        //std::cout << value << std::endl;
         ui->outputTextEdit->setText(QString::number(value));
     }
     catch (const char *message)
     {
-        ui->outputTextEdit->setText("input is not valid");
+        ui->outputTextEdit->setText(message);
     }
 }
 
@@ -259,24 +254,24 @@ void MainWindow::on_integralValueFunction_clicked()
 
         if (number_of_variables == 1)
         {
-            float lower_bound = ui->firstLowerBoundLineEdit->text().toFloat();
-            float upper_bound = ui->firstUpperBoundLineEdit->text().toFloat();
-            float calculatedValue = function.oneVariableIntegral(lower_bound, upper_bound);
+            double lower_bound = ui->firstLowerBoundLineEdit->text().toDouble();
+            double upper_bound = ui->firstUpperBoundLineEdit->text().toDouble();
+            double calculatedValue = function.oneVariableIntegral(lower_bound, upper_bound);
             ui->resultIntegralLineEdit->setText(QString::number(calculatedValue));
         }
         else
         {
-            float firstLowerBound = ui->firstLowerBoundLineEdit->text().toFloat();
-            float firstUpperBound = ui->firstUpperBoundLineEdit->text().toFloat();
-            float secondLowerBound = ui->secondLowerBoundLineEdit->text().toFloat();
-            float secondUpperBound = ui->secondUpperBoundLineEdit->text().toFloat();
-            float calculatedValue = function.twoVariableIntegral(firstLowerBound, firstUpperBound, secondLowerBound, secondUpperBound);
+            double firstLowerBound = ui->firstLowerBoundLineEdit->text().toDouble();
+            double firstUpperBound = ui->firstUpperBoundLineEdit->text().toDouble();
+            double secondLowerBound = ui->secondLowerBoundLineEdit->text().toDouble();
+            double secondUpperBound = ui->secondUpperBoundLineEdit->text().toDouble();
+            double calculatedValue = function.twoVariableIntegral(firstLowerBound, firstUpperBound, secondLowerBound, secondUpperBound);
             ui->resultIntegralLineEdit->setText(QString::number(calculatedValue));
         }
     }
     catch (const char *message)
     {
-        std::cout << "bla" << std::endl;
+        std::cout << message << std::endl;
     }
 }
 void MainWindow::on_enterDimensionButtonA_clicked()
@@ -292,13 +287,13 @@ void MainWindow::on_enterDimensionButtonA_clicked()
     n = static_cast<unsigned>(n_txt.toInt(&ok));
     if (ok == false)
     {
-        error_boxMsg("Dimension n of matrix needs to be a unsigned number");
+        error_boxMsg("Dimension n of matrix needs to be an unsigned number");
         return;
     }
     m = static_cast<unsigned>(m_txt.toInt(&ok));
     if (ok == false)
     {
-        error_boxMsg("Dimension m of matrix needs to be a unsigned number");
+        error_boxMsg("Dimension m of matrix needs to be an unsigned number");
         return;
     }
     Matrix tmp(n,m);
@@ -486,7 +481,7 @@ void MainWindow::on_inverseButtonA_clicked()
         {
             return;
         }
-        if (A.det() == 0)
+        if (A.det() == 0.0)
         {
             ui->matrixOutputPlainTextEdit->appendPlainText("No inverse for A");
             return;
@@ -506,7 +501,7 @@ void MainWindow::on_inverseButtonA_clicked()
         {
             return;
         }
-        if (B.det() == 0)
+        if (B.det() == 0.0)
         {
             ui->matrixOutputPlainTextEdit->appendPlainText("No inverse for B");
             return;
@@ -692,8 +687,8 @@ void MainWindow::on_calculateDerivativeButton_clicked()
     try {
        Function function(enteredText);
 
-       float point = ui->enterPointLineEdit->text().toFloat();
-       float result;
+       double point = ui->enterPointLineEdit->text().toDouble();
+       double result;
 
        if (ui->firstDerivativeRadioButton->isChecked()) {
            result = function.firstDerivative(point);
@@ -1016,7 +1011,7 @@ void MainWindow::on_plotFunctionButton_clicked()
                 int index = 0;
                 for (int j = 0; j < sampleCountX; j++) {
                     float x = qMin(sampleMaxX, (j * stepX + sampleMinX));
-                    float y = formula.Calc(x,z);
+                    double y = formula.Calc(static_cast<mreal>(x),static_cast<mreal>(z));
 
                     (*newRow)[index++].setPosition(QVector3D(x, y, z));
 
@@ -1317,8 +1312,8 @@ void MainWindow::on_circleButton_clicked()
     ui->resultGeometryLineEdit->show();
     ui->clearGeomtryButton->show();
 
-    disconnect(ui->check1radioButton, 0, 0, 0);
-    disconnect(ui->check2radioButton, 0, 0, 0);
+    disconnect(ui->check1radioButton, nullptr, nullptr, nullptr);
+    disconnect(ui->check2radioButton, nullptr, nullptr, nullptr);
 
     connect(ui->check1radioButton, &QPushButton::clicked, this, &MainWindow::circleCheck1RadioButton);
     connect(ui->check2radioButton, &QPushButton::clicked, this, &MainWindow::circleCheck2RadioButton);
@@ -1333,7 +1328,7 @@ void MainWindow::circleCheck1RadioButton(){
     ui->enter1LineEdit->show();
     ui->resultGeometryButton->setText("Result");
 
-    disconnect(ui->resultGeometryButton, 0, 0, 0);
+    disconnect(ui->resultGeometryButton, nullptr, nullptr, nullptr);
     connect(ui->resultGeometryButton, &QPushButton::clicked, this, &MainWindow::calculateCircumreferenceCircle);
 }
 void MainWindow::circleCheck2RadioButton(){
@@ -1342,7 +1337,7 @@ void MainWindow::circleCheck2RadioButton(){
     ui->enterLabel1->show();
     ui->enter1LineEdit->show();
 
-    disconnect(ui->resultGeometryButton, 0, 0, 0);
+    disconnect(ui->resultGeometryButton, nullptr, nullptr, nullptr);
     connect(ui->resultGeometryButton, &QPushButton::clicked, this, &MainWindow::calculateAreaCircle);
 
 }
@@ -1398,8 +1393,8 @@ void MainWindow::on_parallelogramButton_clicked()
     ui->resultGeometryLineEdit->show();
     ui->clearGeomtryButton->show();
 
-    disconnect(ui->check1radioButton, 0, 0,0);
-    disconnect(ui->check2radioButton, 0, 0,0);
+    disconnect(ui->check1radioButton, nullptr, nullptr,nullptr);
+    disconnect(ui->check2radioButton, nullptr, nullptr,nullptr);
     connect(ui->check1radioButton, &QPushButton::clicked, this, &MainWindow::parallelogramCheck1RadioButton);
     connect(ui->check2radioButton, &QPushButton::clicked, this, &MainWindow::parallelogramCheck2RadioButton);
 
@@ -1415,7 +1410,7 @@ void MainWindow::parallelogramCheck1RadioButton(){
     ui->enter1LineEdit->show();
     ui->enter2LineEdit->show();
 
-    disconnect(ui->resultGeometryButton,0,0,0);
+    disconnect(ui->resultGeometryButton,nullptr,nullptr,nullptr);
     connect(ui->resultGeometryButton, &QPushButton::clicked, this, &MainWindow::calculateCircumreferenceParallelogram);
 
 }
@@ -1428,7 +1423,7 @@ void MainWindow::parallelogramCheck2RadioButton(){
     ui->enter1LineEdit->show();
     ui->enter2LineEdit->show();
 
-    disconnect(ui->resultGeometryButton,0,0,0);
+    disconnect(ui->resultGeometryButton,nullptr,nullptr,nullptr);
     connect(ui->resultGeometryButton, &QPushButton::clicked, this, &MainWindow::calculateAreaParallelogram);
 
 }
@@ -1490,8 +1485,8 @@ void MainWindow::on_rectangleButton_clicked()
     ui->resultGeometryLineEdit->show();
     ui->clearGeomtryButton->show();
 
-    disconnect(ui->check1radioButton,0,0,0);
-    disconnect(ui->check2radioButton,0,0,0);
+    disconnect(ui->check1radioButton,nullptr,nullptr,nullptr);
+    disconnect(ui->check2radioButton,nullptr,nullptr,nullptr);
     connect(ui->check1radioButton, &QPushButton::clicked, this, &MainWindow::parallelogramCheck1RadioButton);
     connect(ui->check2radioButton, &QPushButton::clicked, this, &MainWindow::parallelogramCheck2RadioButton);
 
@@ -1512,8 +1507,8 @@ void MainWindow::on_trapezoidButton_clicked()
     ui->resultGeometryLineEdit->show();
     ui->clearGeomtryButton->show();
 
-    disconnect(ui->check1radioButton,0,0,0);
-    disconnect(ui->check2radioButton,0,0,0);
+    disconnect(ui->check1radioButton,nullptr,nullptr,nullptr);
+    disconnect(ui->check2radioButton,nullptr,nullptr,nullptr);
     connect(ui->check1radioButton, &QPushButton::clicked, this, &MainWindow::trapezoidCheck1RadioButton);
     connect(ui->check2radioButton, &QPushButton::clicked, this, &MainWindow::trapezoidCheck2RadioButton);
 
@@ -1535,7 +1530,7 @@ void MainWindow::trapezoidCheck1RadioButton(){
     ui->enter3LineEdit->show();
     ui->enter4LineEdit->show();
 
-    disconnect(ui->resultGeometryButton, 0,0,0);
+    disconnect(ui->resultGeometryButton, nullptr,nullptr,nullptr);
     connect(ui->resultGeometryButton, &QPushButton::clicked, this, &MainWindow::calculateTrapezoid);
 }
 void MainWindow::trapezoidCheck2RadioButton(){
@@ -1550,7 +1545,7 @@ void MainWindow::trapezoidCheck2RadioButton(){
     ui->enter2LineEdit->show();
     ui->enter3LineEdit->show();
 
-    disconnect(ui->resultGeometryButton,0,0,0);
+    disconnect(ui->resultGeometryButton,nullptr,nullptr,nullptr);
     connect(ui->resultGeometryButton, &QPushButton::clicked, this, &MainWindow::calculateTrapezoid);
 }
 void MainWindow::calculateTrapezoid(){
@@ -1619,8 +1614,8 @@ void MainWindow::on_triangleButton_clicked()
     ui->resultGeometryLineEdit->show();
     ui->clearGeomtryButton->show();
 
-    disconnect(ui->check1radioButton, 0,0,0);
-    disconnect(ui->check2radioButton, 0,0,0);
+    disconnect(ui->check1radioButton, nullptr,nullptr,nullptr);
+    disconnect(ui->check2radioButton, nullptr,nullptr,nullptr);
     connect(ui->check1radioButton, &QPushButton::clicked, this, &MainWindow::triangleCheck12RadioButton);
     connect(ui->check2radioButton, &QPushButton::clicked, this, &MainWindow::triangleCheck12RadioButton);
 
@@ -1641,7 +1636,7 @@ void MainWindow::triangleCheck12RadioButton(){
     ui->enter2LineEdit->show();
     ui->enter3LineEdit->show();
 
-    disconnect(ui->resultGeometryButton,0,0,0);
+    disconnect(ui->resultGeometryButton,nullptr,nullptr,nullptr);
     connect(ui->resultGeometryButton, &QPushButton::clicked, this, &MainWindow::calculateTriangle);
 }
 void MainWindow::calculateTriangle(){
@@ -1694,8 +1689,8 @@ void MainWindow::on_squareButton_clicked()
     ui->clearGeomtryButton->show();
 
 
-    disconnect(ui->check1radioButton, 0,0,0);
-    disconnect(ui->check2radioButton, 0,0,0);
+    disconnect(ui->check1radioButton, nullptr,nullptr,nullptr);
+    disconnect(ui->check2radioButton, nullptr,nullptr,nullptr);
     connect(ui->check1radioButton, &QPushButton::clicked, this, &MainWindow::squareCheck12RadioButton);
     connect(ui->check2radioButton, &QPushButton::clicked, this, &MainWindow::squareCheck12RadioButton);
 
@@ -1709,7 +1704,7 @@ void MainWindow::squareCheck12RadioButton(){
     ui->enterLabel1->show();
     ui->enter1LineEdit->show();
 
-    disconnect(ui->resultGeometryButton,0,0,0);
+    disconnect(ui->resultGeometryButton,nullptr,nullptr,nullptr);
     connect(ui->resultGeometryButton, &QPushButton::clicked, this, &MainWindow::calculateSquare);
 }
 void MainWindow::calculateSquare(){
@@ -1747,8 +1742,8 @@ void MainWindow::on_coneButton_clicked()
     ui->clearGeomtryButton->show();
 
 
-    disconnect(ui->check1radioButton, 0,0,0);
-    disconnect(ui->check2radioButton, 0,0,0);
+    disconnect(ui->check1radioButton, nullptr,nullptr,nullptr);
+    disconnect(ui->check2radioButton, nullptr,nullptr,nullptr);
     connect(ui->check1radioButton, &QPushButton::clicked, this, &MainWindow::coneCheck12RadioButton);
     connect(ui->check2radioButton, &QPushButton::clicked, this, &MainWindow::coneCheck12RadioButton);
 
@@ -1769,7 +1764,7 @@ void MainWindow::coneCheck12RadioButton(){
     ui->enterLabel1->show();
     ui->enter2LineEdit->show();
 
-    disconnect(ui->resultGeometryButton,0,0,0);
+    disconnect(ui->resultGeometryButton,nullptr,nullptr,nullptr);
     connect(ui->resultGeometryButton, &QPushButton::clicked, this, &MainWindow::calculateCone);
 }
 void MainWindow::calculateCone(){
@@ -1818,8 +1813,8 @@ void MainWindow::on_cubeButton_clicked()
     ui->clearGeomtryButton->show();
 
 
-    disconnect(ui->check1radioButton, 0,0,0);
-    disconnect(ui->check2radioButton, 0,0,0);
+    disconnect(ui->check1radioButton, nullptr,nullptr,nullptr);
+    disconnect(ui->check2radioButton, nullptr,nullptr,nullptr);
     connect(ui->check1radioButton, &QPushButton::clicked, this, &MainWindow::cubeCheck12RadioButton);
     connect(ui->check2radioButton, &QPushButton::clicked, this, &MainWindow::cubeCheck12RadioButton);
 
@@ -1833,7 +1828,7 @@ void MainWindow::cubeCheck12RadioButton(){
     ui->enterLabel1->show();
     ui->enter1LineEdit->show();
 
-    disconnect(ui->resultGeometryButton,0,0,0);
+    disconnect(ui->resultGeometryButton,nullptr,nullptr,nullptr);
     connect(ui->resultGeometryButton, &QPushButton::clicked, this, &MainWindow::calculateCube);
 }
 void MainWindow::calculateCube(){
@@ -1873,8 +1868,8 @@ void MainWindow::on_cylinderButton_clicked()
     ui->clearGeomtryButton->show();
 
 
-    disconnect(ui->check1radioButton, 0,0,0);
-    disconnect(ui->check2radioButton, 0,0,0);
+    disconnect(ui->check1radioButton, nullptr,nullptr,nullptr);
+    disconnect(ui->check2radioButton, nullptr,nullptr,nullptr);
     connect(ui->check1radioButton, &QPushButton::clicked, this, &MainWindow::cylinderCheck12RadioButton);
     connect(ui->check2radioButton, &QPushButton::clicked, this, &MainWindow::cylinderCheck12RadioButton);
 
@@ -1891,7 +1886,7 @@ void MainWindow::cylinderCheck12RadioButton(){
     ui->enterLabel2->show();
     ui->enter2LineEdit->show();
 
-    disconnect(ui->resultGeometryButton,0,0,0);
+    disconnect(ui->resultGeometryButton,nullptr,nullptr,nullptr);
     connect(ui->resultGeometryButton, &QPushButton::clicked, this, &MainWindow::calculateCylinder);
 }
 void MainWindow::calculateCylinder(){
@@ -1936,8 +1931,8 @@ void MainWindow::on_sphereButton_clicked()
     ui->clearGeomtryButton->show();
 
 
-    disconnect(ui->check1radioButton, 0,0,0);
-    disconnect(ui->check2radioButton, 0,0,0);
+    disconnect(ui->check1radioButton, nullptr,nullptr,nullptr);
+    disconnect(ui->check2radioButton, nullptr,nullptr,nullptr);
     connect(ui->check1radioButton, &QPushButton::clicked, this, &MainWindow::sphereCheck12RadioButton);
     connect(ui->check2radioButton, &QPushButton::clicked, this, &MainWindow::sphereCheck12RadioButton);
 
@@ -1951,7 +1946,7 @@ void MainWindow::sphereCheck12RadioButton(){
     ui->enterLabel1->show();
     ui->enter1LineEdit->show();
 
-    disconnect(ui->resultGeometryButton,0,0,0);
+    disconnect(ui->resultGeometryButton,nullptr,nullptr,nullptr);
     connect(ui->resultGeometryButton, &QPushButton::clicked, this, &MainWindow::calculateSphere);
 }
 void MainWindow::calculateSphere(){
@@ -1988,3 +1983,5 @@ void MainWindow::on_eButton_clicked()
 {
     ui->enterFunctionToCalculateValueTextEdit->insertPlainText(QString("e"));
 }
+
+

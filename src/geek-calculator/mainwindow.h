@@ -241,6 +241,8 @@ private slots:
 
     void on_eButton_clicked();
 
+    void on_enteredFunctionLineEdit_textEdited(const QString &arg1);
+
 private:
     Ui::MainWindow *ui;
     void configureFunctionPage();

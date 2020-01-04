@@ -110,3 +110,13 @@ e {
 . {
     
 }
+
+%%
+
+void setInputString(const char *input) {
+    yy_scan_string(input);
+}
+
+void endLexicalScan(void) {
+    yy_delete_buffer(YY_CURRENT_BUFFER);
+}

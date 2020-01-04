@@ -1,8 +1,6 @@
 #include "Function.hpp"
-#include "Help_File.hpp"
 #include <string>
 #include <iostream>
-#include <fstream>
 #include <mgl2/qt.h>
 #include "parser.tab.hpp"
 #include <iterator>
@@ -11,11 +9,11 @@
 #include <algorithm>
 
 //TODO lexer should read from string
- bool indicator_calculating_value;
-extern FILE *yyin;
+bool indicator_calculating_value;
 extern int yyparse(float *return_value);
 
-
+void setInputString(const char *input);
+void endLexicalScan(void);
 
 Function::Function(const QString& str_func, const int number_of_variables)
     : m_function(str_func), m_number_of_variables(number_of_variables) {
@@ -31,30 +29,28 @@ Function::~Function() {
 
 bool Function::check_function()  {
     indicator_calculating_value = false;
-    Help_File file;
 
-    file.write(m_function);
-
-    yyin = file.get_FILE();
     double ignore_value;
+
+    setInputString(m_function.toUtf8().constData());
+
     int return_value = yyparse(&ignore_value);
+
+    endLexicalScan();
 
     return return_value == 0 ? true : false;
     
 }
 
-//get_value returns integer instead of float, that needs to be fixed
 double Function::get_value()  {
 
     indicator_calculating_value = true;
 
-    Help_File file;
-
-    file.write(m_function);
-
-    yyin = file.get_FILE();
+    setInputString(m_function.toUtf8().constData());
 
     yyparse(&function_value);
+
+    endLexicalScan();
 
     return function_value;
 

@@ -1813,7 +1813,7 @@ yyreturn:
 
 void yyerror(double *return_value, std::string s)
 {
-   std::cout << "no no " << std::endl;
+   std::cout << s << std::endl;
    
 }
 

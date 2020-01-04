@@ -1095,37 +1095,27 @@ void MainWindow::on_clearPlotButton_clicked()
 
 void MainWindow::on_plusButton_clicked()
 {
-    ui->enterFunctionToCalculateValueTextEdit->moveCursor(QTextCursor::End);
     ui->enterFunctionToCalculateValueTextEdit->insertPlainText(QString("+"));
-    ui->enterFunctionToCalculateValueTextEdit->moveCursor(QTextCursor::End);
 }
 
 void MainWindow::on_minusButton_clicked()
 {
-    ui->enterFunctionToCalculateValueTextEdit->moveCursor(QTextCursor::End);
     ui->enterFunctionToCalculateValueTextEdit->insertPlainText(QString("-"));
-    ui->enterFunctionToCalculateValueTextEdit->moveCursor(QTextCursor::End);
 }
 
 void MainWindow::on_multiplyButton_clicked()
 {
-    ui->enterFunctionToCalculateValueTextEdit->moveCursor(QTextCursor::End);
     ui->enterFunctionToCalculateValueTextEdit->insertPlainText(QString("*"));
-    ui->enterFunctionToCalculateValueTextEdit->moveCursor(QTextCursor::End);
 }
 
 void MainWindow::on_pushButton_5_clicked()
 {
-    ui->enterFunctionToCalculateValueTextEdit->moveCursor(QTextCursor::End);
     ui->enterFunctionToCalculateValueTextEdit->insertPlainText(QString("/"));
-    ui->enterFunctionToCalculateValueTextEdit->moveCursor(QTextCursor::End);
 }
 
 void MainWindow::on_sinButton_clicked()
 {
     ui->enterFunctionToCalculateValueTextEdit->insertPlainText(QString("sin("));
-
-
 
 }
 

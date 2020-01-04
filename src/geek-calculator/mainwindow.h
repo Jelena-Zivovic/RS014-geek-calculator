@@ -237,6 +237,10 @@ private slots:
 
 
 
+    void on_piButton_clicked();
+
+    void on_eButton_clicked();
+
 private:
     Ui::MainWindow *ui;
     void configureFunctionPage();
@@ -251,6 +255,8 @@ private:
     Matrix B;
     Q3DSurface *graph = new Q3DSurface();
     Q3DSurface *modifier;
+    void setToolTipsFunctionsPage();
+    void setToolTipsBasicPage();
 
 
 

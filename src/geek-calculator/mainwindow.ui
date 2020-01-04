@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1333</width>
-    <height>793</height>
+    <width>1500</width>
+    <height>900</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -19,8 +19,8 @@
      <rect>
       <x>0</x>
       <y>10</y>
-      <width>991</width>
-      <height>551</height>
+      <width>1500</width>
+      <height>800</height>
      </rect>
     </property>
     <property name="cursor">
@@ -838,21 +838,56 @@
        <string>atan</string>
       </property>
      </widget>
+     <widget class="QPushButton" name="piButton">
+      <property name="geometry">
+       <rect>
+        <x>590</x>
+        <y>160</y>
+        <width>89</width>
+        <height>25</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>pi</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="eButton">
+      <property name="geometry">
+       <rect>
+        <x>590</x>
+        <y>190</y>
+        <width>89</width>
+        <height>25</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>e</string>
+      </property>
+     </widget>
     </widget>
     <widget class="QWidget" name="functionsPage">
      <widget class="QTabWidget" name="functionsTab">
       <property name="geometry">
        <rect>
-        <x>10</x>
-        <y>10</y>
+        <x>0</x>
+        <y>0</y>
         <width>1251</width>
-        <height>671</height>
+        <height>731</height>
        </rect>
       </property>
       <property name="currentIndex">
-       <number>2</number>
+       <number>1</number>
       </property>
       <widget class="QWidget" name="integralTab">
+       <property name="enabled">
+        <bool>true</bool>
+       </property>
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Maximum" vsizetype="Maximum">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
        <property name="layoutDirection">
         <enum>Qt::LeftToRight</enum>
        </property>
@@ -890,6 +925,12 @@
           <height>25</height>
          </rect>
         </property>
+        <property name="toolTip">
+         <string/>
+        </property>
+        <property name="toolTipDuration">
+         <number>5000</number>
+        </property>
        </widget>
        <widget class="QRadioButton" name="oneVariableRadioButton">
         <property name="geometry">
@@ -922,12 +963,12 @@
          <rect>
           <x>0</x>
           <y>160</y>
-          <width>111</width>
+          <width>131</width>
           <height>20</height>
          </rect>
         </property>
         <property name="text">
-         <string>lower bound:</string>
+         <string>lower bound for y:</string>
         </property>
        </widget>
        <widget class="QLineEdit" name="firstLowerBoundLineEdit">
@@ -948,12 +989,12 @@
          <rect>
           <x>0</x>
           <y>220</y>
-          <width>91</width>
+          <width>131</width>
           <height>17</height>
          </rect>
         </property>
         <property name="text">
-         <string>upper bound:</string>
+         <string>upper bound for y:</string>
         </property>
        </widget>
        <widget class="QLineEdit" name="firstUpperBoundLineEdit">
@@ -1018,27 +1059,27 @@
        <widget class="QLabel" name="secondLowerBoundLabel">
         <property name="geometry">
          <rect>
-          <x>290</x>
+          <x>280</x>
           <y>160</y>
-          <width>91</width>
+          <width>131</width>
           <height>20</height>
          </rect>
         </property>
         <property name="text">
-         <string>lower bound:</string>
+         <string>lower bound for x:</string>
         </property>
        </widget>
        <widget class="QLabel" name="secondUpperBoundLabel">
         <property name="geometry">
          <rect>
-          <x>290</x>
+          <x>280</x>
           <y>220</y>
-          <width>91</width>
+          <width>131</width>
           <height>20</height>
          </rect>
         </property>
         <property name="text">
-         <string>upper bound:</string>
+         <string>upper bound for x:</string>
         </property>
        </widget>
        <widget class="QLineEdit" name="secondLowerBoundLineEdit">
@@ -2041,7 +2082,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>1333</width>
+     <width>1500</width>
      <height>22</height>
     </rect>
    </property>

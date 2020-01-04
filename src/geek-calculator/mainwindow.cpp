@@ -124,6 +124,33 @@ void MainWindow::on_goToBasicCalculatorButton_clicked()
     ui->enterFunctionToCalculateValueTextEdit->clear();
     ui->outputTextEdit->clear();
     ui->stackedWidgets->setCurrentWidget(ui->commonCalculatorPage);
+
+    setToolTipsBasicPage();
+}
+
+void MainWindow::setToolTipsBasicPage() {
+    ui->pushButton->setToolTip("x<sup>y</sup>");
+    ui->pushButton->setToolTipDuration(10000);
+
+    ui->pushButton_2->setToolTip("e<sup>x</sup>");
+    ui->pushButton_2->setToolTipDuration(10000);
+
+    ui->pushButton_10->setToolTip(QString(0x221a) + QString("x"));
+    ui->pushButton_10->setToolTipDuration(10000);
+
+    ui->piButton->setToolTip(QString(0x03c0));
+    ui->piButton->setToolTipDuration(10000);
+
+    ui->pushButton_3->setToolTip(QString("log<sub>e</sub>x"));
+    ui->pushButton_3->setToolTipDuration(10000);
+
+    ui->pushButton_4->setToolTip(QString("log<sub>base</sub>x"));
+    ui->pushButton_4->setToolTipDuration(10000);
+
+    ui->pushButton_9->setToolTip(QString("x<sup>2</sup>"));
+    ui->pushButton_9->setToolTipDuration(10000);
+
+
 }
 
 void MainWindow::on_goToFunctionsButton_clicked()
@@ -141,7 +168,43 @@ void MainWindow::on_goToFunctionsButton_clicked()
     ui->functionsTab->setCurrentIndex(0);
     ui->stackedWidgets->setCurrentWidget(ui->functionsPage);
     on_oneVariablePlottingRadioButton_clicked();
+
+    setToolTipsFunctionsPage();
 }
+
+void MainWindow::setToolTipsFunctionsPage() {
+    //symbol codes found at https://sites.psu.edu/symbolcodes/accents/math/mathchart/
+
+    //integral
+    const QString singleIntegral =
+            QString(0x222b) + QString("f(x)dx");
+
+    const QString doubleIntegral =
+            QString(0x222c) + QString("f(x,y)dydx");
+
+
+    ui->oneVariableRadioButton->setToolTip(singleIntegral);
+    ui->twoVariablesRadioButton->setToolTip(doubleIntegral);
+    ui->oneVariableRadioButton->setToolTipDuration(10000);
+    ui->twoVariablesRadioButton->setToolTipDuration(10000);
+
+    //derivative
+    const QString firstDerivative =
+            QString("f") + QString(0x2032) + QString("(x)");
+    const QString secondDerivative =
+            QString("f") + QString(0x2032) + QString(0x2032)
+            + QString("(x)");
+
+    ui->firstDerivativeRadioButton->setToolTip(firstDerivative);
+    ui->firstDerivativeRadioButton->setToolTipDuration(10000);
+    ui->secondDerivativeRadioButton->setToolTip(secondDerivative);
+    ui->secondDerivativeRadioButton->setToolTipDuration(10000);
+
+
+
+
+}
+
 void MainWindow::on_goToMatrixButton_clicked()
 {
     ui->stackedWidgets->setCurrentWidget(ui->matrixPage);
@@ -1915,3 +1978,13 @@ void MainWindow::calculateSphere(){
 }
 
 
+
+void MainWindow::on_piButton_clicked()
+{
+    ui->enterFunctionToCalculateValueTextEdit->insertPlainText(QString("pi"));
+}
+
+void MainWindow::on_eButton_clicked()
+{
+    ui->enterFunctionToCalculateValueTextEdit->insertPlainText(QString("e"));
+}

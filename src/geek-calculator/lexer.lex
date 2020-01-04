@@ -7,6 +7,7 @@
     #include <cstdlib>
     #include <string>
     #include <fstream>
+    #include <math.h>
     
     #include "parser.tab.hpp"
     
@@ -14,7 +15,7 @@
 
 %%
 
-[0-9]+(\.[0-9]+)? {
+[0-9]+(\,[0-9]+)? {
     yylval.value = atof(yytext);
         return NUMBER;
 }
@@ -83,6 +84,16 @@ abs {
 
 mod {
     return MOD;
+}
+
+pi {
+    yylval.value = M_PI;
+    return NUMBER;
+}
+
+e {
+    yylval.value = M_E;
+    return NUMBER;
 }
 
 [a-z] {

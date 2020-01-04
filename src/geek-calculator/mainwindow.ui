@@ -27,7 +27,7 @@
      <cursorShape>ArrowCursor</cursorShape>
     </property>
     <property name="currentIndex">
-     <number>3</number>
+     <number>2</number>
     </property>
     <widget class="QWidget" name="mainPage">
      <widget class="QPushButton" name="goToBasicCalculatorButton">
@@ -539,19 +539,6 @@
        <string>0</string>
       </property>
      </widget>
-     <widget class="QPushButton" name="dotButton">
-      <property name="geometry">
-       <rect>
-        <x>90</x>
-        <y>190</y>
-        <width>89</width>
-        <height>25</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>.</string>
-      </property>
-     </widget>
      <widget class="QPushButton" name="plusButton">
       <property name="geometry">
        <rect>
@@ -737,8 +724,8 @@
      <widget class="QPushButton" name="pushButton_7">
       <property name="geometry">
        <rect>
-        <x>590</x>
-        <y>130</y>
+        <x>90</x>
+        <y>190</y>
         <width>89</width>
         <height>25</height>
        </rect>
@@ -803,7 +790,7 @@
       <property name="geometry">
        <rect>
         <x>590</x>
-        <y>160</y>
+        <y>130</y>
         <width>89</width>
         <height>25</height>
        </rect>

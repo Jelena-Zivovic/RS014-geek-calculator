@@ -61,7 +61,9 @@ extern int yydebug;
     SQRT = 271,
     ABS = 272,
     NUMBER = 273,
-    VARIABLE = 274
+    VARIABLE = 274,
+    PI = 275,
+    E_C = 276
   };
 #endif
 
@@ -75,7 +77,7 @@ union YYSTYPE
     double value;
     char variable;
 
-#line 79 "parser.tab.hpp" /* yacc.c:1909  */
+#line 81 "parser.tab.hpp" /* yacc.c:1909  */
 };
 
 typedef union YYSTYPE YYSTYPE;

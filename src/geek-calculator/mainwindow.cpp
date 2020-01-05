@@ -6,6 +6,8 @@
 #include <mgl2/eval.h>
 #include <mgl2/data.h>
 #include <QtMath>
+#include <QRectF>
+#include <string>
 
 #include <QtDataVisualization/Q3DSurface>
 using namespace QtDataVisualization;
@@ -18,7 +20,6 @@ MainWindow::MainWindow(QWidget *parent)
     ui->outputTextEdit->setReadOnly(true);
     configureFunctionPage();
     configureMatrixPage();
-    create_q3dsurface();
     configureGeometryPage();
 
 
@@ -31,6 +32,9 @@ MainWindow::~MainWindow()
 
 void MainWindow::configureFunctionPage()
 {
+    ui->toLineEdit->setReadOnly(true);
+    ui->fromDecimalRadioButton->setChecked(true);
+    ui->toBinaryRadioButton->setChecked(true);
     ui->secondLowerBoundLabel->hide();
     ui->secondLowerBoundLineEdit->hide();
     ui->secondUpperBoundLabel->hide();
@@ -39,6 +43,9 @@ void MainWindow::configureFunctionPage()
     ui->resultDerivativeLineEdit->setReadOnly(true);
     ui->widget->hide();
     ui->plotWidget->show();
+
+    create_q3dsurface();
+
 }
 void MainWindow::configureMatrixPage()
 {
@@ -116,6 +123,7 @@ void MainWindow::configureGeometryPage() {
     ui->resultGeometryButton->hide();
     ui->clearGeomtryButton->hide();
     ui->resultGeometryLineEdit->setReadOnly(true);
+
 }
 
 
@@ -208,7 +216,6 @@ void MainWindow::on_goToMatrixButton_clicked()
 
 void MainWindow::on_goBackToMainPageButton_clicked()
 {
-
     ui->stackedWidgets->setCurrentWidget(ui->mainPage);
 }
 
@@ -283,20 +290,25 @@ void MainWindow::on_enterDimensionButtonA_clicked()
     m_txt = ui->dimMLineEditA->text();
 
     bool ok;
-    unsigned n, m;
-    n = static_cast<unsigned>(n_txt.toInt(&ok));
+    int  n, m;
+    n = n_txt.toInt(&ok);
     if (ok == false)
     {
         error_boxMsg("Dimension n of matrix needs to be an unsigned number");
         return;
     }
-    m = static_cast<unsigned>(m_txt.toInt(&ok));
+    m = m_txt.toInt(&ok);
     if (ok == false)
     {
         error_boxMsg("Dimension m of matrix needs to be an unsigned number");
         return;
     }
-    Matrix tmp(n,m);
+
+    if(n<=0 || m<=0){
+        error_boxMsg("Dimensions must be a positive number");
+        return;
+    }
+    Matrix tmp(static_cast<unsigned>(n),static_cast<unsigned>(m));
     A = tmp;
     ui->enterMatrixButtonA->show();
     ui->matrixInputPlainTextEditA->show();
@@ -367,20 +379,25 @@ void MainWindow::on_enterDimensionButtonB_clicked()
     m_txt = ui->dimMLineEditB->text();
 
     bool ok;
-    unsigned n, m;
-    n = static_cast<unsigned>(n_txt.toInt(&ok));
+    int  n, m;
+    n = n_txt.toInt(&ok);
     if (ok == false)
     {
-        error_boxMsg("Dimension n of matrix needs to be a unsigned number");
+        error_boxMsg("Dimension n of matrix needs to be an unsigned number");
         return;
     }
-    m = static_cast<unsigned>(m_txt.toInt(&ok));
+    m = m_txt.toInt(&ok);
     if (ok == false)
     {
-        error_boxMsg("Dimension m of matrix needs to be a unsigned number");
+        error_boxMsg("Dimension m of matrix needs to be an unsigned number");
         return;
     }
-    Matrix tmp(n,m);
+
+    if(n<=0 || m<=0){
+        error_boxMsg("Dimensions must be a positive number");
+        return;
+    }
+    Matrix tmp(static_cast<unsigned>(n),static_cast<unsigned>(m));
     B = tmp;
     ui->enterMatrixButtonB->show();
     ui->matrixInputPlainTextEditB->show();
@@ -703,14 +720,14 @@ void MainWindow::on_calculateDerivativeButton_clicked()
         std::cout << message << std::endl;
     }
 }
-
+/*
 void MainWindow::on_dotButton_clicked()
 {
     ui->enterFunctionToCalculateValueTextEdit->moveCursor(QTextCursor::End);
     ui->enterFunctionToCalculateValueTextEdit->insertPlainText(QString("."));
     ui->enterFunctionToCalculateValueTextEdit->moveCursor(QTextCursor::End);
 }
-
+*/
 void MainWindow::on_number1Button_clicked()
 {
     ui->enterFunctionToCalculateValueTextEdit->moveCursor(QTextCursor::End);
@@ -793,7 +810,7 @@ void MainWindow::on_enterMatrixButtonB_clicked()
 {
     read_matrix(2);
 }
-
+/*
 void MainWindow::on_addMatrixButton_clicked()
 {
     ui->dimMLabelB->show();
@@ -804,7 +821,7 @@ void MainWindow::on_addMatrixButton_clicked()
     ui->matrixPlusButton->show();
     ui->matrixMinusButton->show();
     ui->matrixMultiplyButton->show();
-}
+}*/
 
 void MainWindow::on_clearMatrixButton_clicked()
 {
@@ -1047,9 +1064,6 @@ void MainWindow::on_plotFunctionButton_clicked()
 
 void MainWindow::create_q3dsurface(){
        graph = new Q3DSurface();
-       graph->setAxisX(new QValue3DAxis);
-       graph->setAxisY(new QValue3DAxis);
-       graph->setAxisZ(new QValue3DAxis);
        QWidget *container = QWidget::createWindowContainer(graph);
        ui->hLayout->addWidget(container,1);
        Q3DSurface *tmp(graph);
@@ -1058,6 +1072,7 @@ void MainWindow::create_q3dsurface(){
        modifier->setAxisY(new QValue3DAxis);
        modifier->setAxisZ(new QValue3DAxis);
        modifier->axisX()->setLabelFormat("%.2f");
+       modifier->axisY()->setLabelFormat("%.2f");
        modifier->axisZ()->setLabelFormat("%.2f");
 }
 
@@ -1181,6 +1196,8 @@ void MainWindow::on_pushButton_9_clicked()
 
 void MainWindow::on_clearCommonCalculatorButton_clicked()
 {
+    ui->fromNumberLineEdit->clear();
+    ui->toLineEdit->clear();
     ui->enterFunctionToCalculateValueTextEdit->clear();
     ui->outputTextEdit->clear();
 }
@@ -1310,6 +1327,8 @@ void MainWindow::on_circleButton_clicked()
 
     ui->check1radioButton->setChecked(true);
     circleCheck1RadioButton();
+
+
 }
 void MainWindow::circleCheck1RadioButton(){
     clear_geometry_page();
@@ -1975,3 +1994,40 @@ void MainWindow::on_eButton_clicked()
 }
 
 
+QString MainWindow::fromBasetoBase(QString str, int fromBase, int toBase)
+{
+    bool ok;
+    long num = str.toLong(&ok, fromBase);
+    if(!ok){
+        return nullptr;
+    }
+    return QString::number(num, toBase);
+}
+void MainWindow::on_convertButton_clicked()
+{
+    QString num_text = ui->fromNumberLineEdit->text();
+    int toBase=0;
+    if(ui->toDecimalRadioButton->isChecked()){
+        toBase = 10;
+    }else if(ui->toBinaryRadioButton->isChecked()){
+        toBase = 2;
+    }else{
+        toBase = 16;
+    }
+    int fromBase=0;
+    if(ui->fromDecimalRadioButton->isChecked()){
+        fromBase = 10;
+    }else if(ui->fromBinaryRadioButton->isChecked()){
+        fromBase = 2;
+    }else{
+        fromBase = 16;
+    }
+
+    QString num =fromBasetoBase(num_text, fromBase, toBase);
+    if(num==nullptr){
+        error_boxMsg("Incorrect number");
+        return;
+    }
+
+    ui->toLineEdit->setText(num.toUpper());
+}

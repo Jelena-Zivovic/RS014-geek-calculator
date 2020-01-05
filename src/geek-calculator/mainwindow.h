@@ -92,7 +92,7 @@ private slots:
 
     void on_number1Button_clicked();
 
-    void on_dotButton_clicked();
+    //void on_dotButton_clicked();
 
     void on_number2Button_clicked();
 
@@ -116,7 +116,7 @@ private slots:
 
     void on_enterMatrixButtonB_clicked();
 
-    void on_addMatrixButton_clicked();
+    //void on_addMatrixButton_clicked();
 
     void on_clearMatrixButton_clicked();
 
@@ -234,14 +234,13 @@ private slots:
     void sphereCheck12RadioButton();
     void calculateSphere();
 
-
-
-
     void on_piButton_clicked();
 
     void on_eButton_clicked();
 
     void on_enteredFunctionLineEdit_textEdited(const QString &arg1);
+
+    void on_convertButton_clicked();
 
 private:
     Ui::MainWindow *ui;
@@ -253,6 +252,8 @@ private:
     void clear_geometry_page();
     bool check_enter_geometry(int i);
     void create_q3dsurface();
+    int toDecimal(QString str, int base);
+    QString fromBasetoBase(QString str,int fromBase ,int toBase);
     Matrix A;
     Matrix B;
     Q3DSurface *graph = new Q3DSurface();

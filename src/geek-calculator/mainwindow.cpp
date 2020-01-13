@@ -254,6 +254,20 @@ void MainWindow::on_integralValueFunction_clicked()
     {
         number_of_variables = 2;
     }
+    if(ui->enteredFunctionLineEdit->text().isEmpty()){
+        error_boxMsg("Function must be entered");
+        return;
+    }
+    if(ui->firstLowerBoundLineEdit->text().isEmpty() || ui->firstUpperBoundLineEdit->text().isEmpty()){
+        error_boxMsg("Lower and upper bound must me entered");
+        return;
+    }
+    if(number_of_variables==2){
+        if(ui->secondLowerBoundLineEdit->text().isEmpty() || ui->secondUpperBoundLineEdit->text().isEmpty()){
+            error_boxMsg("Lower and upper bound must me entered");
+            return;
+        }
+    }
 
     try
     {
@@ -261,17 +275,55 @@ void MainWindow::on_integralValueFunction_clicked()
 
         if (number_of_variables == 1)
         {
-            double lower_bound = ui->firstLowerBoundLineEdit->text().toDouble();
-            double upper_bound = ui->firstUpperBoundLineEdit->text().toDouble();
+            bool ok;
+            double lower_bound = ui->firstLowerBoundLineEdit->text().toDouble(&ok);
+            if(!ok){
+                error_boxMsg("Lower bound must be a number");
+                return;
+            }
+            double upper_bound = ui->firstUpperBoundLineEdit->text().toDouble(&ok);
+            if(!ok){
+                error_boxMsg("Upper bound must be a number");
+                return;
+            }
+            if(lower_bound > upper_bound){
+                error_boxMsg("Upper bound needs to be greater then lower bound");
+                return;
+            }
             double calculatedValue = function.oneVariableIntegral(lower_bound, upper_bound);
             ui->resultIntegralLineEdit->setText(QString::number(calculatedValue));
         }
         else
         {
-            double firstLowerBound = ui->firstLowerBoundLineEdit->text().toDouble();
-            double firstUpperBound = ui->firstUpperBoundLineEdit->text().toDouble();
-            double secondLowerBound = ui->secondLowerBoundLineEdit->text().toDouble();
-            double secondUpperBound = ui->secondUpperBoundLineEdit->text().toDouble();
+            bool ok;
+            double firstLowerBound = ui->firstLowerBoundLineEdit->text().toDouble(&ok);
+            if(!ok){
+                error_boxMsg("Lower bound must be a number");
+                return;
+            }
+            double firstUpperBound = ui->firstUpperBoundLineEdit->text().toDouble(&ok);
+            if(!ok){
+                error_boxMsg("Upper bound must be a number");
+                return;
+            }
+            if(firstLowerBound > firstUpperBound){
+                error_boxMsg("Upper bound needs to be greater then lower bound");
+                return;
+            }
+            double secondLowerBound = ui->secondLowerBoundLineEdit->text().toDouble(&ok);
+            if(!ok){
+                error_boxMsg("Lower bound must be a number");
+                return;
+            }
+            double secondUpperBound = ui->secondUpperBoundLineEdit->text().toDouble(&ok);
+            if(!ok){
+                error_boxMsg("Upper bound must be a number");
+                return;
+            }
+            if(secondLowerBound > secondUpperBound){
+                error_boxMsg("Upper bound needs to be greater then lower bound");
+                return;
+            }
             double calculatedValue = function.twoVariableIntegral(firstLowerBound, firstUpperBound, secondLowerBound, secondUpperBound);
             ui->resultIntegralLineEdit->setText(QString::number(calculatedValue));
         }
@@ -279,6 +331,8 @@ void MainWindow::on_integralValueFunction_clicked()
     catch (const char *message)
     {
         std::cout << message << std::endl;
+        error_boxMsg("Function not valid");
+        return;
     }
 }
 void MainWindow::on_enterDimensionButtonA_clicked()
@@ -320,7 +374,7 @@ void MainWindow::read_matrix(int indicator)
         n = A.rows();
         m = A.cols();
     }else{
-        n=B.rows();
+        n = B.rows();
         m = B.cols();
     }
     QString text;
@@ -407,6 +461,7 @@ void MainWindow::on_matrixPlusButton_clicked()
 {
     if (ui->matrixInputPlainTextEditA->toPlainText().isEmpty() || ui->matrixInputPlainTextEditB->toPlainText().isEmpty())
     {
+        error_boxMsg("Enter matrices");
         return;
     }
     if (A.rows() == B.rows() && A.cols() == B.cols() && A.rows() != 0)
@@ -414,6 +469,9 @@ void MainWindow::on_matrixPlusButton_clicked()
         Matrix plus = A + B;
         ui->matrixOutputPlainTextEdit->appendPlainText("A+B: ");
         ui->matrixOutputPlainTextEdit->appendPlainText(plus.matrix_format());
+    }else{
+        error_boxMsg("Matrix A needs to be same the dimension as matrix B");
+        return;
     }
 
 }
@@ -422,6 +480,7 @@ void MainWindow::on_matrixMinusButton_clicked()
 {
     if (ui->matrixInputPlainTextEditA->toPlainText().isEmpty() || ui->matrixInputPlainTextEditB->toPlainText().isEmpty())
     {
+        error_boxMsg("Enter matrices");
         return;
     }
     if (A.rows() == B.rows() && A.cols() == B.cols() && A.rows() != 0)
@@ -429,6 +488,9 @@ void MainWindow::on_matrixMinusButton_clicked()
         Matrix minus = A - B;
         ui->matrixOutputPlainTextEdit->appendPlainText("A-B: ");
         ui->matrixOutputPlainTextEdit->appendPlainText(minus.matrix_format());
+    }else{
+        error_boxMsg("Matrix A needs to be the same dimension as matrix B");
+        return;
     }
 
 }
@@ -436,9 +498,9 @@ void MainWindow::on_matrixMinusButton_clicked()
 void MainWindow::on_matrixMultiplyButton_clicked()
 {
 
-
     if (ui->matrixInputPlainTextEditA->toPlainText().isEmpty() || ui->matrixInputPlainTextEditB->toPlainText().isEmpty())
     {
+        error_boxMsg("Enter matrices");
         return;
     }
     if (A.cols() == B.rows() && A.rows() != 0 && B.rows() != 0)
@@ -446,6 +508,9 @@ void MainWindow::on_matrixMultiplyButton_clicked()
         Matrix multiply = A * B;
         ui->matrixOutputPlainTextEdit->appendPlainText("A*B: ");
         ui->matrixOutputPlainTextEdit->appendPlainText(multiply.matrix_format());
+    }else{
+        error_boxMsg("Dimension m of matrix A needs to be the same as dimension n of matrix B");
+        return;
     }
 
 }
@@ -456,13 +521,17 @@ void MainWindow::on_determinantButtonA_clicked()
     {
         if (ui->matrixInputPlainTextEditA->toPlainText().isEmpty())
         {
+            error_boxMsg("Enter matrix A");
             return;
         }
         if (A.rows() == 0)
         {
             return;
         }
-
+        if(A.cols() != A.rows()){
+            error_boxMsg("Matrix must be dimension nxn");
+            return;
+        }
         double det = A.det();
         QString det_txt = QString::number(det);
         ui->matrixOutputPlainTextEdit->appendPlainText("Determant of A: " + det_txt);
@@ -476,6 +545,10 @@ void MainWindow::on_determinantButtonA_clicked()
 
         if (B.rows() == 0)
         {
+            return;
+        }
+        if(B.cols() != B.rows()){
+            error_boxMsg("Matrix must be dimension nxn");
             return;
         }
 
@@ -492,10 +565,15 @@ void MainWindow::on_inverseButtonA_clicked()
     {
         if (ui->matrixInputPlainTextEditA->toPlainText().isEmpty())
         {
+            error_boxMsg("Matrix A must be entered");
             return;
         }
         if (A.rows() == 0)
         {
+            return;
+        }
+        if(A.cols() != A.rows()){
+            error_boxMsg("Matrix must be dimension nxn");
             return;
         }
         if (A.det() == 0.0)
@@ -512,10 +590,15 @@ void MainWindow::on_inverseButtonA_clicked()
     {
         if (ui->matrixInputPlainTextEditB->toPlainText().isEmpty())
         {
+            error_boxMsg("Matrix B must be entered");
             return;
         }
         if (B.rows() == 0)
         {
+            return;
+        }
+        if(B.cols() != B.rows()){
+            error_boxMsg("Matrix must be dimension nxn");
             return;
         }
         if (B.det() == 0.0)
@@ -537,6 +620,7 @@ void MainWindow::on_transposeButtonA_clicked()
     {
         if (ui->matrixInputPlainTextEditA->toPlainText().isEmpty())
         {
+            error_boxMsg("Matrix A needs to be entered");
             return;
         }
         if (A.rows() == 0)
@@ -552,6 +636,7 @@ void MainWindow::on_transposeButtonA_clicked()
     {
         if (ui->matrixInputPlainTextEditB->toPlainText().isEmpty())
         {
+            error_boxMsg("Matrix B must be entered");
             return;
         }
         if (B.rows() == 0)
@@ -571,6 +656,7 @@ void MainWindow::on_multiplyByButtonA_clicked()
     {
         if (ui->multiplyBylineEditA->text().isEmpty())
         {
+            error_boxMsg("Enter a multiply number");
             return;
         }
         QString num_txt = ui->multiplyBylineEditA->text();
@@ -589,6 +675,7 @@ void MainWindow::on_multiplyByButtonA_clicked()
     {
         if (ui->multiplyBylineEditA->text().isEmpty())
         {
+            error_boxMsg("Enter a multiply number");
             return;
         }
         QString num_txt = ui->multiplyBylineEditA->text();
@@ -611,9 +698,11 @@ void MainWindow::on_raisePowerButtonA_clicked()
     {
         if (ui->raisePowerlineEditA->text().isEmpty())
         {
+            error_boxMsg("Enter a raise power number");
             return;
         }
         if(A.rows() != A.cols()){
+            error_boxMsg("Matrix must be dimnesion nxn");
             return;
         }
         QString num_txt = ui->raisePowerlineEditA->text();
@@ -621,7 +710,7 @@ void MainWindow::on_raisePowerButtonA_clicked()
         double num = num_txt.toDouble(&ok);
         if (ok == false)
         {
-            error_boxMsg("Multiply must be a number");
+            error_boxMsg("Raise power must be a number");
             return;
         }
         Matrix tmp = A.pow(num);
@@ -632,9 +721,12 @@ void MainWindow::on_raisePowerButtonA_clicked()
     {
         if (ui->raisePowerlineEditA->text().isEmpty())
         {
+            error_boxMsg("Enter a raise power number");
             return;
         }
         if(B.rows() != B.cols()){
+            error_boxMsg("Matrix must be dimnesion nxn");
+
             return;
         }
         QString num_txt = ui->raisePowerlineEditA->text();
@@ -642,7 +734,7 @@ void MainWindow::on_raisePowerButtonA_clicked()
         double num = num_txt.toDouble(&ok);
         if (ok == false)
         {
-            error_boxMsg("Multiply must be a number");
+            error_boxMsg("Raise power must be a number");
             return;
         }
         Matrix tmp = B.pow(num);
@@ -699,13 +791,24 @@ void MainWindow::on_clearDerivativeButton_clicked()
 
 void MainWindow::on_calculateDerivativeButton_clicked()
 {
+    if(ui->enterFunctionDerivativeLineEdit->text().isEmpty() || ui->enterPointLineEdit->text().isEmpty()){
+        error_boxMsg("You must enter function and point");
+        return;
+    }
     QString enteredText = ui->enterFunctionDerivativeLineEdit->text();
 
     try {
        Function function(enteredText);
-
-       double point = ui->enterPointLineEdit->text().toDouble();
+       QString pointText = ui->enterPointLineEdit->text();
+       bool ok;
+       double point = pointText.toDouble(&ok);
+       if(!ok){
+           error_boxMsg("Point must be a number");
+           return;
+       }
+       //double point = ui->enterPointLineEdit->text().toDouble();
        double result;
+
 
        if (ui->firstDerivativeRadioButton->isChecked()) {
            result = function.firstDerivative(point);
@@ -718,6 +821,8 @@ void MainWindow::on_calculateDerivativeButton_clicked()
 
     } catch (const char *message) {
         std::cout << message << std::endl;
+        error_boxMsg(message);
+        return;
     }
 }
 /*
@@ -810,18 +915,6 @@ void MainWindow::on_enterMatrixButtonB_clicked()
 {
     read_matrix(2);
 }
-/*
-void MainWindow::on_addMatrixButton_clicked()
-{
-    ui->dimMLabelB->show();
-    ui->dimNLabelB->show();
-    ui->dimMLineEditB->show();
-    ui->dimNLineEditB->show();
-    ui->enterDimensionButtonB->show();
-    ui->matrixPlusButton->show();
-    ui->matrixMinusButton->show();
-    ui->matrixMultiplyButton->show();
-}*/
 
 void MainWindow::on_clearMatrixButton_clicked()
 {
@@ -885,6 +978,10 @@ void MainWindow::on_LUDecompButton_clicked()
         {
             return;
         }
+        if(A.cols() != A.rows()){
+            error_boxMsg("Matrix must be dimension nxn");
+            return;
+        }
 
         Matrix L = A.getL();
         Matrix U = A.getU();
@@ -901,6 +998,10 @@ void MainWindow::on_LUDecompButton_clicked()
         {
             return;
         }
+        if(B.cols() != B.rows()){
+            error_boxMsg("Matrix must be dimension nxn");
+            return;
+        }
 
         Matrix L = B.getL();
         Matrix U = B.getU();
@@ -911,6 +1012,10 @@ void MainWindow::on_LUDecompButton_clicked()
 
 void MainWindow::on_plotFunctionButton_clicked()
 {
+    if(ui->enterFunctionPlottingLineEdit->text().isEmpty()){
+        error_boxMsg("Enter a function");
+        return;
+    }
     QString enteredFunction = ui->enterFunctionPlottingLineEdit->text();
     int number_of_variables = ui->oneVariablePlottingRadioButton->isChecked() ? 1 : 2;
 
@@ -1393,7 +1498,7 @@ void MainWindow::on_clearGeomtryButton_clicked()
 void MainWindow::on_parallelogramButton_clicked()
 {
     clear_geometry_page();
-    ui->check1radioButton->setText("Circumreference");
+    ui->check1radioButton->setText("Perimeter");
     ui->check2radioButton->setText("Area");
     ui->check1radioButton->show();
     ui->check2radioButton->show();
@@ -1485,7 +1590,7 @@ void MainWindow::calculateAreaParallelogram(){
 void MainWindow::on_rectangleButton_clicked()
 {
     clear_geometry_page();
-    ui->check1radioButton->setText("Circumreference");
+    ui->check1radioButton->setText("Perimeter");
     ui->check2radioButton->setText("Area");
     ui->check1radioButton->show();
     ui->check2radioButton->show();
@@ -1507,7 +1612,7 @@ void MainWindow::on_rectangleButton_clicked()
 void MainWindow::on_trapezoidButton_clicked()
 {
     clear_geometry_page();
-    ui->check1radioButton->setText("Circumreference");
+    ui->check1radioButton->setText("Perimeter");
     ui->check2radioButton->setText("Area");
     ui->check1radioButton->show();
     ui->check2radioButton->show();
@@ -1614,7 +1719,7 @@ void MainWindow::calculateTrapezoid(){
 void MainWindow::on_triangleButton_clicked()
 {
     clear_geometry_page();
-    ui->check1radioButton->setText("Circumreference");
+    ui->check1radioButton->setText("Perimeter");
     ui->check2radioButton->setText("Area");
     ui->check1radioButton->show();
     ui->check2radioButton->show();
@@ -1688,7 +1793,7 @@ void MainWindow::calculateTriangle(){
 void MainWindow::on_squareButton_clicked()
 {
     clear_geometry_page();
-    ui->check1radioButton->setText("Circumreference");
+    ui->check1radioButton->setText("Perimeter");
     ui->check2radioButton->setText("Area");
     ui->check1radioButton->show();
     ui->check2radioButton->show();

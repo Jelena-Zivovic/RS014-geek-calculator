@@ -18,7 +18,7 @@ Biblioteke:
    + Qt5
    + MathGL
    + Flex
-   + YACC
+   + Bison
    + Eigen
    + QCustomPlot
    + Q3DSurface

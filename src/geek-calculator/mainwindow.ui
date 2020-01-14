@@ -25,6 +25,12 @@
   <property name="windowTitle">
    <string>MainWindow</string>
   </property>
+  <property name="styleSheet">
+   <string notr="true">QMainWindow {
+    background-color: rgb(179, 204, 255);
+    
+}</string>
+  </property>
   <widget class="QWidget" name="centralwidget">
    <property name="minimumSize">
     <size>
@@ -38,6 +44,13 @@
      <height>750</height>
     </size>
    </property>
+   <property name="palette">
+    <palette>
+     <active/>
+     <inactive/>
+     <disabled/>
+    </palette>
+   </property>
    <widget class="QStackedWidget" name="stackedWidgets">
     <property name="geometry">
      <rect>
@@ -47,11 +60,17 @@
       <height>721</height>
      </rect>
     </property>
+    <property name="sizePolicy">
+     <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+      <horstretch>1</horstretch>
+      <verstretch>1</verstretch>
+     </sizepolicy>
+    </property>
     <property name="cursor">
      <cursorShape>ArrowCursor</cursorShape>
     </property>
     <property name="currentIndex">
-     <number>1</number>
+     <number>4</number>
     </property>
     <widget class="QWidget" name="mainPage">
      <property name="maximumSize">
@@ -92,6 +111,12 @@
         <pointsize>25</pointsize>
        </font>
       </property>
+      <property name="styleSheet">
+       <string notr="true">QPushButton {
+    background-color: rgb(102, 153, 255);
+    
+}</string>
+      </property>
       <property name="text">
        <string>basic</string>
       </property>
@@ -119,6 +144,12 @@
         <pointsize>25</pointsize>
        </font>
       </property>
+      <property name="styleSheet">
+       <string notr="true">QPushButton {
+    background-color: rgb(102, 153, 255);
+    
+}</string>
+      </property>
       <property name="text">
        <string>functions</string>
       </property>
@@ -136,6 +167,12 @@
        <font>
         <pointsize>25</pointsize>
        </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QPushButton {
+    background-color: rgb(102, 153, 255);
+    
+}</string>
       </property>
       <property name="text">
        <string>matrix</string>
@@ -161,6 +198,12 @@
         <pointsize>25</pointsize>
        </font>
       </property>
+      <property name="styleSheet">
+       <string notr="true">QPushButton {
+    background-color: rgb(102, 153, 255);
+    
+}</string>
+      </property>
       <property name="text">
        <string>geometry</string>
       </property>
@@ -182,6 +225,14 @@
         <height>201</height>
        </rect>
       </property>
+      <property name="styleSheet">
+       <string notr="true">
+QPlainTextEdit{
+    background-color:rgb(153, 187, 255);
+	 vertical-align: middle;
+    
+}</string>
+      </property>
      </widget>
      <widget class="QPlainTextEdit" name="matrixOutputPlainTextEdit">
       <property name="geometry">
@@ -192,8 +243,16 @@
         <height>241</height>
        </rect>
       </property>
+      <property name="layoutDirection">
+       <enum>Qt::LeftToRight</enum>
+      </property>
       <property name="styleSheet">
-       <string notr="true">  vertical-align: middle;</string>
+       <string notr="true">
+QPlainTextEdit{
+    background-color:rgb(153, 187, 255);
+	 vertical-align: middle;
+    
+}</string>
       </property>
      </widget>
      <widget class="QPlainTextEdit" name="matrixInputPlainTextEditA">
@@ -204,6 +263,14 @@
         <width>191</width>
         <height>201</height>
        </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">
+QPlainTextEdit{
+    background-color:rgb(153, 187, 255);
+	 vertical-align: middle;
+    
+}</string>
       </property>
      </widget>
      <widget class="QWidget" name="gridLayoutWidget">
@@ -218,44 +285,45 @@
       <layout class="QGridLayout" name="matrixButtonsGrid">
        <item row="5" column="0">
         <widget class="QPushButton" name="transposeButtonA">
+         <property name="styleSheet">
+          <string notr="true">QPushButton {
+		background-color: rgb(51, 119, 255);
+}</string>
+         </property>
          <property name="text">
           <string>Transpose</string>
          </property>
         </widget>
        </item>
-       <item row="1" column="0">
-        <widget class="QPushButton" name="matrixMinusButton">
-         <property name="text">
-          <string>A - B</string>
-         </property>
-        </widget>
-       </item>
-       <item row="2" column="0">
-        <widget class="QPushButton" name="matrixMultiplyButton">
-         <property name="text">
-          <string>A * B</string>
-         </property>
-        </widget>
-       </item>
        <item row="5" column="1">
         <widget class="QPushButton" name="matrixRankButton">
+         <property name="styleSheet">
+          <string notr="true">QPushButton {
+		background-color: rgb(51, 119, 255);
+}</string>
+         </property>
          <property name="text">
           <string>Rank</string>
          </property>
         </widget>
        </item>
-       <item row="0" column="0">
-        <widget class="QPushButton" name="matrixPlusButton">
-         <property name="text">
-          <string>A + B</string>
+       <item row="6" column="1">
+        <widget class="QLineEdit" name="raisePowerlineEditA">
+         <property name="styleSheet">
+          <string notr="true">QLineEdit {
+    background-color: rgb(153, 187, 255);
+    
+}</string>
          </property>
         </widget>
        </item>
-       <item row="6" column="1">
-        <widget class="QLineEdit" name="raisePowerlineEditA"/>
-       </item>
        <item row="4" column="1">
         <widget class="QPushButton" name="inverseButtonA">
+         <property name="styleSheet">
+          <string notr="true">QPushButton {
+		background-color: rgb(51, 119, 255);
+}</string>
+         </property>
          <property name="text">
           <string>Inverse</string>
          </property>
@@ -263,6 +331,11 @@
        </item>
        <item row="6" column="0">
         <widget class="QPushButton" name="raisePowerButtonA">
+         <property name="styleSheet">
+          <string notr="true">QPushButton {
+		background-color: rgb(51, 119, 255);
+}</string>
+         </property>
          <property name="text">
           <string>Raise to power of</string>
          </property>
@@ -270,6 +343,11 @@
        </item>
        <item row="4" column="0">
         <widget class="QPushButton" name="determinantButtonA">
+         <property name="styleSheet">
+          <string notr="true">QPushButton {
+		background-color: rgb(51, 119, 255);
+}</string>
+         </property>
          <property name="text">
           <string>Determinant</string>
          </property>
@@ -277,6 +355,11 @@
        </item>
        <item row="8" column="0" colspan="2">
         <widget class="QPushButton" name="LUDecompButton">
+         <property name="styleSheet">
+          <string notr="true">QPushButton {
+		background-color: rgb(51, 119, 255);
+}</string>
+         </property>
          <property name="text">
           <string>LU-decomposition</string>
          </property>
@@ -284,16 +367,47 @@
        </item>
        <item row="7" column="0">
         <widget class="QPushButton" name="multiplyByButtonA">
+         <property name="styleSheet">
+          <string notr="true">QPushButton {
+		background-color: rgb(51, 119, 255);
+}</string>
+         </property>
          <property name="text">
           <string>Multiply by</string>
          </property>
         </widget>
        </item>
        <item row="7" column="1">
-        <widget class="QLineEdit" name="multiplyBylineEditA"/>
+        <widget class="QLineEdit" name="multiplyBylineEditA">
+         <property name="styleSheet">
+          <string notr="true">QLineEdit {
+    background-color: rgb(153, 187, 255);
+    
+}</string>
+         </property>
+        </widget>
        </item>
        <item row="3" column="0">
         <widget class="QRadioButton" name="ARadioButton">
+         <property name="styleSheet">
+          <string notr="true">QRadioButton::indicator::unchecked{ 
+border: 1px solid; 
+border-color: rgb(132,132,132);
+border-radius: 5px;
+background-color: white; 
+width: 11px; 
+height: 11px; 
+}
+
+QRadioButton::indicator::checked{ 
+border: 3px solid; 
+border-color: white;
+border-radius: 6px;
+background-color: rgb(0,116,188); 
+width: 7px; 
+height: 7px; 
+}</string>
+         </property>
          <property name="text">
           <string>Matrix A</string>
          </property>
@@ -301,8 +415,50 @@
        </item>
        <item row="3" column="1">
         <widget class="QRadioButton" name="BRadioButton">
+         <property name="styleSheet">
+          <string notr="true"/>
+         </property>
          <property name="text">
           <string>Matrix B</string>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="0" colspan="2">
+        <widget class="QPushButton" name="matrixPlusButton">
+         <property name="styleSheet">
+          <string notr="true">QPushButton {
+    background-color: rgb(102, 153, 255);
+    
+}</string>
+         </property>
+         <property name="text">
+          <string>A + B</string>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="0" colspan="2">
+        <widget class="QPushButton" name="matrixMinusButton">
+         <property name="styleSheet">
+          <string notr="true">QPushButton {
+    background-color: rgb(102, 153, 255);
+    
+}</string>
+         </property>
+         <property name="text">
+          <string>A - B</string>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="0" colspan="2">
+        <widget class="QPushButton" name="matrixMultiplyButton">
+         <property name="styleSheet">
+          <string notr="true">QPushButton {
+    background-color: rgb(102, 153, 255);
+    
+}</string>
+         </property>
+         <property name="text">
+          <string>A * B</string>
          </property>
         </widget>
        </item>
@@ -320,6 +476,12 @@
       <layout class="QVBoxLayout" name="matrixEnterBButtonsBLayout">
        <item>
         <widget class="QPushButton" name="enterDimensionButtonB">
+         <property name="styleSheet">
+          <string notr="true">QPushButton {
+    background-color: rgb(102, 153, 255);
+    
+}</string>
+         </property>
          <property name="text">
           <string>Enter Dim B</string>
          </property>
@@ -327,6 +489,12 @@
        </item>
        <item>
         <widget class="QPushButton" name="enterMatrixButtonB">
+         <property name="styleSheet">
+          <string notr="true">QPushButton {
+    background-color: rgb(102, 153, 255);
+    
+}</string>
+         </property>
          <property name="text">
           <string>Enter Matrix B</string>
          </property>
@@ -352,7 +520,14 @@
         </widget>
        </item>
        <item>
-        <widget class="QLineEdit" name="dimNLineEditB"/>
+        <widget class="QLineEdit" name="dimNLineEditB">
+         <property name="styleSheet">
+          <string notr="true">QLineEdit {
+    background-color: rgb(153, 187, 255);
+    
+}</string>
+         </property>
+        </widget>
        </item>
        <item alignment="Qt::AlignHCenter">
         <widget class="QLabel" name="dimMLabelB">
@@ -362,7 +537,14 @@
         </widget>
        </item>
        <item alignment="Qt::AlignHCenter|Qt::AlignVCenter">
-        <widget class="QLineEdit" name="dimMLineEditB"/>
+        <widget class="QLineEdit" name="dimMLineEditB">
+         <property name="styleSheet">
+          <string notr="true">QLineEdit {
+    background-color: rgb(153, 187, 255);
+    
+}</string>
+         </property>
+        </widget>
        </item>
       </layout>
      </widget>
@@ -378,6 +560,12 @@
       <layout class="QVBoxLayout" name="matrixEnterButtonsALayout">
        <item>
         <widget class="QPushButton" name="enterDimensionButtonA">
+         <property name="styleSheet">
+          <string notr="true">QPushButton {
+    background-color: rgb(102, 153, 255);
+    
+}</string>
+         </property>
          <property name="text">
           <string>Enter Dim A</string>
          </property>
@@ -385,6 +573,12 @@
        </item>
        <item>
         <widget class="QPushButton" name="enterMatrixButtonA">
+         <property name="styleSheet">
+          <string notr="true">QPushButton {
+    background-color: rgb(102, 153, 255);
+    
+}</string>
+         </property>
          <property name="text">
           <string>Enter Matrix A</string>
          </property>
@@ -410,7 +604,14 @@
         </widget>
        </item>
        <item alignment="Qt::AlignHCenter|Qt::AlignVCenter">
-        <widget class="QLineEdit" name="dimNLineEditA"/>
+        <widget class="QLineEdit" name="dimNLineEditA">
+         <property name="styleSheet">
+          <string notr="true">QLineEdit {
+    background-color: rgb(153, 187, 255);
+    
+}</string>
+         </property>
+        </widget>
        </item>
        <item alignment="Qt::AlignHCenter">
         <widget class="QLabel" name="dimMLabelA">
@@ -420,7 +621,14 @@
         </widget>
        </item>
        <item alignment="Qt::AlignHCenter|Qt::AlignVCenter">
-        <widget class="QLineEdit" name="dimMLineEditA"/>
+        <widget class="QLineEdit" name="dimMLineEditA">
+         <property name="styleSheet">
+          <string notr="true">QLineEdit {
+    background-color: rgb(153, 187, 255);
+    
+}</string>
+         </property>
+        </widget>
        </item>
       </layout>
      </widget>
@@ -436,6 +644,12 @@
       <layout class="QHBoxLayout" name="matrixClearBackLayout">
        <item>
         <widget class="QPushButton" name="goFromMatrixToMainPageButton">
+         <property name="styleSheet">
+          <string notr="true">QPushButton {
+    background-color: rgb(102, 153, 255);
+    
+}</string>
+         </property>
          <property name="text">
           <string>Back</string>
          </property>
@@ -443,6 +657,12 @@
        </item>
        <item>
         <widget class="QPushButton" name="clearMatrixButton">
+         <property name="styleSheet">
+          <string notr="true">QPushButton {
+    background-color: rgb(102, 153, 255);
+    
+}</string>
+         </property>
          <property name="text">
           <string>Clear</string>
          </property>
@@ -472,6 +692,12 @@
         <pointsize>17</pointsize>
        </font>
       </property>
+      <property name="styleSheet">
+       <string notr="true">QTextEdit {
+    background-color: rgb(153, 187, 255);
+    
+}</string>
+      </property>
      </widget>
      <widget class="QTextEdit" name="enterFunctionToCalculateValueTextEdit">
       <property name="geometry">
@@ -490,6 +716,12 @@
       <property name="whatsThis">
        <string/>
       </property>
+      <property name="styleSheet">
+       <string notr="true">QTextEdit {
+    background-color: rgb(153, 187, 255);
+    
+}</string>
+      </property>
      </widget>
      <widget class="QLineEdit" name="fromNumberLineEdit">
       <property name="geometry">
@@ -499,6 +731,12 @@
         <width>113</width>
         <height>25</height>
        </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QLineEdit {
+    background-color: rgb(153, 187, 255);
+    
+}</string>
       </property>
      </widget>
      <widget class="QLineEdit" name="toLineEdit">
@@ -510,6 +748,12 @@
         <height>25</height>
        </rect>
       </property>
+      <property name="styleSheet">
+       <string notr="true">QLineEdit {
+    background-color: rgb(153, 187, 255);
+    
+}</string>
+      </property>
      </widget>
      <widget class="QPushButton" name="convertButton">
       <property name="geometry">
@@ -519,6 +763,12 @@
         <width>89</width>
         <height>25</height>
        </rect>
+      </property>
+      <property name="styleSheet">
+       <string>QPushButton {
+    background-color: rgb(102, 153, 255);
+    
+}</string>
       </property>
       <property name="text">
        <string>Convert</string>
@@ -551,6 +801,25 @@
          <height>23</height>
         </rect>
        </property>
+       <property name="styleSheet">
+        <string notr="true">QRadioButton::indicator::unchecked{ 
+border: 1px solid; 
+border-color: rgb(132,132,132);
+border-radius: 5px;
+background-color: white; 
+width: 11px; 
+height: 11px; 
+}
+
+QRadioButton::indicator::checked{ 
+border: 3px solid; 
+border-color: white;
+border-radius: 6px;
+background-color: rgb(0,116,188); 
+width: 7px; 
+height: 7px; 
+}</string>
+       </property>
        <property name="text">
         <string>Decimal</string>
        </property>
@@ -564,6 +833,25 @@
          <height>23</height>
         </rect>
        </property>
+       <property name="styleSheet">
+        <string notr="true">QRadioButton::indicator::unchecked{ 
+border: 1px solid; 
+border-color: rgb(132,132,132);
+border-radius: 5px;
+background-color: white; 
+width: 11px; 
+height: 11px; 
+}
+
+QRadioButton::indicator::checked{ 
+border: 3px solid; 
+border-color: white;
+border-radius: 6px;
+background-color: rgb(0,116,188); 
+width: 7px; 
+height: 7px; 
+}</string>
+       </property>
        <property name="text">
         <string>Binary</string>
        </property>
@@ -576,6 +864,25 @@
          <width>112</width>
          <height>23</height>
         </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QRadioButton::indicator::unchecked{ 
+border: 1px solid; 
+border-color: rgb(132,132,132);
+border-radius: 5px;
+background-color: white; 
+width: 11px; 
+height: 11px; 
+}
+
+QRadioButton::indicator::checked{ 
+border: 3px solid; 
+border-color: white;
+border-radius: 6px;
+background-color: rgb(0,116,188); 
+width: 7px; 
+height: 7px; 
+}</string>
        </property>
        <property name="text">
         <string>Hex</string>
@@ -609,6 +916,25 @@
          <height>23</height>
         </rect>
        </property>
+       <property name="styleSheet">
+        <string notr="true">QRadioButton::indicator::unchecked{ 
+border: 1px solid; 
+border-color: rgb(132,132,132);
+border-radius: 5px;
+background-color: white; 
+width: 11px; 
+height: 11px; 
+}
+
+QRadioButton::indicator::checked{ 
+border: 3px solid; 
+border-color: white;
+border-radius: 6px;
+background-color: rgb(0,116,188); 
+width: 7px; 
+height: 7px; 
+}</string>
+       </property>
        <property name="text">
         <string>Decimal</string>
        </property>
@@ -622,6 +948,25 @@
          <height>23</height>
         </rect>
        </property>
+       <property name="styleSheet">
+        <string notr="true">QRadioButton::indicator::unchecked{ 
+border: 1px solid; 
+border-color: rgb(132,132,132);
+border-radius: 5px;
+background-color: white; 
+width: 11px; 
+height: 11px; 
+}
+
+QRadioButton::indicator::checked{ 
+border: 3px solid; 
+border-color: white;
+border-radius: 6px;
+background-color: rgb(0,116,188); 
+width: 7px; 
+height: 7px; 
+}</string>
+       </property>
        <property name="text">
         <string>Binary</string>
        </property>
@@ -634,6 +979,25 @@
          <width>112</width>
          <height>21</height>
         </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QRadioButton::indicator::unchecked{ 
+border: 1px solid; 
+border-color: rgb(132,132,132);
+border-radius: 5px;
+background-color: white; 
+width: 11px; 
+height: 11px; 
+}
+
+QRadioButton::indicator::checked{ 
+border: 3px solid; 
+border-color: white;
+border-radius: 6px;
+background-color: rgb(0,116,188); 
+width: 7px; 
+height: 7px; 
+}</string>
        </property>
        <property name="text">
         <string>Hex</string>
@@ -654,7 +1018,7 @@
         <widget class="QPushButton" name="number1Button">
          <property name="styleSheet">
           <string notr="true">QPushButton {
-    background-color: rgb(224,224, 224);
+    background-color: rgb(102, 153, 255);
     
 }</string>
          </property>
@@ -667,7 +1031,7 @@
         <widget class="QPushButton" name="number5Button">
          <property name="styleSheet">
           <string notr="true">QPushButton {
-    background-color: rgb(224,224, 224);
+    background-color: rgb(102, 153, 255);
     
 }</string>
          </property>
@@ -680,7 +1044,7 @@
         <widget class="QPushButton" name="number4Button">
          <property name="styleSheet">
           <string notr="true">QPushButton {
-    background-color: rgb(224,224, 224);
+    background-color: rgb(102, 153, 255);
     
 }</string>
          </property>
@@ -693,7 +1057,7 @@
         <widget class="QPushButton" name="number8Button">
          <property name="styleSheet">
           <string notr="true">QPushButton {
-    background-color: rgb(224,224, 224);
+    background-color: rgb(102, 153, 255);
     
 }</string>
          </property>
@@ -706,7 +1070,7 @@
         <widget class="QPushButton" name="number2Button">
          <property name="styleSheet">
           <string notr="true">QPushButton {
-    background-color: rgb(224,224, 224);
+    background-color: rgb(102, 153, 255);
     
 }</string>
          </property>
@@ -719,7 +1083,7 @@
         <widget class="QPushButton" name="number6Button">
          <property name="styleSheet">
           <string notr="true">QPushButton {
-    background-color: rgb(224,224, 224);
+    background-color: rgb(102, 153, 255);
     
 }</string>
          </property>
@@ -732,7 +1096,7 @@
         <widget class="QPushButton" name="number3Button">
          <property name="styleSheet">
           <string notr="true">QPushButton {
-    background-color: rgb(224,224, 224);
+    background-color: rgb(102, 153, 255);
     
 }</string>
          </property>
@@ -745,7 +1109,7 @@
         <widget class="QPushButton" name="number0Button">
          <property name="styleSheet">
           <string notr="true">QPushButton {
-    background-color: rgb(224,224, 224);
+    background-color: rgb(102, 153, 255);
     
 }</string>
          </property>
@@ -758,7 +1122,7 @@
         <widget class="QPushButton" name="pushButton_7">
          <property name="styleSheet">
           <string notr="true">QPushButton {
-    background-color: rgb(192,192,192);
+    background-color: rgb(51,119,255);
     
 }</string>
          </property>
@@ -771,7 +1135,7 @@
         <widget class="QPushButton" name="number7Button">
          <property name="styleSheet">
           <string notr="true">QPushButton {
-    background-color: rgb(224,224, 224);
+    background-color: rgb(102, 153, 255);
     
 }</string>
          </property>
@@ -784,7 +1148,7 @@
         <widget class="QPushButton" name="number9Button">
          <property name="styleSheet">
           <string notr="true">QPushButton {
-    background-color: rgb(224,224, 224);
+    background-color: rgb(102, 153, 255);
     
 }</string>
          </property>
@@ -809,7 +1173,7 @@
         <widget class="QPushButton" name="pushButton_9">
          <property name="styleSheet">
           <string notr="true">QPushButton {
-    background-color: rgb(160,160, 160);
+    background-color: rgb(0,85, 255);
     
 }</string>
          </property>
@@ -822,7 +1186,7 @@
         <widget class="QPushButton" name="pushButton_6">
          <property name="styleSheet">
           <string notr="true">QPushButton {
-    background-color: rgb(160,160, 160);
+    background-color: rgb(0,85, 255);
     
 }</string>
          </property>
@@ -835,7 +1199,7 @@
         <widget class="QPushButton" name="pushButton">
          <property name="styleSheet">
           <string notr="true">QPushButton {
-    background-color: rgb(160,160, 160);
+    background-color: rgb(0,85, 255);
     
 }</string>
          </property>
@@ -848,7 +1212,7 @@
         <widget class="QPushButton" name="pushButton_3">
          <property name="styleSheet">
           <string notr="true">QPushButton {
-    background-color: rgb(160,160, 160);
+    background-color: rgb(0,85, 255);
     
 }</string>
          </property>
@@ -861,7 +1225,7 @@
         <widget class="QPushButton" name="pushButton_4">
          <property name="styleSheet">
           <string notr="true">QPushButton {
-    background-color: rgb(160,160, 160);
+    background-color: rgb(0,85, 255);
     
 }</string>
          </property>
@@ -874,7 +1238,7 @@
         <widget class="QPushButton" name="leftBracketButton">
          <property name="styleSheet">
           <string notr="true">QPushButton {
-    background-color: rgb(160,160, 160);
+    background-color: rgb(0,85, 255);
     
 }</string>
          </property>
@@ -887,7 +1251,7 @@
         <widget class="QPushButton" name="plusButton">
          <property name="styleSheet">
           <string notr="true">QPushButton {
-    background-color: rgb(192,192,192);
+    background-color: rgb(51,119,255);
     
 }</string>
          </property>
@@ -900,7 +1264,7 @@
         <widget class="QPushButton" name="pushButton_12">
          <property name="styleSheet">
           <string notr="true">QPushButton {
-    background-color: rgb(160,160, 160);
+    background-color: rgb(0,85, 255);
     
 }</string>
          </property>
@@ -913,7 +1277,7 @@
         <widget class="QPushButton" name="pushButton_8">
          <property name="styleSheet">
           <string notr="true">QPushButton {
-    background-color: rgb(160,160, 160);
+    background-color: rgb(0,85, 255);
     
 }</string>
          </property>
@@ -926,7 +1290,7 @@
         <widget class="QPushButton" name="sinButton">
          <property name="styleSheet">
           <string notr="true">QPushButton {
-    background-color: rgb(160,160, 160);
+    background-color: rgb(0,85, 255);
     
 }</string>
          </property>
@@ -939,7 +1303,7 @@
         <widget class="QPushButton" name="asinButton">
          <property name="styleSheet">
           <string notr="true">QPushButton {
-    background-color: rgb(160,160, 160);
+    background-color: rgb(0,85, 255);
     
 }</string>
          </property>
@@ -952,7 +1316,7 @@
         <widget class="QPushButton" name="pushButton_2">
          <property name="styleSheet">
           <string notr="true">QPushButton {
-    background-color: rgb(160,160, 160);
+    background-color: rgb(0,85, 255);
     
 }</string>
          </property>
@@ -965,7 +1329,7 @@
         <widget class="QPushButton" name="piButton">
          <property name="styleSheet">
           <string notr="true">QPushButton {
-    background-color: rgb(160,160, 160);
+    background-color: rgb(0,85, 255);
     
 }</string>
          </property>
@@ -978,7 +1342,7 @@
         <widget class="QPushButton" name="calculateValueButton">
          <property name="styleSheet">
           <string notr="true">QPushButton {
-    background-color: rgb(192,192,192);
+    background-color: rgb(51,119,255);
     
 }</string>
          </property>
@@ -991,7 +1355,7 @@
         <widget class="QPushButton" name="eButton">
          <property name="styleSheet">
           <string notr="true">QPushButton {
-    background-color: rgb(160,160, 160);
+    background-color: rgb(0,85, 255);
     
 }</string>
          </property>
@@ -1004,7 +1368,7 @@
         <widget class="QPushButton" name="rightBracketButton">
          <property name="styleSheet">
           <string notr="true">QPushButton {
-    background-color: rgb(160,160, 160);
+    background-color: rgb(0,85, 255);
     
 }</string>
          </property>
@@ -1017,7 +1381,7 @@
         <widget class="QPushButton" name="multiplyButton">
          <property name="styleSheet">
           <string notr="true">QPushButton {
-    background-color: rgb(192,192,192);
+    background-color: rgb(51,119,255);
     
 }</string>
          </property>
@@ -1030,7 +1394,7 @@
         <widget class="QPushButton" name="cosButton">
          <property name="styleSheet">
           <string notr="true">QPushButton {
-    background-color: rgb(160,160, 160);
+    background-color: rgb(0,85, 255);
     
 }</string>
          </property>
@@ -1043,7 +1407,7 @@
         <widget class="QPushButton" name="pushButton_11">
          <property name="styleSheet">
           <string notr="true">QPushButton {
-    background-color: rgb(160,160, 160);
+    background-color: rgb(0,85, 255);
     
 }</string>
          </property>
@@ -1056,7 +1420,7 @@
         <widget class="QPushButton" name="pushButton_5">
          <property name="styleSheet">
           <string notr="true">QPushButton {
-    background-color: rgb(192,192,192);
+    background-color: rgb(51,119,255);
     
 }</string>
          </property>
@@ -1069,7 +1433,7 @@
         <widget class="QPushButton" name="minusButton">
          <property name="styleSheet">
           <string notr="true">QPushButton {
-    background-color: rgb(192,192,192);
+    background-color: rgb(51,119,255);
     
 }</string>
          </property>
@@ -1082,7 +1446,7 @@
         <widget class="QPushButton" name="pushButton_10">
          <property name="styleSheet">
           <string notr="true">QPushButton {
-    background-color: rgb(160,160, 160);
+    background-color: rgb(0,85, 255);
     
 }</string>
          </property>
@@ -1095,7 +1459,7 @@
         <widget class="QPushButton" name="deleteCharacterButton">
          <property name="styleSheet">
           <string notr="true">QPushButton {
-    background-color: rgb(130,130,130);
+    background-color: rgb(0,50,255);
     
 }</string>
          </property>
@@ -1108,7 +1472,7 @@
         <widget class="QPushButton" name="tanButton">
          <property name="styleSheet">
           <string notr="true">QPushButton {
-    background-color: rgb(160,160, 160);
+    background-color: rgb(0,85, 255);
     
 }</string>
          </property>
@@ -1131,6 +1495,12 @@
       <layout class="QHBoxLayout" name="horizontalLayout_4">
        <item>
         <widget class="QPushButton" name="goBackToMainPageButton">
+         <property name="styleSheet">
+          <string>QPushButton {
+    background-color: rgb(102, 153, 255);
+    
+}</string>
+         </property>
          <property name="text">
           <string>Back</string>
          </property>
@@ -1138,6 +1508,12 @@
        </item>
        <item>
         <widget class="QPushButton" name="clearCommonCalculatorButton">
+         <property name="styleSheet">
+          <string>QPushButton {
+    background-color: rgb(102, 153, 255);
+    
+}</string>
+         </property>
          <property name="text">
           <string>Clear</string>
          </property>
@@ -1162,6 +1538,34 @@
         <height>711</height>
        </rect>
       </property>
+      <property name="styleSheet">
+       <string notr="true">QTabWidget {
+		background-color: rgb(153,187,255);
+		border: 2px solid rgb(77, 136, 255);
+		 border-top-left-radius: 4px;
+    border-top-right-radius: 4px;
+}
+
+QTabBar::tab {
+    background: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
+                                stop: 0 #E1E1E1, stop: 0.4 #DDDDDD,
+                                stop: 0.5 #D8D8D8, stop: 1.0 #D3D3D3);
+    border: 2px solid  rgb(77, 136, 255);
+    border-bottom-color: rgb(77, 136, 255);
+    border-top-left-radius: 4px;
+    border-top-right-radius: 4px;
+    min-width: 8ex;
+    padding: 2px;
+	background-color: rgb(170,204,255);
+}
+
+QTabBar::tab:selected {
+		background-color: rgb(153,187,255);
+    	
+}
+
+</string>
+      </property>
       <property name="currentIndex">
        <number>2</number>
       </property>
@@ -1174,6 +1578,9 @@
        </property>
        <property name="toolTipDuration">
         <number>0</number>
+       </property>
+       <property name="styleSheet">
+        <string notr="true"/>
        </property>
        <attribute name="title">
         <string>Derivative</string>
@@ -1200,6 +1607,12 @@
           <height>25</height>
          </rect>
         </property>
+        <property name="styleSheet">
+         <string notr="true">QLineEdit {
+    background-color: rgb(153, 187, 255);
+    
+}</string>
+        </property>
        </widget>
        <widget class="QLabel" name="enterPointLabel">
         <property name="geometry">
@@ -1223,6 +1636,12 @@
           <height>25</height>
          </rect>
         </property>
+        <property name="styleSheet">
+         <string notr="true">QLineEdit {
+    background-color: rgb(153, 187, 255);
+    
+}</string>
+        </property>
        </widget>
        <widget class="QPushButton" name="calculateDerivativeButton">
         <property name="geometry">
@@ -1232,6 +1651,11 @@
           <width>89</width>
           <height>25</height>
          </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">QPushButton {
+	background-color: rgb(102,153,255);
+}</string>
         </property>
         <property name="text">
          <string>Calculate</string>
@@ -1259,6 +1683,12 @@
           <height>25</height>
          </rect>
         </property>
+        <property name="styleSheet">
+         <string notr="true">QLineEdit {
+    background-color: rgb(153, 187, 255);
+    
+}</string>
+        </property>
        </widget>
        <widget class="QRadioButton" name="firstDerivativeRadioButton">
         <property name="geometry">
@@ -1268,6 +1698,25 @@
           <width>112</width>
           <height>23</height>
          </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">QRadioButton::indicator::unchecked{ 
+border: 1px solid; 
+border-color: rgb(132,132,132);
+border-radius: 5px;
+background-color: white; 
+width: 11px; 
+height: 11px; 
+}
+
+QRadioButton::indicator::checked{ 
+border: 3px solid; 
+border-color: white;
+border-radius: 6px;
+background-color: rgb(0,116,188); 
+width: 7px; 
+height: 7px; 
+}</string>
         </property>
         <property name="text">
          <string>first</string>
@@ -1281,6 +1730,25 @@
           <width>112</width>
           <height>23</height>
          </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">QRadioButton::indicator::unchecked{ 
+border: 1px solid; 
+border-color: rgb(132,132,132);
+border-radius: 5px;
+background-color: white; 
+width: 11px; 
+height: 11px; 
+}
+
+QRadioButton::indicator::checked{ 
+border: 3px solid; 
+border-color: white;
+border-radius: 6px;
+background-color: rgb(0,116,188); 
+width: 7px; 
+height: 7px; 
+}</string>
         </property>
         <property name="text">
          <string>second</string>
@@ -1298,6 +1766,11 @@
         <layout class="QHBoxLayout" name="horizontalLayout_5">
          <item>
           <widget class="QPushButton" name="goBackToMainPageButton_3">
+           <property name="styleSheet">
+            <string notr="true">QPushButton {
+	background-color: rgb(102,153,255);
+}</string>
+           </property>
            <property name="text">
             <string>Back</string>
            </property>
@@ -1305,6 +1778,11 @@
          </item>
          <item>
           <widget class="QPushButton" name="clearDerivativeButton">
+           <property name="styleSheet">
+            <string notr="true">QPushButton {
+	background-color: rgb(102,153,255);
+}</string>
+           </property>
            <property name="text">
             <string>Clear</string>
            </property>
@@ -1372,6 +1850,12 @@
         <property name="toolTipDuration">
          <number>5000</number>
         </property>
+        <property name="styleSheet">
+         <string notr="true">QLineEdit {
+    background-color: rgb(153, 187, 255);
+    
+}</string>
+        </property>
        </widget>
        <widget class="QRadioButton" name="oneVariableRadioButton">
         <property name="geometry">
@@ -1381,6 +1865,25 @@
           <width>112</width>
           <height>23</height>
          </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">QRadioButton::indicator::unchecked{ 
+border: 1px solid; 
+border-color: rgb(132,132,132);
+border-radius: 5px;
+background-color: white; 
+width: 11px; 
+height: 11px; 
+}
+
+QRadioButton::indicator::checked{ 
+border: 3px solid; 
+border-color: white;
+border-radius: 6px;
+background-color: rgb(0,116,188); 
+width: 7px; 
+height: 7px; 
+}</string>
         </property>
         <property name="text">
          <string>1 variable</string>
@@ -1394,6 +1897,25 @@
           <width>112</width>
           <height>23</height>
          </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">QRadioButton::indicator::unchecked{ 
+border: 1px solid; 
+border-color: rgb(132,132,132);
+border-radius: 5px;
+background-color: white; 
+width: 11px; 
+height: 11px; 
+}
+
+QRadioButton::indicator::checked{ 
+border: 3px solid; 
+border-color: white;
+border-radius: 6px;
+background-color: rgb(0,116,188); 
+width: 7px; 
+height: 7px; 
+}</string>
         </property>
         <property name="text">
          <string>2 variables</string>
@@ -1422,7 +1944,10 @@
          </rect>
         </property>
         <property name="styleSheet">
-         <string notr="true"/>
+         <string notr="true">QLineEdit {
+    background-color: rgb(153, 187, 255);
+    
+}</string>
         </property>
        </widget>
        <widget class="QLabel" name="firstUpperBoundLabel">
@@ -1447,6 +1972,12 @@
           <height>25</height>
          </rect>
         </property>
+        <property name="styleSheet">
+         <string notr="true">QLineEdit {
+    background-color: rgb(153, 187, 255);
+    
+}</string>
+        </property>
        </widget>
        <widget class="QPushButton" name="integralValueFunction">
         <property name="geometry">
@@ -1456,6 +1987,11 @@
           <width>91</width>
           <height>21</height>
          </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">QPushButton {
+	background-color: rgb(102,153,255);
+}</string>
         </property>
         <property name="text">
          <string>Calculate</string>
@@ -1482,6 +2018,12 @@
           <width>221</width>
           <height>25</height>
          </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">QLineEdit {
+    background-color: rgb(153, 187, 255);
+    
+}</string>
         </property>
        </widget>
        <widget class="QLabel" name="secondLowerBoundLabel">
@@ -1519,6 +2061,12 @@
           <height>25</height>
          </rect>
         </property>
+        <property name="styleSheet">
+         <string notr="true">QLineEdit {
+    background-color: rgb(153, 187, 255);
+    
+}</string>
+        </property>
        </widget>
        <widget class="QLineEdit" name="secondUpperBoundLineEdit">
         <property name="geometry">
@@ -1528,6 +2076,12 @@
           <width>113</width>
           <height>25</height>
          </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">QLineEdit {
+    background-color: rgb(153, 187, 255);
+    
+}</string>
         </property>
        </widget>
        <widget class="QWidget" name="horizontalLayoutWidget_5">
@@ -1542,6 +2096,11 @@
         <layout class="QHBoxLayout" name="horizontalLayout_6">
          <item>
           <widget class="QPushButton" name="goBackToMainPage2">
+           <property name="styleSheet">
+            <string notr="true">QPushButton {
+	background-color: rgb(102,153,255);
+}</string>
+           </property>
            <property name="text">
             <string>Back</string>
            </property>
@@ -1549,6 +2108,11 @@
          </item>
          <item>
           <widget class="QPushButton" name="clearIntegralTabButton">
+           <property name="styleSheet">
+            <string notr="true">QPushButton {
+	background-color: rgb(102,153,255);
+}</string>
+           </property>
            <property name="text">
             <string>Clear</string>
            </property>
@@ -1589,6 +2153,11 @@
           <height>25</height>
          </rect>
         </property>
+        <property name="styleSheet">
+         <string notr="true">QLineEdit{
+	background-color: rgb(153,187,255);
+}</string>
+        </property>
        </widget>
        <widget class="QRadioButton" name="oneVariablePlottingRadioButton">
         <property name="geometry">
@@ -1598,6 +2167,25 @@
           <width>112</width>
           <height>23</height>
          </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">QRadioButton::indicator::unchecked{ 
+border: 1px solid; 
+border-color: rgb(132,132,132);
+border-radius: 5px;
+background-color: white; 
+width: 11px; 
+height: 11px; 
+}
+
+QRadioButton::indicator::checked{ 
+border: 3px solid; 
+border-color: white;
+border-radius: 6px;
+background-color: rgb(0,116,188); 
+width: 7px; 
+height: 7px; 
+}</string>
         </property>
         <property name="text">
          <string>1 variable</string>
@@ -1611,6 +2199,25 @@
           <width>112</width>
           <height>23</height>
          </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">QRadioButton::indicator::unchecked{ 
+border: 1px solid; 
+border-color: rgb(132,132,132);
+border-radius: 5px;
+background-color: white; 
+width: 11px; 
+height: 11px; 
+}
+
+QRadioButton::indicator::checked{ 
+border: 3px solid; 
+border-color: white;
+border-radius: 6px;
+background-color: rgb(0,116,188); 
+width: 7px; 
+height: 7px; 
+}</string>
         </property>
         <property name="text">
          <string>2 variables</string>
@@ -1635,6 +2242,11 @@
           <height>25</height>
          </rect>
         </property>
+        <property name="styleSheet">
+         <string notr="true">QPushButton {
+	background-color: rgb(102,153,255);
+}</string>
+        </property>
         <property name="text">
          <string>Plot</string>
         </property>
@@ -1642,8 +2254,8 @@
        <widget class="QLabel" name="xRangeLabel">
         <property name="geometry">
          <rect>
-          <x>90</x>
-          <y>540</y>
+          <x>980</x>
+          <y>210</y>
           <width>91</width>
           <height>21</height>
          </rect>
@@ -1655,10 +2267,10 @@
        <widget class="QLabel" name="yLabelRange">
         <property name="geometry">
          <rect>
-          <x>1010</x>
-          <y>170</y>
-          <width>67</width>
-          <height>17</height>
+          <x>980</x>
+          <y>326</y>
+          <width>81</width>
+          <height>21</height>
          </rect>
         </property>
         <property name="text">
@@ -1668,8 +2280,8 @@
        <widget class="QWidget" name="layoutWidget">
         <property name="geometry">
          <rect>
-          <x>890</x>
-          <y>210</y>
+          <x>850</x>
+          <y>370</y>
           <width>354</width>
           <height>36</height>
          </rect>
@@ -1684,6 +2296,11 @@
          </item>
          <item>
           <widget class="QDoubleSpinBox" name="yLeftRangePlotDoubleSpinBox">
+           <property name="styleSheet">
+            <string notr="true">QDoubleSpinBox {
+	background-color: rgb(153,187,255);
+}</string>
+           </property>
            <property name="minimum">
             <double>-990.000000000000000</double>
            </property>
@@ -1711,6 +2328,11 @@
          </item>
          <item>
           <widget class="QDoubleSpinBox" name="yRangeRightPlotDoubleSpinBox">
+           <property name="styleSheet">
+            <string notr="true">QDoubleSpinBox {
+	background-color: rgb(153,187,255);
+}</string>
+           </property>
            <property name="minimum">
             <double>-990.000000000000000</double>
            </property>
@@ -1721,8 +2343,8 @@
        <widget class="QWidget" name="layoutWidget">
         <property name="geometry">
          <rect>
-          <x>200</x>
-          <y>540</y>
+          <x>850</x>
+          <y>260</y>
           <width>354</width>
           <height>36</height>
          </rect>
@@ -1737,6 +2359,11 @@
          </item>
          <item>
           <widget class="QDoubleSpinBox" name="xRangeLeftPlotDoubleSpinBox">
+           <property name="styleSheet">
+            <string notr="true">QDoubleSpinBox {
+	background-color: rgb(153,187,255);
+}</string>
+           </property>
            <property name="minimum">
             <double>-990.000000000000000</double>
            </property>
@@ -1764,6 +2391,11 @@
          </item>
          <item>
           <widget class="QDoubleSpinBox" name="xRangeRightPlotDoubleSpinBox">
+           <property name="styleSheet">
+            <string notr="true">QDoubleSpinBox {
+	background-color: rgb(153,187,255);
+}</string>
+           </property>
            <property name="minimum">
             <double>-990.000000000000000</double>
            </property>
@@ -1801,6 +2433,15 @@
           <height>23</height>
          </rect>
         </property>
+        <property name="styleSheet">
+         <string notr="true">QCheckBox {
+    width: 13px;
+    height: 13px;
+	
+}
+
+</string>
+        </property>
         <property name="text">
          <string>Combine multiple plots</string>
         </property>
@@ -1808,10 +2449,10 @@
        <widget class="QLabel" name="zLabelRange">
         <property name="geometry">
          <rect>
-          <x>1010</x>
-          <y>330</y>
-          <width>67</width>
-          <height>17</height>
+          <x>980</x>
+          <y>435</y>
+          <width>81</width>
+          <height>21</height>
          </rect>
         </property>
         <property name="text">
@@ -1821,8 +2462,8 @@
        <widget class="QWidget" name="layoutWidget_2">
         <property name="geometry">
          <rect>
-          <x>880</x>
-          <y>370</y>
+          <x>850</x>
+          <y>480</y>
           <width>354</width>
           <height>36</height>
          </rect>
@@ -1837,6 +2478,11 @@
          </item>
          <item>
           <widget class="QDoubleSpinBox" name="zLeftRangePlotDoubleSpinBox">
+           <property name="styleSheet">
+            <string notr="true">QDoubleSpinBox {
+	background-color: rgb(153,187,255);
+}</string>
+           </property>
            <property name="minimum">
             <double>-990.000000000000000</double>
            </property>
@@ -1864,6 +2510,11 @@
          </item>
          <item>
           <widget class="QDoubleSpinBox" name="zRangeRightPlotDoubleSpinBox">
+           <property name="styleSheet">
+            <string notr="true">QDoubleSpinBox {
+	background-color: rgb(153,187,255);
+}</string>
+           </property>
            <property name="minimum">
             <double>-990.000000000000000</double>
            </property>
@@ -1883,6 +2534,11 @@
         <layout class="QHBoxLayout" name="horizontalLayout_7">
          <item>
           <widget class="QPushButton" name="backPlotButton">
+           <property name="styleSheet">
+            <string notr="true">QPushButton {
+	background-color: rgb(102,153,255);
+}</string>
+           </property>
            <property name="text">
             <string>Back</string>
            </property>
@@ -1890,6 +2546,11 @@
          </item>
          <item>
           <widget class="QPushButton" name="clearPlotButton">
+           <property name="styleSheet">
+            <string notr="true">QPushButton {
+	background-color: rgb(102,153,255);
+}</string>
+           </property>
            <property name="text">
             <string>Clear</string>
            </property>
@@ -1930,12 +2591,17 @@
       </property>
       <property name="styleSheet">
        <string notr="true">QPushButton#circleButton {
-	text-align: left;
+	text-align: centar;
 	padding: 0px 10px 0px 10px;
+	
+}
+
+QPushButton {
+		background-color: rgb(102,153,255);
 }</string>
       </property>
       <property name="text">
-       <string>circle</string>
+       <string>circle                       </string>
       </property>
       <property name="iconSize">
        <size>
@@ -1951,37 +2617,6 @@
       <property name="geometry">
        <rect>
         <x>20</x>
-        <y>150</y>
-        <width>151</width>
-        <height>25</height>
-       </rect>
-      </property>
-      <property name="cursor">
-       <cursorShape>PointingHandCursor</cursorShape>
-      </property>
-      <property name="layoutDirection">
-       <enum>Qt::RightToLeft</enum>
-      </property>
-      <property name="styleSheet">
-       <string notr="true">QPushButton#parallelogramButton {
-	text-align: left;
-	padding: 0px 10px 0px 10px;
-}</string>
-      </property>
-      <property name="text">
-       <string>parallelogram</string>
-      </property>
-      <property name="iconSize">
-       <size>
-        <width>18</width>
-        <height>18</height>
-       </size>
-      </property>
-     </widget>
-     <widget class="QPushButton" name="rectangleButton">
-      <property name="geometry">
-       <rect>
-        <x>20</x>
         <y>270</y>
         <width>151</width>
         <height>25</height>
@@ -1994,13 +2629,54 @@
        <enum>Qt::RightToLeft</enum>
       </property>
       <property name="styleSheet">
-       <string notr="true">QPushButton#rectangleButton {
-	text-align: left;
+       <string notr="true">QPushButton#circleButton {
+	text-align: centar;
 	padding: 0px 10px 0px 10px;
+	
+}
+
+QPushButton {
+		background-color: rgb(102,153,255);
 }</string>
       </property>
       <property name="text">
-       <string>rectangle</string>
+       <string>  parallelogram      </string>
+      </property>
+      <property name="iconSize">
+       <size>
+        <width>18</width>
+        <height>18</height>
+       </size>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="rectangleButton">
+      <property name="geometry">
+       <rect>
+        <x>20</x>
+        <y>150</y>
+        <width>151</width>
+        <height>25</height>
+       </rect>
+      </property>
+      <property name="cursor">
+       <cursorShape>PointingHandCursor</cursorShape>
+      </property>
+      <property name="layoutDirection">
+       <enum>Qt::RightToLeft</enum>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QPushButton#circleButton {
+	text-align: centar;
+	padding: 0px 10px 0px 10px;
+	
+}
+
+QPushButton {
+		background-color: rgb(102,153,255);
+}</string>
+      </property>
+      <property name="text">
+       <string>  rectangle           </string>
       </property>
       <property name="iconSize">
        <size>
@@ -2010,93 +2686,6 @@
       </property>
      </widget>
      <widget class="QPushButton" name="trapezoidButton">
-      <property name="geometry">
-       <rect>
-        <x>20</x>
-        <y>390</y>
-        <width>151</width>
-        <height>25</height>
-       </rect>
-      </property>
-      <property name="cursor">
-       <cursorShape>PointingHandCursor</cursorShape>
-      </property>
-      <property name="layoutDirection">
-       <enum>Qt::RightToLeft</enum>
-      </property>
-      <property name="styleSheet">
-       <string notr="true">QPushButton#trapezoidButton {
-	text-align: left;
-	padding: 0px 10px 0px 10px;
-}</string>
-      </property>
-      <property name="text">
-       <string>trapezoid</string>
-      </property>
-      <property name="iconSize">
-       <size>
-        <width>18</width>
-        <height>18</height>
-       </size>
-      </property>
-     </widget>
-     <widget class="QPushButton" name="triangleButton">
-      <property name="geometry">
-       <rect>
-        <x>20</x>
-        <y>510</y>
-        <width>151</width>
-        <height>25</height>
-       </rect>
-      </property>
-      <property name="cursor">
-       <cursorShape>PointingHandCursor</cursorShape>
-      </property>
-      <property name="layoutDirection">
-       <enum>Qt::RightToLeft</enum>
-      </property>
-      <property name="styleSheet">
-       <string notr="true">QPushButton#triangleButton {
-	text-align: left;
-	padding: 0px 10px 0px 10px;
-}</string>
-      </property>
-      <property name="text">
-       <string>triangle</string>
-      </property>
-     </widget>
-     <widget class="QPushButton" name="coneButton">
-      <property name="geometry">
-       <rect>
-        <x>20</x>
-        <y>90</y>
-        <width>151</width>
-        <height>25</height>
-       </rect>
-      </property>
-      <property name="cursor">
-       <cursorShape>PointingHandCursor</cursorShape>
-      </property>
-      <property name="layoutDirection">
-       <enum>Qt::RightToLeft</enum>
-      </property>
-      <property name="styleSheet">
-       <string notr="true">QPushButton#coneButton {
-	text-align: left;
-	padding: 0px 10px 0px 10px;
-}</string>
-      </property>
-      <property name="text">
-       <string>cone</string>
-      </property>
-      <property name="iconSize">
-       <size>
-        <width>30</width>
-        <height>16</height>
-       </size>
-      </property>
-     </widget>
-     <widget class="QPushButton" name="cubeButton">
       <property name="geometry">
        <rect>
         <x>20</x>
@@ -2112,16 +2701,27 @@
        <enum>Qt::RightToLeft</enum>
       </property>
       <property name="styleSheet">
-       <string notr="true">QPushButton#cubeButton {
-	text-align: left;
+       <string notr="true">QPushButton#circleButton {
+	text-align: centar;
 	padding: 0px 10px 0px 10px;
+	
+}
+
+QPushButton {
+		background-color: rgb(102,153,255);
 }</string>
       </property>
       <property name="text">
-       <string>cube</string>
+       <string>  trapezoid           </string>
+      </property>
+      <property name="iconSize">
+       <size>
+        <width>18</width>
+        <height>18</height>
+       </size>
       </property>
      </widget>
-     <widget class="QPushButton" name="cylinderButton">
+     <widget class="QPushButton" name="triangleButton">
       <property name="geometry">
        <rect>
         <x>20</x>
@@ -2137,20 +2737,25 @@
        <enum>Qt::RightToLeft</enum>
       </property>
       <property name="styleSheet">
-       <string notr="true">QPushButton#cylinderButton {
-	text-align: left;
+       <string notr="true">QPushButton#circleButton {
+	text-align: centar;
 	padding: 0px 10px 0px 10px;
+	
+}
+
+QPushButton {
+		background-color: rgb(102,153,255);
 }</string>
       </property>
       <property name="text">
-       <string>cylinder</string>
+       <string>  triangle                    </string>
       </property>
      </widget>
-     <widget class="QPushButton" name="squareButton">
+     <widget class="QPushButton" name="coneButton">
       <property name="geometry">
        <rect>
         <x>20</x>
-        <y>570</y>
+        <y>510</y>
         <width>151</width>
         <height>25</height>
        </rect>
@@ -2162,22 +2767,57 @@
        <enum>Qt::RightToLeft</enum>
       </property>
       <property name="styleSheet">
-       <string notr="true">QPushButton#squareButton {
-	text-align: left;
+       <string notr="true">QPushButton#circleButton {
+	text-align: centar;
 	padding: 0px 10px 0px 10px;
+	
+}
+
+QPushButton {
+		background-color: rgb(102,153,255);
 }</string>
       </property>
       <property name="text">
-       <string>square</string>
+       <string>  cone                         </string>
       </property>
       <property name="iconSize">
        <size>
-        <width>18</width>
-        <height>18</height>
+        <width>30</width>
+        <height>16</height>
        </size>
       </property>
      </widget>
-     <widget class="QPushButton" name="sphereButton">
+     <widget class="QPushButton" name="cubeButton">
+      <property name="geometry">
+       <rect>
+        <x>20</x>
+        <y>390</y>
+        <width>151</width>
+        <height>25</height>
+       </rect>
+      </property>
+      <property name="cursor">
+       <cursorShape>PointingHandCursor</cursorShape>
+      </property>
+      <property name="layoutDirection">
+       <enum>Qt::RightToLeft</enum>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QPushButton#circleButton {
+	text-align: centar;
+	padding: 0px 10px 0px 10px;
+	
+}
+
+QPushButton {
+		background-color: rgb(102,153,255);
+}</string>
+      </property>
+      <property name="text">
+       <string>  cube                         </string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="cylinderButton">
       <property name="geometry">
        <rect>
         <x>20</x>
@@ -2193,13 +2833,84 @@
        <enum>Qt::RightToLeft</enum>
       </property>
       <property name="styleSheet">
-       <string notr="true">QPushButton#sphereButton {
-	text-align: left;
+       <string notr="true">QPushButton#circleButton {
+	text-align: centar;
 	padding: 0px 10px 0px 10px;
+	
+}
+
+QPushButton {
+		background-color: rgb(102,153,255);
 }</string>
       </property>
       <property name="text">
-       <string>sphere</string>
+       <string>  cylinder                  </string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="squareButton">
+      <property name="geometry">
+       <rect>
+        <x>20</x>
+        <y>90</y>
+        <width>151</width>
+        <height>25</height>
+       </rect>
+      </property>
+      <property name="cursor">
+       <cursorShape>PointingHandCursor</cursorShape>
+      </property>
+      <property name="layoutDirection">
+       <enum>Qt::RightToLeft</enum>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QPushButton#circleButton {
+	text-align: centar;
+	padding: 0px 10px 0px 10px;
+	
+}
+
+QPushButton {
+		background-color: rgb(102,153,255);
+}</string>
+      </property>
+      <property name="text">
+       <string>  square                  </string>
+      </property>
+      <property name="iconSize">
+       <size>
+        <width>18</width>
+        <height>18</height>
+       </size>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="sphereButton">
+      <property name="geometry">
+       <rect>
+        <x>20</x>
+        <y>560</y>
+        <width>151</width>
+        <height>25</height>
+       </rect>
+      </property>
+      <property name="cursor">
+       <cursorShape>PointingHandCursor</cursorShape>
+      </property>
+      <property name="layoutDirection">
+       <enum>Qt::RightToLeft</enum>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QPushButton#circleButton {
+	text-align: centar;
+	padding: 0px 10px 0px 10px;
+	
+}
+
+QPushButton {
+		background-color: rgb(102,153,255);
+}</string>
+      </property>
+      <property name="text">
+       <string>  sphere                     </string>
       </property>
      </widget>
      <widget class="QLineEdit" name="enter1LineEdit">
@@ -2210,6 +2921,11 @@
         <width>71</width>
         <height>25</height>
        </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QLineEdit {
+		background-color: rgb(153,187,255);
+}</string>
       </property>
      </widget>
      <widget class="QLabel" name="enterLabel1">
@@ -2247,6 +2963,11 @@
         <height>25</height>
        </rect>
       </property>
+      <property name="styleSheet">
+       <string notr="true">QLineEdit {
+		background-color: rgb(153,187,255);
+}</string>
+      </property>
      </widget>
      <widget class="QPushButton" name="resultGeometryButton">
       <property name="geometry">
@@ -2257,8 +2978,19 @@
         <height>25</height>
        </rect>
       </property>
+      <property name="styleSheet">
+       <string>QPushButton#circleButton {
+	text-align: left;
+	padding: 0px 10px 0px 10px;
+	
+}
+
+QPushButton {
+		background-color: rgb(102,153,255);
+}</string>
+      </property>
       <property name="text">
-       <string>Button</string>
+       <string>Result</string>
       </property>
      </widget>
      <widget class="QLabel" name="resultGeomtryLabel">
@@ -2283,6 +3015,11 @@
         <height>25</height>
        </rect>
       </property>
+      <property name="styleSheet">
+       <string notr="true">QLineEdit {
+		background-color: rgb(153,187,255);
+}</string>
+      </property>
      </widget>
      <widget class="QLabel" name="enterLabel3">
       <property name="geometry">
@@ -2306,6 +3043,11 @@
         <height>25</height>
        </rect>
       </property>
+      <property name="styleSheet">
+       <string notr="true">QLineEdit {
+		background-color: rgb(153,187,255);
+}</string>
+      </property>
      </widget>
      <widget class="QRadioButton" name="check1radioButton">
       <property name="geometry">
@@ -2315,6 +3057,25 @@
         <width>131</width>
         <height>23</height>
        </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QRadioButton::indicator::unchecked{ 
+border: 1px solid; 
+border-color: rgb(132,132,132);
+border-radius: 5px;
+background-color: white; 
+width: 11px; 
+height: 11px; 
+}
+
+QRadioButton::indicator::checked{ 
+border: 3px solid; 
+border-color: white;
+border-radius: 6px;
+background-color: rgb(0,116,188); 
+width: 7px; 
+height: 7px; 
+}</string>
       </property>
       <property name="text">
        <string>RadioButton</string>
@@ -2329,6 +3090,25 @@
         <height>23</height>
        </rect>
       </property>
+      <property name="styleSheet">
+       <string notr="true">QRadioButton::indicator::unchecked{ 
+border: 1px solid; 
+border-color: rgb(132,132,132);
+border-radius: 5px;
+background-color: white; 
+width: 11px; 
+height: 11px; 
+}
+
+QRadioButton::indicator::checked{ 
+border: 3px solid; 
+border-color: white;
+border-radius: 6px;
+background-color: rgb(0,116,188); 
+width: 7px; 
+height: 7px; 
+}</string>
+      </property>
       <property name="text">
        <string>RadioButton</string>
       </property>
@@ -2341,6 +3121,11 @@
         <width>71</width>
         <height>25</height>
        </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QLineEdit {
+		background-color: rgb(153,187,255);
+}</string>
       </property>
      </widget>
      <widget class="QLabel" name="enterLabel4">
@@ -2371,6 +3156,17 @@
          <property name="cursor">
           <cursorShape>PointingHandCursor</cursorShape>
          </property>
+         <property name="styleSheet">
+          <string>QPushButton#circleButton {
+	text-align: left;
+	padding: 0px 10px 0px 10px;
+	
+}
+
+QPushButton {
+		background-color: rgb(102,153,255);
+}</string>
+         </property>
          <property name="text">
           <string>Back</string>
          </property>
@@ -2378,6 +3174,17 @@
        </item>
        <item>
         <widget class="QPushButton" name="clearGeomtryButton">
+         <property name="styleSheet">
+          <string>QPushButton#circleButton {
+	text-align: left;
+	padding: 0px 10px 0px 10px;
+	
+}
+
+QPushButton {
+		background-color: rgb(102,153,255);
+}</string>
+         </property>
          <property name="text">
           <string>Clear</string>
          </property>

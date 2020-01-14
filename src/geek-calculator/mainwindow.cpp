@@ -100,7 +100,7 @@ void MainWindow::configureGeometryPage() {
     QIcon cylinderButtonIcon(imageCylinder);
     ui->cylinderButton->setIcon(cylinderButtonIcon);
 
-    QPixmap imageSquare(":/images/square.png");
+    QPixmap imageSquare(":/images/square1.png");
     QIcon squareButtonIcon(imageSquare);
     ui->squareButton->setIcon(squareButtonIcon);
 

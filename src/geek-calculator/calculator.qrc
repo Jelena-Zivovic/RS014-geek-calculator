@@ -10,6 +10,11 @@
         <file>images/cube.jpg</file>
         <file>images/cylinder.jpeg</file>
         <file>images/square.png</file>
+        <file>images/square1.png</file>
+        <file>images/</file>
+        <file>images/</file>
+        <file>images/</file>
+        <file>images/</file>
         <file>images/sphere.jpeg</file>
     </qresource>
 </RCC>

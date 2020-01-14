@@ -1341,9 +1341,9 @@ void MainWindow::on_oneVariablePlottingRadioButton_clicked()
     ui->zRangeRightPlotDoubleSpinBox->hide();
     ui->zFromLabel->hide();
     ui->zToLabel->hide();
-    ui->xRangeLeftPlotDoubleSpinBox->setValue(0);
+    ui->xRangeLeftPlotDoubleSpinBox->setValue(-1);
     ui->xRangeRightPlotDoubleSpinBox->setValue(1);
-    ui->yLeftRangePlotDoubleSpinBox->setValue(0);
+    ui->yLeftRangePlotDoubleSpinBox->setValue(-1);
     ui->yRangeRightPlotDoubleSpinBox->setValue(1);
     ui->plotWidget->xAxis->setLabel("x");
     ui->plotWidget->yAxis->setLabel("y");

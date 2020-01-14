@@ -2135,4 +2135,5 @@ void MainWindow::on_convertButton_clicked()
     }
 
     ui->toLineEdit->setText(num.toUpper());
+
 }
